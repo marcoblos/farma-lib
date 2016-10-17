@@ -51,7 +51,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
 ### Xcode ###
 build/
 *.pbxuser
@@ -67,3 +66,6 @@ xcuserdata
 *.moved-aside
 DerivedData
 *.xcuserstate
+
+# ANDROID
+android/.gradle/
