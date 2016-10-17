@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "2793722613",
+    "firebase_url": "https://farma-express.firebaseio.com",
+    "project_id": "farma-express",
+    "storage_bucket": "farma-express.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2793722613:android:5c8b72d20237ff10",
+        "android_client_info": {
+          "package_name": "br.com.farmaexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2793722613-i3mjfs5sgee7o4bk5j47b520sq6o10qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-Pdn7M06PVVss9kv0v63xn_1XxYc5rH0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

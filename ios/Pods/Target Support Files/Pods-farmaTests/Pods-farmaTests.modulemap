@@ -1,0 +1,6 @@
+framework module Pods_farmaTests {
+  umbrella header "Pods-farmaTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
