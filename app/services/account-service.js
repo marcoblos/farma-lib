@@ -125,7 +125,7 @@ class UserService {
 
   retornarNotificacoes() {
 
-    return this._httpService.post('/RetornaNotificacoes')
+    return this._httpService.get('/RetornaNotificacoes')
       .then((response) => {
         return response;
       })

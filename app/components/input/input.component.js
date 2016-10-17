@@ -192,7 +192,7 @@ export class FaInput extends Component {
             style={[input.inputElement, this.state.showMessage === true ? {opacity: 0} : {}]}
             autoCorrect={false}
             secureTextEntry={this.props.secureTextEntry || false}
-            autoCapitalize={this.props.type === 'email-address' ? 'none' : 'sentences'}
+            autoCapitalize={false}
             keyboardType={this.props.type || 'default'}
             onFocus={() => this._activeGroup()}
             onChangeText={(text) => this._change({text})}

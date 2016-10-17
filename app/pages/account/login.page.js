@@ -62,8 +62,8 @@ export class LoginPage extends Component {
 
       let data = {
         Email: this.refs['email'].getValue(),
-        // Senha: CryptoJS.MD5(this.refs['password'].getValue()).toString()
-        Senha: 'c16bf8658889f0e6eab224dddbd4e0dd'
+        Senha: CryptoJS.MD5(this.refs['password'].getValue()).toString()
+        // Senha: 'c16bf8658889f0e6eab224dddbd4e0dd'
       }
 
       this._authService.doLogin(data)

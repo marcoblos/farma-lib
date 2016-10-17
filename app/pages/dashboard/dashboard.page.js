@@ -34,6 +34,7 @@ export class DashboardPage extends Component {
         if(Usertoken === null) {
           this.props.navigator.resetTo({name: "auth-page"});
         } else {
+          debugger;
           axios.defaults.headers.common['Usertoken'] = Usertoken;
           setTimeout( function() {
             self._refresh();
@@ -187,8 +188,6 @@ render() {
           </TouchableOpacity>
         </View>
       </View>
-
-      <TouchableOpacity style={{padding: 10}} onPress={() => this.takePicture()}><Text>FOTO!</Text></TouchableOpacity>
 
       <View style={{flexDirection: 'row', backgroundColor: '#888', paddingTop: 1}}>
         <TouchableOpacity onPress={() => this._accountPage()} activeOpacity={0.3} style={dashboard.bottomItem}>
