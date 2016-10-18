@@ -55,6 +55,18 @@ export class AccountService {
   retornarNotificacoes() {
     return this._userService.retornarNotificacoes();
   }
+
+  vincularDevice(data) {
+    debugger
+    console.log("DENTRO DO VINCULAR DEVICE")
+    return this._httpService.post('/VincularDevice', data)
+      .then((response) => {
+        console.log("account-service vincular device", response)
+        return response;
+      }, (error) => {
+        console.log('Erro URL vincular device', error)
+      })
+  }
 }
 
 class UserService {
@@ -278,3 +290,4 @@ class UserService {
   }
 
 }
+

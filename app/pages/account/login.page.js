@@ -1,47 +1,49 @@
-import React, { Component } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, Dimensions } from 'react-native';
-import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-components';
-
-import EStyleSheet from 'react-native-extended-stylesheet';
-
-import { UserModel } from 'fa-models';
-import { AuthService, ToasterService, StorageService, LoaderService } from 'fa-services';
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
-
-import * as axios from 'axios';
-
-const {height, width} = Dimensions.get('window');
-const s = require('../../styles/core.js');
-
-
-import CryptoJS from 'crypto-js';
-
+import React, { Component } from 'react'
+import { View, ScrollView, Text } from 'react-native'
+import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-components'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { AuthService, StorageService, LoaderService, AccountService } from 'fa-services'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+import * as axios from 'axios'
+import CryptoJS from 'crypto-js'
 
 export class LoginPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       showErrors: false,
       name: '',
       email: '',
       password: '',
-      phone: ''
+      phone: '',
     }
 
-    this._authService = new AuthService();
+    this._authService = new AuthService()
+    this._accountService = new AccountService()
   }
-
 
   _isFormValid(e) {
 
     if(!e.isValid()) {
-      this.valid = false;
-      this.setState({showErrors: true});
+      this.valid = false
+      this.setState({showErrors: true})
     }
 
+  }
+
+  _vincularTokenDeviceComTokenUsuario(userToken) {
+    StorageService.getString('Devicetoken').then((DeviceToken) => {
+      let data = {
+        'Usertoken': userToken, 
+        'Devicetoken': DeviceToken
+      }
+      this._accountService.vincularDevice(data).then((response) => {
+        LoaderService.hide()
+      }, (error) => {
+        LoaderService.hide()
+      })
+    })
   }
 
   _login() {
@@ -50,45 +52,29 @@ export class LoginPage extends Component {
       this.refs['password']
     ]
 
-    this.valid = true;
-    campos.forEach((campo) => this._isFormValid(campo));
+    this.valid = true
+    campos.forEach((campo) => this._isFormValid(campo))
 
     if(this.valid) {
-
-    //   StorageService.setString('Usertoken', '37399709-9593-45fc-9d8c-8192ebcf2255')
-    //  .then((response) => {
-    //    this.props.navigator.resetTo({name: "DashboardPage"});
-    //  })
-
       let data = {
         Email: this.refs['email'].getValue(),
         Senha: CryptoJS.MD5(this.refs['password'].getValue()).toString()
-        // Senha: 'c16bf8658889f0e6eab224dddbd4e0dd'
       }
 
       this._authService.doLogin(data)
       .then((response) => {
-
-        LoaderService.hide();
-
-        let Usertoken = response.Usertoken.toString();
-
-        axios.defaults.headers.common['Usertoken'] = Usertoken;
-
+        let Usertoken = response.Usertoken.toString()
+        axios.defaults.headers.common['Usertoken'] = Usertoken
         StorageService.setString('Usertoken', Usertoken)
         .then((response) => {
-          this.props.navigator.resetTo({name: "DashboardPage"});
-        });
+          this.props.navigator.resetTo({name: "DashboardPage"})
+          //this._vincularTokenDeviceComTokenUsuario(Usertoken)
+        })
       }).catch((error) => {
-        debugger;
       })
 
     }
-
-
-
   }
-
 
 render() {
   return (
@@ -121,4 +107,4 @@ const styles = EStyleSheet.create({
     paddingBottom: '$lg',
     backgroundColor: '$colors.white1'
   }
-});
+})

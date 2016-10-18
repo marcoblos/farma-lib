@@ -21,7 +21,6 @@ export class HttpService {
       let resolvedUrl = new UrlRequestResolver(url, settings).resolve();
       return axios.post(resolvedUrl, data, settings)
         .then((response) => {
-          // debugger;
           if(response.headers.authtoken) {
             StorageService.setString('Authtoken', response.headers.authtoken.toString());
             axios.defaults.headers.common['Authtoken'] = response.headers.authtoken.toString();
@@ -31,7 +30,6 @@ export class HttpService {
     }
 
     _checkStatus(response) {
-
         if(response.data.ern === 403) {
           StorageService.setString('Usertoken', '');
         }
