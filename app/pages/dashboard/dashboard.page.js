@@ -34,7 +34,6 @@ export class DashboardPage extends Component {
         if(Usertoken === null) {
           this.props.navigator.resetTo({name: "auth-page"});
         } else {
-          debugger;
           axios.defaults.headers.common['Usertoken'] = Usertoken;
           setTimeout( function() {
             self._refresh();
@@ -68,7 +67,7 @@ export class DashboardPage extends Component {
 
       this.setState({loading: false});
       StorageService.setObject('notificacoes', response);
-      this.setState({notificacoes: response[1].valor, pendentes: response[0].valor});
+      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes});
 
     }).catch((error) => {
       this.setState({loading: false});

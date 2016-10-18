@@ -116,7 +116,6 @@ class UserService {
 
     return this._httpService.get('/webapp/teste')
       .then((response) => {
-        debugger;
         return response;
       }).catch((error) => {
         debugger;
@@ -125,7 +124,7 @@ class UserService {
 
   retornarNotificacoes() {
 
-    return this._httpService.get('/RetornaNotificacoes')
+    return this._httpService.get('/RetornaPainelNotificacoes')
       .then((response) => {
         return response;
       })

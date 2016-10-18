@@ -12,7 +12,6 @@ export class HttpService {
       return axios.get(resolvedUrl)
           .then(this._checkStatus)
           .then((response) => {
-            debugger;
               return response.data;
           });
     }

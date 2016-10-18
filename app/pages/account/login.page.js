@@ -69,7 +69,6 @@ export class LoginPage extends Component {
       this._authService.doLogin(data)
       .then((response) => {
 
-        debugger;
         LoaderService.hide();
 
         let Usertoken = response.Usertoken.toString();
