@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput} from 'fa-components';
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput, FaMessage} from 'fa-components';
 
 
 export class MeusEnderecosPage extends Component {
@@ -59,35 +59,51 @@ export class MeusEnderecosPage extends Component {
     });
   }
 
+  _renderPage() {
+
+    if(this.props.enderecos.length) {
+
+      <ScrollView keyboardShouldPersistTaps={true}>
+
+      {this.props.enderecos.map((e, index) => {
+
+        let label = [
+          `${e.rua}, ${e.numero}, ${e.complemento}`,
+          `${e.bairro}, ${e.cidade}`,
+          `${e.cep}`,
+        ]
+
+        return (
+          <FaFullButton
+            key={index}
+            title={e.bairro.toUpperCase()}
+            label={label}
+            onPress={() => this._enderecoDetalhePage(e)}
+            borderBottom={true}
+            padding={20} />
+        )
+      })}
+
+    </ScrollView>
+    } else {
+
+      return(
+        <FaMessage icon='person-pin-circle' title='Sem endereços' text='Você não cadastrou nenhum endereço. O endereço ficará vinculado quando você finalizar um pedido.' />
+      )
+    }
+  }
+
   render() {
     return (
       <ViewContainer>
 
           <FaHeader title='Meus endereços' onGoBack={() => this.props.navigator.pop()} />
 
-            <ScrollView keyboardShouldPersistTaps={true}>
-
-              {this.props.enderecos.map((e, index) => {
-
-                let label = [
-                  `${e.rua}, ${e.numero}, ${e.complemento}`,
-                  `${e.bairro}, ${e.cidade}`,
-                  `${e.cep}`,
-                ]
-
-                return (
-                  <FaFullButton
-                    key={index}
-                    title={e.bairro.toUpperCase()}
-                    label={label}
-                    onPress={() => this._enderecoDetalhePage(e)}
-                    borderBottom={true}
-                    padding={20} />
-                )
-              })}
 
 
-            </ScrollView>
+              {this._renderPage()}
+
+
 
       </ViewContainer>
     );

@@ -10,7 +10,7 @@ const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1.id !== r2.id
 });
 
-export class MeusPedidosPage extends Component {
+export class NotificacoesPage extends Component {
   constructor(props) {
       super(props);
 
@@ -49,6 +49,8 @@ export class MeusPedidosPage extends Component {
     this._accountService.getPedido(data)
     .then((response) => {
 
+      debugger;
+
       LoaderService.hide();
 
       this.props.navigator.push({
@@ -59,6 +61,7 @@ export class MeusPedidosPage extends Component {
       })
     })
     .catch((error) => {
+      debugger;
       alert('Não foi possível carregar os dados do pedido.');
       LoaderService.hide();
     });
@@ -169,10 +172,7 @@ export class MeusPedidosPage extends Component {
       )
     } else {
       return (
-        <View style={{flex: 1}}>
-          <FaMessage icon='inbox' title='Sem pedidos' text='Você não tem pedidos. Faça um pedido e receba as melhores ofertas!' />
-          <FaButton label='NOVO PEDIDO' type='primary' size='lg' style={{borderRadius: 0}} />
-        </View>
+        <FaMessage icon='notifications-active' title='Sem notificações' text='Você não tem nenhuma notificação.' />
       )
     }
   }
@@ -181,7 +181,7 @@ export class MeusPedidosPage extends Component {
     return (
       <ViewContainer>
 
-          <FaHeader title='Meus pedidos' onGoBack={() => this.props.navigator.pop()} />
+          <FaHeader title='Notificações' onGoBack={() => this.props.navigator.pop()} />
 
             {this._renderPage()}
 

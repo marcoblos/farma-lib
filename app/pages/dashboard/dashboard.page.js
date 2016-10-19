@@ -100,7 +100,6 @@ export class DashboardPage extends Component {
     this._accountService.getPedidosLista()
     .then((response) => {
 
-      debugger;
       LoaderService.hide();
 
       this.props.navigator.push({
@@ -145,7 +144,7 @@ export class DashboardPage extends Component {
       LoaderService.hide();
 
       this.props.navigator.push({
-        name: "meus-pedidos",
+        name: "notificacoes",
         passProps: {
           pedidos: response
         }

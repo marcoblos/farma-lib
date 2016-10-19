@@ -29,3 +29,4 @@ export {PedidoAndamentoPage} from './account/pedido-andamento.page';
 export {PedidoEntregaPage} from './account/pedido-entrega.page';
 export {PedidoCotacoesPage} from './account/pedido-cotacoes.page';
 export {PedidoFinalizadoPage} from './account/pedido-finalizado.page';
+export {NotificacoesPage} from './account/notificacoes.page';

@@ -69,7 +69,6 @@ export class AccountService {
   }
 
   vincularDevice(data) {
-    debugger
     console.log("DENTRO DO VINCULAR DEVICE")
     return this._httpService.post('/VincularDevice', data)
       .then((response) => {
@@ -102,11 +101,9 @@ class UserService {
   _convertToUserModel(response) {
 
     return new UserModel({
-      name: response.name,
-      email: response.email,
-      password: response.password,
-      phone: response.phone,
-      cpf: response.cpf
+      nome: response.Nome,
+      email: response.Email,
+      celular: response.Celular
     });
   }
 
@@ -132,7 +129,7 @@ class UserService {
 
     return this._httpService.post('/CancelarCompra', data)
       .then((response) => {
-        debugger;
+
         return response;
       }).catch((error) => {
         debugger;
@@ -161,7 +158,7 @@ class UserService {
 
     return this._httpService.post('/RetornaPedidosNotificados')
       .then((response) => {
-        debugger;
+
         return response;
       }).catch((error) => {
         debugger;
@@ -172,7 +169,7 @@ class UserService {
 
     return this._httpService.post('/RetornaPedidosFinalizados')
       .then((response) => {
-        debugger;
+
         return response;
       }).catch((error) => {
         debugger;
@@ -183,7 +180,7 @@ class UserService {
 
     return this._httpService.post('/RetornaDadosCliente')
       .then((response) => {
-        debugger;
+        return this._convertToUserModel(response);
         return response;
       }).catch((error) => {
         debugger;

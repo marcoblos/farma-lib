@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, ScrollView, Text } from 'react-native'
 import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-components'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { AuthService, StorageService, LoaderService, AccountService } from 'fa-services'
+import { AuthService, StorageService, LoaderService, AccountService, ToasterService } from 'fa-services'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import * as axios from 'axios'
 import CryptoJS from 'crypto-js'
@@ -56,7 +56,7 @@ export class LoginPage extends Component {
     campos.forEach((campo) => this._isFormValid(campo))
 
     if(this.valid) {
-      debugger;
+
       let data = {
         Email: this.refs['email'].getValue(),
         Senha: CryptoJS.MD5(this.refs['password'].getValue()).toString()
@@ -66,7 +66,16 @@ export class LoginPage extends Component {
 
       this._authService.doLogin(data)
       .then((response) => {
-        debugger;
+
+        if(response.result === false) {
+          LoaderService.hide();
+
+          setTimeout( function() {
+            ToasterService.error(response.msg);
+          }, 500);
+
+        }
+
         let Usertoken = response.Usertoken.toString()
         axios.defaults.headers.common['Usertoken'] = Usertoken
         StorageService.setString('Usertoken', Usertoken)
@@ -76,7 +85,7 @@ export class LoginPage extends Component {
           // this._vincularTokenDeviceComTokenUsuario(Usertoken)
         })
       }).catch((error) => {
-        debugger;
+
       })
 
     }

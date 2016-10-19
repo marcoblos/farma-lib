@@ -4,10 +4,10 @@ export class UserModel extends BaseModel {
     constructor(props) {
         super();
 
-        this.name = '';
+        this.nome = '';
         this.email = '';
-        this.password = 0;
-        this.phone = 0;
+        this.password = '';
+        this.celular = '';
         this.cpf = '';
 
         super.bind(props);

@@ -20,7 +20,6 @@ export class HttpService {
       let resolvedUrl = new UrlRequestResolver(url, settings).resolve();
       return axios.post(resolvedUrl, data, settings)
         .then((response) => {
-          debugger;
           return response.data;
         });
     }

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader} from 'fa-components';
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaInfo} from 'fa-components';
+
+import { UserModel } from 'fa-models';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { AccountService, LoaderService, StorageService } from 'fa-services';
 
@@ -12,10 +16,31 @@ export class AccountPage extends Component {
 
       this.state = {
         showErrors: false,
-        visible: false
+        visible: false,
+        user: new UserModel()
       }
 
       this._accountService = new AccountService();
+  }
+
+  componentDidMount() {
+
+    StorageService.getObject('user')
+      .then((user) => {
+        debugger;
+        if(user !== null) {
+          this.setState({user})
+        } else {
+          this._accountService.getInformacoesUsuario()
+            .then((response) => {
+              this.setState({user: response})
+              StorageService.setObject('user', response);
+            }).catch((error) => {
+              alert('Erro ao carregar dados do usuário');
+            })
+        }
+
+      })
   }
 
   _meusDadosPage() {
@@ -76,12 +101,26 @@ export class AccountPage extends Component {
 
               {this._renderPhoto()}
 
+              <Icon name='person-pin' size={90} style={{color: '#999', marginBottom: 20, marginTop: 10}} />
+
               <View style={perfil.name}>
-                <Text style={perfil.nameText}>Olá, Alexandre Palagem</Text>
+                <Text style={perfil.nameText}>Olá, {this.state.user.nome}</Text>
               </View>
             </View>
 
-            <FaFullButton label='DADOS PESSOAIS' style={{marginBottom: 30}} onPress={() => this._meusDadosPage()} />
+            <View style={{backgroundColor: 'white', padding: 30}}>
+
+              <View style={{flexDirection: 'row'}}>
+                <View style={{flex: 1}}>
+                  <FaInfo label='E-mail' last={true} value={this.state.user.email} />
+                </View>
+                <View style={{flex: 1}}>
+                  <FaInfo label='Celular' last={true} value={this.state.user.celular} />
+                </View>
+              </View>
+
+            </View>
+
             <FaFullButton label='MEUS ENDEREÇOS' onPress={() => this._meusEnderecosPage()} />
 
           </ScrollView>
@@ -105,7 +144,6 @@ const perfil = EStyleSheet.create({
   container: {
     backgroundColor: 'white',
     padding: 20,
-    marginBottom: 30,
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: '$colors.gray2'
