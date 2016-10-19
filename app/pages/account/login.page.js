@@ -35,7 +35,7 @@ export class LoginPage extends Component {
   _vincularTokenDeviceComTokenUsuario(userToken) {
     StorageService.getString('Devicetoken').then((DeviceToken) => {
       let data = {
-        'Usertoken': userToken, 
+        'Usertoken': userToken,
         'Devicetoken': DeviceToken
       }
       this._accountService.vincularDevice(data).then((response) => {
@@ -88,7 +88,7 @@ render() {
           <FaPageTitle title='LOGIN' subTitle='Informe os dados de acesso para continuar' />
 
             <FaInput label='E-mail' ref='email' value='' required={true} showErrors={this.state.showErrors} type='email-address' />
-            <FaInput label='Senha' ref='password' value='' required={true} showErrors={this.state.showErrors} />
+            <FaInput label='Senha' ref='password' value='' password={true} required={true} showErrors={this.state.showErrors} />
 
             <FaButton label='ENTRAR' style={{marginTop: 20}} size='md' type='primary' onPress={() => this._login()} />
         </View>

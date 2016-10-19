@@ -10,10 +10,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export class FaInfo extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-          nome: 'Nome'
-        }
     }
 
     _renderIcon() {
@@ -22,10 +18,6 @@ export class FaInfo extends Component {
           <Icon name={this.props.icon} size={20} style={info.icon} />
         )
       }
-    }
-
-    componentWillReceiveProps(nextProps) {
-      debugger;
     }
 
     render() {
@@ -38,7 +30,7 @@ export class FaInfo extends Component {
               <View style={{flexDirection: 'row'}}>
                 {this._renderIcon()}
                 <Text style={[info.value, this.props.valueStyle]}>
-                  {this.state.nome}
+                  {this.props.value}
                 </Text>
               </View>
             </View>

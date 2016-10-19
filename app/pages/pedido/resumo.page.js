@@ -66,6 +66,7 @@ export class PedidoResumo extends Component {
           }
       });
     }).catch((error) => {
+      LoaderService.hide();
       console.error(error);
     });
   }

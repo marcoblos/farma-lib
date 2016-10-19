@@ -12,6 +12,7 @@ export class HttpService {
       return axios.get(resolvedUrl)
           .then(this._checkStatus)
           .then((response) => {
+            debugger;
               return response.data;
           });
     }
@@ -21,10 +22,7 @@ export class HttpService {
       let resolvedUrl = new UrlRequestResolver(url, settings).resolve();
       return axios.post(resolvedUrl, data, settings)
         .then((response) => {
-          if(response.headers.authtoken) {
-            StorageService.setString('Authtoken', response.headers.authtoken.toString());
-            axios.defaults.headers.common['Authtoken'] = response.headers.authtoken.toString();
-          }
+          debugger;
           return response.data;
         });
     }

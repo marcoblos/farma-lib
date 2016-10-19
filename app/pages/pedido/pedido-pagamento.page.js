@@ -111,8 +111,6 @@ export class PedidoPagamentoPage extends Component {
       }
     }
 
-
-
     LoaderService.show();
 
     this._pedidoService.realizarPedido(data)
@@ -128,6 +126,7 @@ export class PedidoPagamentoPage extends Component {
           }
       });
     }).catch((error) => {
+      LoaderService.hide();
       debugger;
       console.error(error);
     });

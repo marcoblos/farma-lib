@@ -29,10 +29,6 @@ export class Farma extends Component {
         .then((Usertoken) => {
           axios.defaults.headers.common['Usertoken'] = Usertoken.toString();
         })
-        StorageService.getString('Authtoken')
-        .then((Authtoken) => {
-          axios.defaults.headers.common['Authtoken'] = Authtoken.toString();
-        })
 
         FCM.requestPermissions(); // for iOS
         FCM.getFCMToken().then(token => {

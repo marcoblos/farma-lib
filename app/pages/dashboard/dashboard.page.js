@@ -48,7 +48,7 @@ export class DashboardPage extends Component {
 
     StorageService.getObject('notificacoes')
     .then((response) => {
-      this.setState({notificacoes: response[1].valor, pendentes: response[0].valor});
+      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes});
     });
 
   }
@@ -59,11 +59,6 @@ export class DashboardPage extends Component {
 
     this._accountService.retornarNotificacoes()
     .then((response) => {
-
-      if(response.result === false) {
-        this.props.navigator.resetTo({name: "auth-page"});
-        return false;
-      }
 
       this.setState({loading: false});
       StorageService.setObject('notificacoes', response);
