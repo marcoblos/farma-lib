@@ -3,6 +3,7 @@ import { Text, View, TextInput, Animated, TouchableWithoutFeedback, TouchableOpa
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {TextInputMask} from 'react-native-masked-text'
 
 export class FaInput extends Component {
   constructor(props) {
@@ -58,9 +59,19 @@ export class FaInput extends Component {
     }
   }
 
+  _getTextInputComponent() {
+      if(this.props.mask) {
+          return this.refs['campo'].getElement();
+      }
+      else {
+          return this.refs['campo'];
+      }
+    }
+
   _activeGroup() {
     this.setState({actived: true, showErrors: false, showMessage: false});
-    this.refs['campo'].focus();
+
+    this._getTextInputComponent().focus();
 
     Animated.timing(
         this.state.height,
@@ -176,6 +187,48 @@ export class FaInput extends Component {
     this.setState({text: ''});
   }
 
+  _renderInput() {
+
+    if(this.props.mask) {
+
+      let mask = this.props.mask;
+
+      return (
+        <TextInputMask
+           type={mask}
+           ref='campo'
+           style={[input.inputElement, this.state.showMessage === true ? {opacity: 0} : {}]}
+           autoCorrect={false}
+           secureTextEntry={this.props.secureTextEntry || false}
+           autoCapitalize={false}
+           keyboardType={this.props.type || 'default'}
+           onFocus={() => this._activeGroup()}
+           onChangeText={(text) => this._change({text})}
+           onBlur={() => this._blur()}
+           value={this.state.text}
+           underlineColorAndroid={'transparent'} />
+      )
+    }
+
+    return (
+      <TextInput
+        ref='campo'
+        style={[input.inputElement, this.state.showMessage === true ? {opacity: 0} : {}]}
+        autoCorrect={false}
+        secureTextEntry={this.props.secureTextEntry || false}
+        autoCapitalize={false}
+        keyboardType={this.props.type || 'default'}
+        onFocus={() => this._activeGroup()}
+        onChangeText={(text) => this._change({text})}
+        onBlur={() => this._blur()}
+        value={this.state.text}
+        underlineColorAndroid={'transparent'}
+      />
+    )
+
+
+  }
+
   render() {
     return (
       <View style={input.group}>
@@ -187,19 +240,7 @@ export class FaInput extends Component {
           </Text>
         </View>
         <Animated.View style={[input.inputWrapper, {height: this.state.height}]}>
-          <TextInput
-            ref='campo'
-            style={[input.inputElement, this.state.showMessage === true ? {opacity: 0} : {}]}
-            autoCorrect={false}
-            secureTextEntry={this.props.secureTextEntry || false}
-            autoCapitalize={false}
-            keyboardType={this.props.type || 'default'}
-            onFocus={() => this._activeGroup()}
-            onChangeText={(text) => this._change({text})}
-            onBlur={() => this._blur()}
-            value={this.state.text}
-            underlineColorAndroid={'transparent'}
-          />
+        {this._renderInput()}
         </Animated.View>
         <TouchableOpacity onPress={() => this._clean()} style={input.cleanWrapper}>
           <View style={[input.iconContent, this.state.actived && this.state.text.length > 0 ? {opacity: 1} : {}]}>
