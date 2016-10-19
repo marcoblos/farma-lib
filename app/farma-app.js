@@ -36,7 +36,8 @@ export class Farma extends Component {
 
         FCM.requestPermissions(); // for iOS
         FCM.getFCMToken().then(token => {
-            console.log(token)
+            console.log("token device: ", token)
+            StorageService.setString('Devicetoken', token)
             // store fcm token in your server
         });
         this.notificationUnsubscribe = FCM.on('notification', (notif) => {
