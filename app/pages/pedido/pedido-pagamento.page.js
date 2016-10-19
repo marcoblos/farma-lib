@@ -127,7 +127,6 @@ export class PedidoPagamentoPage extends Component {
       });
     }).catch((error) => {
       LoaderService.hide();
-      debugger;
       console.error(error);
     });
   }

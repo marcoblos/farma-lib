@@ -56,21 +56,27 @@ export class LoginPage extends Component {
     campos.forEach((campo) => this._isFormValid(campo))
 
     if(this.valid) {
+      debugger;
       let data = {
         Email: this.refs['email'].getValue(),
         Senha: CryptoJS.MD5(this.refs['password'].getValue()).toString()
       }
 
+      LoaderService.show()
+
       this._authService.doLogin(data)
       .then((response) => {
+        debugger;
         let Usertoken = response.Usertoken.toString()
         axios.defaults.headers.common['Usertoken'] = Usertoken
         StorageService.setString('Usertoken', Usertoken)
         .then((response) => {
+          LoaderService.hide()
           this.props.navigator.resetTo({name: "DashboardPage"})
-          //this._vincularTokenDeviceComTokenUsuario(Usertoken)
+          // this._vincularTokenDeviceComTokenUsuario(Usertoken)
         })
       }).catch((error) => {
+        debugger;
       })
 
     }

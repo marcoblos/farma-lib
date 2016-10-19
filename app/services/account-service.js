@@ -56,6 +56,18 @@ export class AccountService {
     return this._userService.retornarNotificacoes();
   }
 
+  getNotificacoesLista() {
+    return this._userService.getNotificacoesLista();
+  }
+
+  getHistoricoLista() {
+    return this._userService.getHistoricoLista();
+  }
+
+  getInformacoesUsuario() {
+    return this._userService.getInformacoesUsuario();
+  }
+
   vincularDevice(data) {
     debugger
     console.log("DENTRO DO VINCULAR DEVICE")
@@ -120,7 +132,10 @@ class UserService {
 
     return this._httpService.post('/CancelarCompra', data)
       .then((response) => {
+        debugger;
         return response;
+      }).catch((error) => {
+        debugger;
       })
   }
 
@@ -139,6 +154,39 @@ class UserService {
     return this._httpService.get('/RetornaPainelNotificacoes')
       .then((response) => {
         return response;
+      })
+  }
+
+  getNotificacoesLista() {
+
+    return this._httpService.post('/RetornaPedidosNotificados')
+      .then((response) => {
+        debugger;
+        return response;
+      }).catch((error) => {
+        debugger;
+      })
+  }
+
+  getHistoricoLista() {
+
+    return this._httpService.post('/RetornaPedidosFinalizados')
+      .then((response) => {
+        debugger;
+        return response;
+      }).catch((error) => {
+        debugger;
+      })
+  }
+
+  getInformacoesUsuario() {
+
+    return this._httpService.post('/RetornaDadosCliente')
+      .then((response) => {
+        debugger;
+        return response;
+      }).catch((error) => {
+        debugger;
       })
   }
 
@@ -290,4 +338,3 @@ class UserService {
   }
 
 }
-

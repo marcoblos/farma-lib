@@ -100,6 +100,7 @@ export class DashboardPage extends Component {
     this._accountService.getPedidosLista()
     .then((response) => {
 
+      debugger;
       LoaderService.hide();
 
       this.props.navigator.push({
@@ -117,13 +118,9 @@ export class DashboardPage extends Component {
 
   _historico() {
 
-    let data = {
-      SomenteFinalizados: true
-    };
-
     requestAnimationFrame(() => LoaderService.show());
 
-    this._accountService.getPedidosLista(data)
+    this._accountService.getInformacoesUsuario()
     .then((response) => {
 
       LoaderService.hide();
@@ -131,8 +128,26 @@ export class DashboardPage extends Component {
       this.props.navigator.push({
         name: "meus-pedidos",
         passProps: {
-          pedidos: response,
-          type: 'historico'
+          pedidos: response
+        }
+      });
+    });
+
+  }
+
+  _notificacoes() {
+
+    LoaderService.show()
+
+    this._accountService.getNotificacoesLista()
+    .then((response) => {
+
+      LoaderService.hide();
+
+      this.props.navigator.push({
+        name: "meus-pedidos",
+        passProps: {
+          pedidos: response
         }
       });
     });
@@ -175,7 +190,7 @@ render() {
             <Text>Pedidos</Text>
             <Text>pendentes</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this._teste()} activeOpacity={0.6} style={dashboard.item}>
+          <TouchableOpacity onPress={() => this._notificacoes()} activeOpacity={0.6} style={dashboard.item}>
             <Text style={dashboard.textLarge}>{this.state.notificacoes}</Text>
             <Text>Novas</Text>
             <Text>notificações</Text>

@@ -10,9 +10,7 @@ export class HttpService {
     get(url, data, settings) {
       let resolvedUrl = new UrlRequestResolver(url, settings).resolve();
       return axios.get(resolvedUrl)
-          .then(this._checkStatus)
           .then((response) => {
-            debugger;
               return response.data;
           });
     }

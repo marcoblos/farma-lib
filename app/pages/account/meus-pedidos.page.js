@@ -49,6 +49,8 @@ export class MeusPedidosPage extends Component {
     this._accountService.getPedido(data)
     .then((response) => {
 
+      debugger;
+
       LoaderService.hide();
 
       this.props.navigator.push({
