@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaFullButton extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   _renderIcon(icon) {
@@ -28,7 +28,7 @@ export class FaFullButton extends Component {
       )
     }
 
-    return false;
+    return false
   }
 
   _renderTitle() {
@@ -143,4 +143,4 @@ const fullButton = EStyleSheet.create({
     fontSize: 18,
     marginTop: 4
   }
-});
+})

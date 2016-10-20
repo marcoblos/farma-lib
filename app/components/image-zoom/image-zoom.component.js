@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
     StyleSheet,
     Text,
@@ -7,20 +7,20 @@ import {
     Image,
     Dimensions,
     Modal
-} from 'react-native';
+} from 'react-native'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import ImageZoom from 'react-native-transformable-image';
+import ImageZoom from 'react-native-transformable-image'
 
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 export class FaImageZoom extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       image: ''
@@ -53,7 +53,7 @@ export class FaImageZoom extends Component {
         </View>
 
       </Modal>
-    );
+    )
   }
 
 }

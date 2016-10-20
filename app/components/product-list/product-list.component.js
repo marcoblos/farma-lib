@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
   TouchableOpacity,
   Image
-} from 'react-native';
+} from 'react-native'
 
-import { FaImageZoom } from 'fa-components';
+import { FaImageZoom } from 'fa-components'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaProductList extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
           imageZoomVisible: false,
@@ -76,7 +76,7 @@ export class FaProductList extends Component {
               onClose={() => this.setState({imageZoomVisible: false})} />
 
           </View>
-        );
+        )
     }
 }
 
@@ -98,4 +98,4 @@ const info = EStyleSheet.create({
       marginRight: 3,
       color: '$colors.black3'
     }
-});
+})

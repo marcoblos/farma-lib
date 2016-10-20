@@ -1,7 +1,7 @@
-import { Dimensions, Platform } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import { Dimensions, Platform } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 /**
  * COLORS
@@ -10,26 +10,26 @@ const {height, width} = Dimensions.get('window');
 
 
 
-const COLOR_BLACK_1 = '#000';
-const COLOR_WHITE_1 = '#fff';
-const COLOR_RED_1 = '#ff0000';
-const COLOR_GRAY_1 = '#d3d3d3';
-const COLOR_ULTRA_LIGHT_GRAY_1 = '#f8f8ff';
-const PRIMARY_COLOR = '#f98e2e';
-const SECONDARY_COLOR = '#4c4c4c';
-const TERNARY_COLOR = 'white';
+const COLOR_BLACK_1 = '#000'
+const COLOR_WHITE_1 = '#fff'
+const COLOR_RED_1 = '#ff0000'
+const COLOR_GRAY_1 = '#d3d3d3'
+const COLOR_ULTRA_LIGHT_GRAY_1 = '#f8f8ff'
+const PRIMARY_COLOR = '#f98e2e'
+const SECONDARY_COLOR = '#4c4c4c'
+const TERNARY_COLOR = 'white'
 
-const SUCCESS_COLOR = '#6ad776';
-const SUCCESS_TEXT_COLOR = 'white';
+const SUCCESS_COLOR = '#6ad776'
+const SUCCESS_TEXT_COLOR = 'white'
 
-const INFO_COLOR = '#6dbeef';
-const INFO_TEXT_COLOR = 'white';
+const INFO_COLOR = '#6dbeef'
+const INFO_TEXT_COLOR = 'white'
 
-const ALERT_COLOR = '#f98e2e';
-const ALERT_TEXT_COLOR = 'white';
+const ALERT_COLOR = '#f98e2e'
+const ALERT_TEXT_COLOR = 'white'
 
-const DANGER_COLOR = '#f9522e';
-const DANGER_TEXT_COLOR = 'white';
+const DANGER_COLOR = '#f9522e'
+const DANGER_TEXT_COLOR = 'white'
 
 /**
  * EXPORT
@@ -75,6 +75,6 @@ export class ConfigTheme {
                     android: 0
                 })
             }
-        });
+        })
     }
 }

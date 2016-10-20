@@ -8,7 +8,7 @@ module.exports.ALERT = {
     text: {
         color: '$colors.white1'
     }
-};
+}
 
 module.exports.SUCCESS = {
     container: {
@@ -20,7 +20,7 @@ module.exports.SUCCESS = {
     text: {
         color: '$colors.white1'
     }
-};
+}
 
 module.exports.DANGER = {
     container: {
@@ -32,7 +32,7 @@ module.exports.DANGER = {
     text: {
         color: '$colors.white1'
     }
-};
+}
 
 module.exports.INFO = {
     container: {
@@ -44,4 +44,4 @@ module.exports.INFO = {
     text: {
         color: '$colors.white1'
     }
-};
+}

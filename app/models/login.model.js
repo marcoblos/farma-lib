@@ -1,12 +1,12 @@
-import {BaseModel} from './_base.model';
+import {BaseModel} from './_base.model'
 
 export class LoginModel extends BaseModel {
     constructor(properties) {
-        super();
+        super()
 
-        this.userName = '';
-        this.password = '';
+        this.userName = ''
+        this.password = ''
 
-        super.bind(properties);
+        super.bind(properties)
     }
 }

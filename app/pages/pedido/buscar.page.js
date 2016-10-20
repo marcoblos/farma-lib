@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableHighlight, Dimensions, StyleSheet, ActivityIndicator, ListView, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import React, { Component } from 'react'
+import { Text, View, TouchableHighlight, Dimensions, StyleSheet, ActivityIndicator, ListView, TouchableOpacity, TextInput, ScrollView } from 'react-native'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import { PedidoService } from 'fa-services';
+import { PedidoService } from 'fa-services'
 
-import { ViewContainer, FaHeader } from 'fa-components';
+import { ViewContainer, FaHeader } from 'fa-components'
 
-var DismissKeyboard = require('dismissKeyboard');
+var DismissKeyboard = require('dismissKeyboard')
 
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-import { PedidoModel } from 'fa-models';
+import { PedidoModel } from 'fa-models'
 
 const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1.id !== r2.id
-});
+})
 
 export class PedidoBuscar extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
           productsDataSource: ds.cloneWithRows([]),
@@ -31,58 +31,58 @@ export class PedidoBuscar extends Component {
     }
 
     componentDidMount() {
-      let self = this;
+      let self = this
 
       if(this.props.pedido) {
-        this.setState({pedido: this.props.pedido});
+        this.setState({pedido: this.props.pedido})
       }
 
       setTimeout( function() {
-        self.refs['input'].focus();
-      }, 500);
+        self.refs['input'].focus()
+      }, 500)
     }
 
     _buscar(el) {
 
-      let self = this;
+      let self = this
 
-      clearTimeout(global.__waitTimer);
+      clearTimeout(global.__waitTimer)
 
       global.__waitTimer = setTimeout(function () {
 
         if(el.text.length > 2) {
 
-          let pedidoService = new PedidoService();
+          let pedidoService = new PedidoService()
 
           self.setState({
             text: el.text,
             isLoading: true
-          });
+          })
 
           pedidoService.getProducts(el.text)
             .then((res) => {
-              let d = res;
-              d.unshift({IDMedicamento: 0, Nome: el.text});
+              let d = res
+              d.unshift({IDMedicamento: 0, Nome: el.text})
 
               self.setState({
                 productsDataSource: ds.cloneWithRows(d),
                 isLoading: false
-              });
+              })
 
             })
             .catch((error) => {
-                console.error(error);
-            });
+                console.error(error)
+            })
         }
 
-      }, 500);
+      }, 500)
     }
 
     selectProduct(nome) {
 
-      let self = this;
+      let self = this
 
-      DismissKeyboard();
+      DismissKeyboard()
 
       let product = {
         nome: nome,
@@ -103,16 +103,16 @@ export class PedidoBuscar extends Component {
     }
 
     _back() {
-      let self = this;
+      let self = this
 
-      DismissKeyboard();
+      DismissKeyboard()
 
       setTimeout( function(){
         self.props.navigator.push({
           name: route,
           currentProduct: product
         })
-      }, 500);
+      }, 500)
     }
 
     render() {
@@ -152,7 +152,7 @@ export class PedidoBuscar extends Component {
               <KeyboardSpacer/>
 
             </ViewContainer>
-        );
+        )
     }
 }
 
@@ -195,4 +195,4 @@ const poc = EStyleSheet.create({
     paddingRight: 15,
     justifyContent: 'center'
   }
-});
+})

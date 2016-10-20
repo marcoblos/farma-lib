@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput} from 'fa-components';
-import { AccountService } from 'fa-services';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Alert } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput} from 'fa-components'
+import { AccountService } from 'fa-services'
 
 
 export class EnderecoPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false,
@@ -19,11 +19,11 @@ export class EnderecoPage extends Component {
         complemento: ''
       }
 
-      this._accountService = new AccountService();
+      this._accountService = new AccountService()
   }
 
   componentDidMount() {
-    console.log(this.props.endereco);
+    console.log(this.props.endereco)
 
     this.setState({
       cep: this.props.endereco.cep.toString(),
@@ -32,7 +32,7 @@ export class EnderecoPage extends Component {
       uf: this.props.endereco.uf,
       numero: this.props.endereco.numero.toString(),
       complemento: this.props.endereco.complemento
-    });
+    })
   }
 
 
@@ -41,19 +41,19 @@ export class EnderecoPage extends Component {
     let data = {
       TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255',
       IDEndereco: this.props.endereco.id
-    };
+    }
 
     this._accountService.removerEndereco(data)
     .then((response) => {
-      debugger;
+      debugger
 
       this.props.navigator.resetTo({
         name: 'DashboardPage'
       })
     })
     .catch((error) => {
-      alert('Não foi possível remover o endereço. Tente novamente mais tarde.');
-    });
+      alert('Não foi possível remover o endereço. Tente novamente mais tarde.')
+    })
 
   }
 
@@ -109,7 +109,7 @@ export class EnderecoPage extends Component {
             </ScrollView>
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -133,7 +133,7 @@ const perfil = EStyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold'
   }
-});
+})
 
 const styles = EStyleSheet.create({
   container: {
@@ -141,4 +141,4 @@ const styles = EStyleSheet.create({
     paddingBottom: '$lg',
     backgroundColor: '$colors.white1'
   }
-});
+})

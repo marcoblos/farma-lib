@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput, FaMessage} from 'fa-components';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput, FaMessage} from 'fa-components'
 
 
 export class MeusEnderecosPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false
@@ -14,13 +14,13 @@ export class MeusEnderecosPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.enderecos);
+    console.log(this.props.enderecos)
   }
 
   _isFormValid(e) {
 
     if(!e.isValid()) {
-      this.valid = false;
+      this.valid = false
     }
 
   }
@@ -28,9 +28,9 @@ export class MeusEnderecosPage extends Component {
 
   _validar() {
 
-    let self = this;
+    let self = this
 
-    // alert(this.refs['txtEmail'].isValid());
+    // alert(this.refs['txtEmail'].isValid())
 
     let campos = [
       this.refs['nome'],
@@ -39,15 +39,15 @@ export class MeusEnderecosPage extends Component {
       this.refs['data']
     ]
 
-    this.valid = true;
+    this.valid = true
 
-    campos.forEach((campo) => this._isFormValid(campo));
+    campos.forEach((campo) => this._isFormValid(campo))
 
     if(self.valid) {
-      alert('E foi!!');
+      alert('E foi!!')
     }
 
-    self.setState({showErrors: true});
+    self.setState({showErrors: true})
   }
 
   _enderecoDetalhePage(endereco) {
@@ -56,7 +56,7 @@ export class MeusEnderecosPage extends Component {
         passProps: {
           endereco: endereco
         }
-    });
+    })
   }
 
   _renderPage() {
@@ -106,7 +106,7 @@ export class MeusEnderecosPage extends Component {
 
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -116,4 +116,4 @@ const styles = EStyleSheet.create({
     marginBottom: '$lg',
     backgroundColor: '$colors.white1'
   }
-});
+})

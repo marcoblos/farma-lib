@@ -1,7 +1,6 @@
-'use strict'
 import React, {
     Component
-} from 'react';
+} from 'react'
 import {
     Navigator,
     Text,
@@ -37,7 +36,7 @@ import {
     PedidoCotacoesPage,
     PedidoFinalizadoPage,
     NotificacoesPage
-} from 'fa-pages';
+} from 'fa-pages'
 
 export class AppNavigator extends Component {
 
@@ -47,61 +46,61 @@ export class AppNavigator extends Component {
         }
 
         switch (route.name) {
-            case "PocPage":
+            case 'PocPage':
               return ( <PocPage {...globalNavigatorProps} {...route.passProps} />)
-            case "RootPage":
+            case 'RootPage':
               return ( <RootPage {...globalNavigatorProps} {...route.passProps} />)
-            case "PedidoBuscar":
+            case 'PedidoBuscar':
               return ( <PedidoBuscar {...globalNavigatorProps} {...route.passProps} />)
-            case "DashboardPage":
+            case 'DashboardPage':
               return ( <DashboardPage {...globalNavigatorProps} {...route.passProps} />)
-            case "DetalhePage":
+            case 'DetalhePage':
               return ( <DetalhePage {...globalNavigatorProps} {...route.passProps} currentProduct={route.currentProduct} />)
-            case "PedidoResumo":
+            case 'PedidoResumo':
               return ( <PedidoResumo {...globalNavigatorProps} {...route.passProps} products={route.products} />)
-            case "login-page":
+            case 'login-page':
               return ( <LoginPage {...globalNavigatorProps} {...route.passProps} />)
-            case "auth-page":
+            case 'auth-page':
               return ( <AuthPage {...globalNavigatorProps} {...route.passProps} />)
-            case "RegisterPage":
+            case 'RegisterPage':
               return ( <RegisterPage {...globalNavigatorProps} {...route.passProps} />)
-            case "AccountPage":
+            case 'AccountPage':
               return ( <AccountPage {...globalNavigatorProps} {...route.passProps} />)
-            case "meus-dados":
+            case 'meus-dados':
               return ( <MeusDadosPage {...globalNavigatorProps} {...route.passProps} />)
-            case "meus-enderecos":
+            case 'meus-enderecos':
               return ( <MeusEnderecosPage {...globalNavigatorProps} {...route.passProps} />)
-            case "endereco":
+            case 'endereco':
               return ( <EnderecoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-endereco":
+            case 'pedido-endereco':
               return ( <PedidoEnderecoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-pagamento":
+            case 'pedido-pagamento':
               return ( <PedidoPagamentoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-pagamento-cartao":
+            case 'pedido-pagamento-cartao':
               return ( <PedidoPagamentoCartaoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-final":
+            case 'pedido-final':
               return ( <FinalPage {...globalNavigatorProps} {...route.passProps} />)
-            case "meus-pedidos":
+            case 'meus-pedidos':
               return ( <MeusPedidosPage {...globalNavigatorProps} {...route.passProps} />)
-            case "cotacoes":
+            case 'cotacoes':
               return ( <CotacoesPage {...globalNavigatorProps} {...route.passProps} />)
-            case "cotacoes-empty":
+            case 'cotacoes-empty':
               return ( <CotacoesEmptyPage {...globalNavigatorProps} {...route.passProps} />)
-            case "cotacoes-entrega":
+            case 'cotacoes-entrega':
               return ( <CotacoesEntregaPage {...globalNavigatorProps} {...route.passProps} />)
-            case "cotacoes-andamento":
+            case 'cotacoes-andamento':
               return ( <CotacoesAndamentoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido":
+            case 'pedido':
               return ( <PedidoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-andamento":
+            case 'pedido-andamento':
               return ( <PedidoAndamentoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-entrega":
+            case 'pedido-entrega':
               return ( <PedidoEntregaPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-cotacoes":
+            case 'pedido-cotacoes':
               return ( <PedidoCotacoesPage {...globalNavigatorProps} {...route.passProps} />)
-            case "pedido-finalizado":
+            case 'pedido-finalizado':
               return ( <PedidoFinalizadoPage {...globalNavigatorProps} {...route.passProps} />)
-            case "notificacoes":
+            case 'notificacoes':
               return ( <NotificacoesPage {...globalNavigatorProps} {...route.passProps} />)
         }
     }
@@ -118,14 +117,14 @@ export class AppNavigator extends Component {
         }
       }
 
-      return obj;
+      return obj
     }
 
     render() {
         return (
             <Navigator
               initialRoute = {this.props.initialRoute}
-              ref = "navigator"
+              ref = 'navigator'
               style = {styles.navigatorStyles}
               renderScene = {this._renderScene}
               configureScene = {this._configureScene}

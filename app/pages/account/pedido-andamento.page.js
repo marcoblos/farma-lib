@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaIconMessage, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaProductList} from 'fa-components';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaIconMessage, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaProductList} from 'fa-components'
 
-import { AccountService } from 'fa-services';
+import { AccountService } from 'fa-services'
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('window')
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class PedidoAndamentoPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false,
@@ -20,11 +20,11 @@ export class PedidoAndamentoPage extends Component {
         modalVisible: false
       }
 
-      this._accountService = new AccountService();
+      this._accountService = new AccountService()
   }
 
   componentDidMount() {
-    console.log(this.props.pedido);
+    console.log(this.props.pedido)
   }
 
   onMomentumScrollEnd(e, state, context) {
@@ -33,7 +33,7 @@ export class PedidoAndamentoPage extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   _cancelarPedido() {
@@ -41,7 +41,7 @@ export class PedidoAndamentoPage extends Component {
     let data = {
       IDPedido: this.props.pedido.idPedido,
       IDCotacao: this.props.pedido.cotacoes[0].idCotacao
-    };
+    }
 
     this._accountService.cancelarCompra(data)
     .then((response) => {
@@ -51,9 +51,9 @@ export class PedidoAndamentoPage extends Component {
       })
     })
     .catch((error) => {
-      debugger;
-      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.');
-    });
+      debugger
+      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.')
+    })
   }
 
   _alertCancelarPedido() {
@@ -165,7 +165,7 @@ export class PedidoAndamentoPage extends Component {
       </ScrollView>
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -175,4 +175,4 @@ const styles = EStyleSheet.create({
     backgroundColor: '$colors.white1',
     padding: '$md'
   }
-});
+})

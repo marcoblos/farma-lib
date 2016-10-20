@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
     StyleSheet,
     Text,
@@ -6,15 +6,15 @@ import {
     TouchableOpacity,
     Image,
     StatusBar
-} from 'react-native';
+} from 'react-native'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
 export class FaHeader extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   _renderBackButton() {
@@ -28,21 +28,21 @@ export class FaHeader extends Component {
                     <Icon name="keyboard-arrow-left" style={header.backButtonIcon} />
                 </View>
             </TouchableOpacity>
-        );
+        )
     }
 
   _renderRight() {
-    return null;
+    return null
 
     return (
         <TouchableOpacity style={header.right}>
           <Text style={header.text}>Texto</Text>
         </TouchableOpacity>
-    );
+    )
   }
 
   _onGoBack() {
-      this.props.onGoBack();
+      this.props.onGoBack()
   }
 
   _renderLogo() {
@@ -75,7 +75,7 @@ export class FaHeader extends Component {
                 {this._renderRight()}
               </View>
           </View>
-      );
+      )
   }
 
 }
@@ -93,7 +93,7 @@ const logo = EStyleSheet.create({
     width: null,
     height: null
   }
-});
+})
 
 const header = EStyleSheet.create({
   container: {
@@ -131,4 +131,4 @@ const header = EStyleSheet.create({
   text: {
     color: 'white'
   }
-});
+})

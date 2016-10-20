@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, ListView, RefreshControl } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaProduct, FaMessage} from 'fa-components';
-import { AccountService, LoaderService } from 'fa-services';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, ListView, RefreshControl } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaProduct, FaMessage} from 'fa-components'
+import { AccountService, LoaderService } from 'fa-services'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1.id !== r2.id
-});
+})
 
 export class NotificacoesPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         pedidosList: ds.cloneWithRows([]),
@@ -21,11 +21,11 @@ export class NotificacoesPage extends Component {
         refreshing: false
       }
 
-      this._accountService = new AccountService();
+      this._accountService = new AccountService()
   }
 
   componentDidMount() {
-    console.log(this.props.pedidos);
+    console.log(this.props.pedidos)
 
     this.setState({pedidosList: ds.cloneWithRows(this.props.pedidos)})
   }
@@ -33,25 +33,25 @@ export class NotificacoesPage extends Component {
 
   _detalharPedido(idPedido, status) {
 
-    let page = 'pedido';
+    let page = 'pedido'
 
-    if(status === 2) { page = 'pedido-cotacoes' };
-    if(status === 3) { page = 'pedido-andamento' };
-    if(status === 4) { page = 'pedido-entrega' };
-    if(status === 5) { page = 'pedido-finalizado' };
+    if(status === 2) { page = 'pedido-cotacoes' }
+    if(status === 3) { page = 'pedido-andamento' }
+    if(status === 4) { page = 'pedido-entrega' }
+    if(status === 5) { page = 'pedido-finalizado' }
 
     let data = {
       IDPedido: idPedido
-    };
+    }
 
-    requestAnimationFrame(() => LoaderService.show());
+    requestAnimationFrame(() => LoaderService.show())
 
     this._accountService.getPedido(data)
     .then((response) => {
 
-      debugger;
+      debugger
 
-      LoaderService.hide();
+      LoaderService.hide()
 
       this.props.navigator.push({
         name: page,
@@ -61,27 +61,27 @@ export class NotificacoesPage extends Component {
       })
     })
     .catch((error) => {
-      debugger;
-      alert('Não foi possível carregar os dados do pedido.');
-      LoaderService.hide();
-    });
+      debugger
+      alert('Não foi possível carregar os dados do pedido.')
+      LoaderService.hide()
+    })
     //
     // if(status === 2) {
     //   this.props.navigator.push({
     //       name: 'cotacoes'
-    //   });
+    //   })
     // }
     //
     // if(status === 3) {
     //   this.props.navigator.push({
     //       name: 'cotacoes-andamento'
-    //   });
+    //   })
     // }
     //
     // if(status === 4) {
     //   this.props.navigator.push({
     //       name: 'cotacoes-entrega'
-    //   });
+    //   })
     // }
 
   }
@@ -89,20 +89,20 @@ export class NotificacoesPage extends Component {
   _meusEnderecosPage() {
     this.props.navigator.push({
         name: 'meus-enderecos'
-    });
+    })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
         name: 'meus-pedidos'
-    });
+    })
   }
 
   _logout() {
 
     this.props.navigator.resetTo({
         name: 'login-page'
-    });
+    })
   }
 
   _renderPhoto() {
@@ -113,17 +113,17 @@ export class NotificacoesPage extends Component {
 
   _renderRow(p, index) {
 
-    let title = `Pedido nº ${p.IDPedido}`;
-    let produtos = [];
+    let title = `Pedido nº ${p.IDPedido}`
+    let produtos = []
 
-    produtos.push(p.Prd);
+    produtos.push(p.Prd)
 
     if(p.QtdPrd === 2) {
-      produtos.push(` e mais 1 produto`);
+      produtos.push(` e mais 1 produto`)
     }
 
     if(p.QtdPrd > 2) {
-      produtos.push(` e mais ${p.QtdPrd} produtos`);
+      produtos.push(` e mais ${p.QtdPrd} produtos`)
     }
 
     return (
@@ -135,24 +135,24 @@ export class NotificacoesPage extends Component {
 
     let user = {
       TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255'
-    };
+    }
 
     if(this.props.type === 'historico') {
       user = {
         TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255',
         SomenteFinalizados: true
-      };
+      }
     }
 
-    LoaderService.show();
+    LoaderService.show()
 
     this._accountService.getPedidosLista(user)
     .then((response) => {
 
-      LoaderService.hide();
-      this.setState({pedidosList: ds.cloneWithRows(response)});
+      LoaderService.hide()
+      this.setState({pedidosList: ds.cloneWithRows(response)})
 
-    });
+    })
   }
 
   _renderPage() {
@@ -186,7 +186,7 @@ export class NotificacoesPage extends Component {
             {this._renderPage()}
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -194,7 +194,7 @@ const styles = EStyleSheet.create({
   container: {
     padding: '$sm'
   }
-});
+})
 
 const perfil = EStyleSheet.create({
   container: {
@@ -218,4 +218,4 @@ const perfil = EStyleSheet.create({
     fontWeight: 'bold',
     color: '$colors.black2'
   }
-});
+})

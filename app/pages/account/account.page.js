@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaInfo} from 'fa-components';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaInfo} from 'fa-components'
 
-import { UserModel } from 'fa-models';
+import { UserModel } from 'fa-models'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { AccountService, LoaderService, StorageService } from 'fa-services';
+import { AccountService, LoaderService, StorageService } from 'fa-services'
 
 
 export class AccountPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false,
@@ -20,23 +20,23 @@ export class AccountPage extends Component {
         user: new UserModel()
       }
 
-      this._accountService = new AccountService();
+      this._accountService = new AccountService()
   }
 
   componentDidMount() {
 
     StorageService.getObject('user')
       .then((user) => {
-        debugger;
+        debugger
         if(user !== null) {
           this.setState({user})
         } else {
           this._accountService.getInformacoesUsuario()
             .then((response) => {
               this.setState({user: response})
-              StorageService.setObject('user', response);
+              StorageService.setObject('user', response)
             }).catch((error) => {
-              alert('Erro ao carregar dados do usuário');
+              alert('Erro ao carregar dados do usuário')
             })
         }
 
@@ -46,40 +46,40 @@ export class AccountPage extends Component {
   _meusDadosPage() {
     this.props.navigator.push({
         name: 'meus-dados'
-    });
+    })
   }
 
   _meusEnderecosPage() {
 
-    LoaderService.show();
+    LoaderService.show()
 
     this._accountService.getEnderecos()
     .then((response) => {
 
-      LoaderService.hide();
+      LoaderService.hide()
 
       this.props.navigator.push({
           name: 'meus-enderecos',
           passProps: {
             enderecos: response
           }
-      });
+      })
     }).catch((error) => {
-      console.error(error);
-    });
+      console.error(error)
+    })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
         name: 'meus-pedidos'
-    });
+    })
   }
 
   _logout() {
 
     StorageService.remove('Usertoken')
     .then((response) => {
-      this.props.navigator.resetTo({name: 'auth-page'});
+      this.props.navigator.resetTo({name: 'auth-page'})
     })
   }
 
@@ -130,7 +130,7 @@ export class AccountPage extends Component {
           </View>
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -138,7 +138,7 @@ const styles = EStyleSheet.create({
   container: {
     padding: '$sm'
   }
-});
+})
 
 const perfil = EStyleSheet.create({
   container: {
@@ -161,4 +161,4 @@ const perfil = EStyleSheet.create({
     fontWeight: 'bold',
     color: '$colors.black2'
   }
-});
+})

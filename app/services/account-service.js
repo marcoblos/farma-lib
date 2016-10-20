@@ -1,71 +1,71 @@
-import {HttpService} from './http-service';
-import * as axios from 'axios';
+import {HttpService} from './http-service'
+import * as axios from 'axios'
 
-import { StorageService } from 'fa-services';
+import { StorageService } from 'fa-services'
 
-import {UserModel, LoginModel, HttpRequestSettingsModel, ErrorModel, ProdutoModel, PedidoModel, EnderecoModel, CotacaoModel} from 'fa-models';
+import {UserModel, LoginModel, HttpRequestSettingsModel, ErrorModel, ProdutoModel, PedidoModel, EnderecoModel, CotacaoModel} from 'fa-models'
 
 export class AccountService {
   constructor() {
-    this._httpService = new HttpService();
-    this._userService = new UserService(this._httpService);
+    this._httpService = new HttpService()
+    this._userService = new UserService(this._httpService)
   }
 
   createUser(user) {
-    return this._userService.createUser(user);
+    return this._userService.createUser(user)
   }
 
   getPedidosLista() {
-    return this._userService.getPedidosLista();
+    return this._userService.getPedidosLista()
   }
 
   getPedido(data) {
-    return this._userService.getPedido(data);
+    return this._userService.getPedido(data)
   }
 
   cancelarPedido(data) {
-    return this._userService.cancelarPedido(data);
+    return this._userService.cancelarPedido(data)
   }
 
   cancelarCompra(data) {
-    return this._userService.cancelarCompra(data);
+    return this._userService.cancelarCompra(data)
   }
 
   aceitarCotacao(data) {
-    return this._userService.aceitarCotacao(data);
+    return this._userService.aceitarCotacao(data)
   }
 
   getEnderecos() {
-    return this._userService.getEnderecos();
+    return this._userService.getEnderecos()
   }
 
   finalizarPedido(data) {
-    return this._userService.finalizarPedido(data);
+    return this._userService.finalizarPedido(data)
   }
 
   removerEndereco(data) {
-    return this._userService.removerEndereco(data);
+    return this._userService.removerEndereco(data)
   }
 
   teste(data) {
 
-    return this._userService.teste(data);
+    return this._userService.teste(data)
   }
 
   retornarNotificacoes() {
-    return this._userService.retornarNotificacoes();
+    return this._userService.retornarNotificacoes()
   }
 
   getNotificacoesLista() {
-    return this._userService.getNotificacoesLista();
+    return this._userService.getNotificacoesLista()
   }
 
   getHistoricoLista() {
-    return this._userService.getHistoricoLista();
+    return this._userService.getHistoricoLista()
   }
 
   getInformacoesUsuario() {
-    return this._userService.getInformacoesUsuario();
+    return this._userService.getInformacoesUsuario()
   }
 
   vincularDevice(data) {
@@ -73,7 +73,7 @@ export class AccountService {
     return this._httpService.post('/VincularDevice', data)
       .then((response) => {
         console.log("account-service vincular device", response)
-        return response;
+        return response
       }, (error) => {
         console.log('Erro URL vincular device', error)
       })
@@ -82,7 +82,7 @@ export class AccountService {
 
 class UserService {
   constructor(httpServiceInstance) {
-    this._httpService = httpServiceInstance;
+    this._httpService = httpServiceInstance
   }
 
   createUser(user) {
@@ -90,11 +90,11 @@ class UserService {
     let settings = new HttpRequestSettingsModel({
       useRawUrl: true,
       contentType: 'application/json'
-    });
+    })
 
     return this._httpService.post('https://farmaexpress-create-user.now.sh', user, settings)
       .then((response) => {
-        return this._convertToUserModel(response);
+        return this._convertToUserModel(response)
       })
   }
 
@@ -104,14 +104,14 @@ class UserService {
       nome: response.Nome,
       email: response.Email,
       celular: response.Celular
-    });
+    })
   }
 
   getPedidosLista() {
 
     return this._httpService.post('/RetornaPedidos')
       .then((response) => {
-        return response;
+        return response
       })
   }
 
@@ -120,7 +120,7 @@ class UserService {
 
     return this._httpService.post('/CancelarPedido', data)
       .then((response) => {
-        return response;
+        return response
       })
   }
 
@@ -130,9 +130,9 @@ class UserService {
     return this._httpService.post('/CancelarCompra', data)
       .then((response) => {
 
-        return response;
+        return response
       }).catch((error) => {
-        debugger;
+        debugger
       })
   }
 
@@ -140,9 +140,9 @@ class UserService {
 
     return this._httpService.get('/webapp/teste')
       .then((response) => {
-        return response;
+        return response
       }).catch((error) => {
-        debugger;
+        debugger
       })
   }
 
@@ -150,7 +150,7 @@ class UserService {
 
     return this._httpService.get('/RetornaPainelNotificacoes')
       .then((response) => {
-        return response;
+        return response
       })
   }
 
@@ -159,9 +159,9 @@ class UserService {
     return this._httpService.post('/RetornaPedidosNotificados')
       .then((response) => {
 
-        return response;
+        return response
       }).catch((error) => {
-        debugger;
+        debugger
       })
   }
 
@@ -170,9 +170,9 @@ class UserService {
     return this._httpService.post('/RetornaPedidosFinalizados')
       .then((response) => {
 
-        return response;
+        return response
       }).catch((error) => {
-        debugger;
+        debugger
       })
   }
 
@@ -180,10 +180,10 @@ class UserService {
 
     return this._httpService.post('/RetornaDadosCliente')
       .then((response) => {
-        return this._convertToUserModel(response);
-        return response;
+        return this._convertToUserModel(response)
+        return response
       }).catch((error) => {
-        debugger;
+        debugger
       })
   }
 
@@ -191,7 +191,7 @@ class UserService {
 
     return this._httpService.post('/mobile/finalizarPedido', data)
       .then((response) => {
-        return response;
+        return response
       })
   }
 
@@ -199,13 +199,13 @@ class UserService {
 
     return this._httpService.post('/RetornaEnderecos')
       .then((response) => {
-        return this._convertToEnderecoModel(response);
+        return this._convertToEnderecoModel(response)
       })
   }
 
   _convertToEnderecoModel(response) {
 
-    let enderecos = [];
+    let enderecos = []
 
     if(response && response.length) {
       response.forEach((e) => {
@@ -222,14 +222,14 @@ class UserService {
       })
     }
 
-    return enderecos;
+    return enderecos
   }
 
   aceitarCotacao(data) {
 
     return this._httpService.post('/ComprarCotacao', data)
       .then((response) => {
-        return response;
+        return response
       })
   }
 
@@ -237,7 +237,7 @@ class UserService {
 
     return this._httpService.post('/webapp/RemoveEndereco', data)
       .then((response) => {
-        return response;
+        return response
       })
   }
 
@@ -245,14 +245,14 @@ class UserService {
 
     return this._httpService.post('/RetornaCotacoesPedido', data)
       .then((response) => {
-        return this._convertToPedidoModel(response);
+        return this._convertToPedidoModel(response)
       })
   }
 
   _convertToPedidoModel(response) {
 
-    let produtos = [];
-    let cotacoes = [];
+    let produtos = []
+    let cotacoes = []
 
     if(response.Pedido.Produtos && response.Pedido.Produtos.length) {
       response.Pedido.Produtos.forEach((p) => {
@@ -276,7 +276,7 @@ class UserService {
 
       response.Cotacoes.forEach((c) => {
 
-        let produtosCotacao = [];
+        let produtosCotacao = []
 
         cotacoes.push(new CotacaoModel({
           formaPagamento: c.FormaPagamento,
@@ -307,7 +307,7 @@ class UserService {
             }))
           })
         }
-      });
+      })
     }
 
     return new PedidoModel({
@@ -331,7 +331,7 @@ class UserService {
       }),
       produtos: produtos,
       cotacoes: cotacoes
-    });
+    })
   }
 
 }

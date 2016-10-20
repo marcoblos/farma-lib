@@ -1,22 +1,22 @@
-import {BaseModel} from './_base.model';
+import {BaseModel} from './_base.model'
 
 export class PedidoModel extends BaseModel {
     constructor(props) {
-        super();
+        super()
 
-        this.idPedido = '';
-        this.horaPedido = '';
-        this.status = '';
-        this.formaPagamento = '';
-        this.cartao = '';
-        this.trocoPara = '';
-        this.outroPagamento = '';
-        this.contato = '';
-        this.dataPedido = '';
-        this.endereco = [];
-        this.produtos = [];
-        this.cotacoes = [];
+        this.idPedido = ''
+        this.horaPedido = ''
+        this.status = ''
+        this.formaPagamento = ''
+        this.cartao = ''
+        this.trocoPara = ''
+        this.outroPagamento = ''
+        this.contato = ''
+        this.dataPedido = ''
+        this.endereco = []
+        this.produtos = []
+        this.cotacoes = []
 
-        super.bind(props);
+        super.bind(props)
     }
 }

@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle} from 'fa-components';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle} from 'fa-components'
 
-import { AccountService } from 'fa-services';
+import { AccountService } from 'fa-services'
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('window')
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-import Swiper from 'react-native-swiper';
+import Swiper from 'react-native-swiper'
 
 
 const renderPagination = (index, total, context) => {
@@ -33,7 +33,7 @@ const renderPagination = (index, total, context) => {
 
 export class PedidoCotacoesPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false,
@@ -43,39 +43,39 @@ export class PedidoCotacoesPage extends Component {
         cotacaoAtual: {}
       }
 
-      this._accountService = new AccountService();
+      this._accountService = new AccountService()
   }
 
   componentDidMount() {
-    console.log(this.props.pedido);
+    console.log(this.props.pedido)
     this.setState({
       contato: this.props.pedido.contato
-    });
+    })
   }
 
   _meusDadosPage() {
     this.props.navigator.push({
         name: 'meus-dados'
-    });
+    })
   }
 
   _meusEnderecosPage() {
     this.props.navigator.push({
         name: 'meus-enderecos'
-    });
+    })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
         name: 'meus-pedidos'
-    });
+    })
   }
 
   _logout() {
 
     this.props.navigator.resetTo({
         name: 'login-page'
-    });
+    })
   }
 
   _renderPhoto() {
@@ -85,11 +85,11 @@ export class PedidoCotacoesPage extends Component {
   }
 
   onMomentumScrollEnd(e, state, context) {
-    this.setState({page: context.state.index});
+    this.setState({page: context.state.index})
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   _renderSlide(c, index) {
@@ -159,22 +159,22 @@ export class PedidoCotacoesPage extends Component {
   _renderListaDeProdutos() {
 
     if(this.props.pedido.cotacoes.length) {
-      return this.props.pedido.cotacoes.map((c, index) => this._renderGroup(c, index));
+      return this.props.pedido.cotacoes.map((c, index) => this._renderGroup(c, index))
     }
   }
 
   _modalAceitarCotacao() {
 
-    this.setState({cotacaoAtual: this.props.pedido.cotacoes[this.state.page]});
+    this.setState({cotacaoAtual: this.props.pedido.cotacoes[this.state.page]})
 
-    this.setModalVisible(true);
+    this.setModalVisible(true)
   }
 
   _aceitarCotacao() {
 
-    let aceitos = [];
+    let aceitos = []
 
-    let produtos = [];
+    let produtos = []
 
     this.state.cotacaoAtual.produtos.forEach((p) => {
       produtos.push({
@@ -185,14 +185,14 @@ export class PedidoCotacoesPage extends Component {
         AceitaGenerico: p.generico,
         AceitaSimilares: p.similares,
         Imagens: p.imagens
-      });
+      })
 
       aceitos.push({
         IDProduto: p.id,
         Nome: p.nome,
         Aceito: 1
       })
-    });
+    })
 
     let data = {
       Pedido: {
@@ -221,22 +221,22 @@ export class PedidoCotacoesPage extends Component {
 
     this._accountService.aceitarCotacao(data)
     .then((response) => {
-      debugger;
+      debugger
     }).catch((error) => {
-      debugger;
-      console.log(error);
+      debugger
+      console.log(error)
     })
   }
 
   _next() {
-    this.refs['swiper'].scrollBy(1);
+    this.refs['swiper'].scrollBy(1)
   }
 
   _cancelarPedido() {
 
     let data = {
       IDPedido: this.props.pedido.idPedido
-    };
+    }
 
     this._accountService.cancelarPedido(data)
     .then((response) => {
@@ -245,8 +245,8 @@ export class PedidoCotacoesPage extends Component {
       })
     })
     .catch((error) => {
-      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.');
-    });
+      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.')
+    })
   }
 
   _alertCancelarPedido() {
@@ -262,12 +262,12 @@ export class PedidoCotacoesPage extends Component {
 
   _renderTitle() {
 
-    let text = '';
+    let text = ''
 
-    text = `oferta ${this.props.pedido.cotacoes.length}`;
+    text = `oferta ${this.props.pedido.cotacoes.length}`
 
     if(this.props.pedido.cotacoes.length > 1) {
-      text = `Oferta ${this.state.page + 1}/${this.props.pedido.cotacoes.length}`;
+      text = `Oferta ${this.state.page + 1}/${this.props.pedido.cotacoes.length}`
     }
 
     return (
@@ -386,7 +386,7 @@ export class PedidoCotacoesPage extends Component {
         </Modal>
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -439,4 +439,4 @@ var styles = EStyleSheet.create({
   container: {
     padding: '$sm'
   }
-});
+})

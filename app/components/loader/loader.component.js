@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
-import {View, Animated, InteractionManager, Dimensions, Modal, ActivityIndicator} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import {LoaderService} from 'fa-services';
+import React, { Component } from 'react'
+import {View, Animated, InteractionManager, Dimensions, Modal, ActivityIndicator} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import {LoaderService} from 'fa-services'
 
-global.__szLoaderStateTimer = null;
-const WAINTING_TIME_BETWEEN_STATES = 300;
+global.__szLoaderStateTimer = null
+const WAINTING_TIME_BETWEEN_STATES = 300
 
-var {width, height} = Dimensions.get('window');
+var {width, height} = Dimensions.get('window')
 
 export class FaLoader extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             visible: false,
             opacity: new Animated.Value(0),
             height: new Animated.Value(0)
-        };
+        }
 
-        LoaderService.addListener((state) => this._onRequest(state));
+        LoaderService.addListener((state) => this._onRequest(state))
     }
 
     _onRequest(state) {
-        let self = this;
-        clearTimeout(global.__szLoaderStateTimer);
+        let self = this
+        clearTimeout(global.__szLoaderStateTimer)
 
         global.__szLoaderStateTimer = setTimeout(function () {
             self.setState({
                 visible: state
-            });
+            })
 
             if(state) {
               Animated.sequence([
@@ -40,7 +40,7 @@ export class FaLoader extends Component {
                  self.state.opacity,
                  {toValue: 1}
                )
-             ]).start();
+             ]).start()
            } else {
              Animated.sequence([
                Animated.timing(
@@ -51,10 +51,10 @@ export class FaLoader extends Component {
                self.state.height,
                {toValue: 0, duration: 0}
              )
-            ]).start();
+            ]).start()
            }
 
-        }, WAINTING_TIME_BETWEEN_STATES);
+        }, WAINTING_TIME_BETWEEN_STATES)
     }
 
     render() {
@@ -67,7 +67,7 @@ export class FaLoader extends Component {
                 style={this.props.customStyle || {}}
               />
           </Animated.View>
-        );
+        )
     }
 }
 
@@ -85,4 +85,4 @@ const style = EStyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.4)',
         zIndex: 101
     }
-});
+})

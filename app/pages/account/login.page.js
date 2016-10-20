@@ -68,11 +68,11 @@ export class LoginPage extends Component {
       .then((response) => {
 
         if(response.result === false) {
-          LoaderService.hide();
+          LoaderService.hide()
 
           setTimeout( function() {
-            ToasterService.error(response.msg);
-          }, 500);
+            ToasterService.error(response.msg)
+          }, 500)
 
         }
 

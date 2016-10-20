@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import React, { Component } from 'react'
+import { View, StyleSheet, StatusBar } from 'react-native'
 
 export class StatusBarBackground extends Component {
 

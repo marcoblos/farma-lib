@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaIconMessage, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaProductList} from 'fa-components';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaIconMessage, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaProductList} from 'fa-components'
 
-import { AccountService } from 'fa-services';
+import { AccountService } from 'fa-services'
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('window')
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class PedidoEntregaPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false,
@@ -20,11 +20,11 @@ export class PedidoEntregaPage extends Component {
         modalVisible: false
       }
 
-      this._accountService = new AccountService();
+      this._accountService = new AccountService()
   }
 
   componentDidMount() {
-    console.log(this.props.pedido);
+    console.log(this.props.pedido)
   }
 
   onMomentumScrollEnd(e, state, context) {
@@ -33,7 +33,7 @@ export class PedidoEntregaPage extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   _cancelarPedido() {
@@ -41,7 +41,7 @@ export class PedidoEntregaPage extends Component {
     let data = {
       TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255',
       IDPedido: this.props.pedido.idPedido
-    };
+    }
 
     this._accountService.cancelarPedido(data)
     .then((response) => {
@@ -51,8 +51,8 @@ export class PedidoEntregaPage extends Component {
       })
     })
     .catch((error) => {
-      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.');
-    });
+      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.')
+    })
   }
 
   _finalizarPedido() {
@@ -60,17 +60,17 @@ export class PedidoEntregaPage extends Component {
     let data = {
       TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255',
       IDPedido: this.props.pedido.idPedido
-    };
+    }
 
     this._accountService.finalizarPedido(data)
     .then((response) => {
-      debugger;
+      debugger
       this.props.navigator.resetTo({
         name: 'DashboardPage'
-      });
+      })
     }).catch((error) => {
-      debugger;
-      alert('Algo deu errado, tente novamente mais tarde.');
+      debugger
+      alert('Algo deu errado, tente novamente mais tarde.')
     })
   }
 
@@ -167,7 +167,7 @@ export class PedidoEntregaPage extends Component {
       </ScrollView>
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -177,4 +177,4 @@ const styles = EStyleSheet.create({
     backgroundColor: '$colors.white1',
     padding: '$md'
   }
-});
+})
