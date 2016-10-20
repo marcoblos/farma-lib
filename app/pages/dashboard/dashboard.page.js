@@ -149,7 +149,9 @@ export class DashboardPage extends Component {
           pedidos: response
         }
       });
-    });
+    }).catch((error) => {
+      debugger;
+    })
 
   }
 
