@@ -27,10 +27,7 @@ export class AccountPage extends Component {
 
     StorageService.getObject('user')
       .then((user) => {
-        debugger;
-        if(user !== null) {
-          this.setState({user})
-        } else {
+        if(user === null) {
           this._accountService.getInformacoesUsuario()
             .then((response) => {
               this.setState({user: response})
@@ -38,6 +35,8 @@ export class AccountPage extends Component {
             }).catch((error) => {
               alert('Erro ao carregar dados do usuário');
             })
+        } else {
+          this.setState({user})
         }
 
       })

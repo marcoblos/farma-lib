@@ -344,9 +344,9 @@ export class PedidoCotacoesPage extends Component {
 
                   <FaPageTitle title='Complete os dados' paddingBottom={30} subTitle='Complete as informações para aceitar a oferta.' />
 
-                  <FaInput label='Troco para quanto?' ref='troco' value='' required={true} showErrors={this.state.showErrors} />
+                  <FaInput label='Troco para quanto?' mask={{type: 'money'}} ref='troco' value='' required={true} showErrors={this.state.showErrors} />
                   <FaInput label='Quem vai receber?' ref='contato' value='' required={true} showErrors={this.state.showErrors} />
-                  <FaInput label='Celular' ref='celular' value='' required={true} showErrors={this.state.showErrors} />
+                  <FaInput label='Celular' ref='celular' mask={{type: 'cel-phone'}} value='' required={true} showErrors={this.state.showErrors} />
 
                     <View style={{paddingTop: 30}}>
                       <View style={{flexDirection: 'row'}}>
