@@ -1,23 +1,23 @@
-import {BaseModel} from './_base.model';
+import {BaseModel} from './_base.model'
 
-import { ProdutoModel } from './produto.model';
+import { ProdutoModel } from './produto.model'
 
 export class CotacaoModel extends BaseModel {
     constructor(props) {
-        super();
+        super()
 
-        this.formaPagamento = '';
-        this.frete = '';
-        this.freteFormatado = '';
-        this.idCotacao = '';
-        this.farmacia = '';
-        this.telefone = '';
-        this.tempoDeEntrega = '';
-        this.total = '';
-        this.totalFormatado = '';
-        this.produtos = new ProdutoModel();
+        this.formaPagamento = ''
+        this.frete = ''
+        this.freteFormatado = ''
+        this.idCotacao = ''
+        this.farmacia = ''
+        this.telefone = ''
+        this.tempoDeEntrega = ''
+        this.total = ''
+        this.totalFormatado = ''
+        this.produtos = new ProdutoModel()
 
 
-        super.bind(props);
+        super.bind(props)
     }
 }

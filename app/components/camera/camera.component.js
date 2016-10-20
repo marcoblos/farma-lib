@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Dimensions,
   Text,
   View,
   StyleSheet,
   Modal
-} from 'react-native';
+} from 'react-native'
 
-import Camera from 'react-native-camera';
+import Camera from 'react-native-camera'
 
 export class FaCamera extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
   }
 
   takePicture() {
     this.camera.capture()
       .then((data) => {
-        this.props.getPhoto(data.path);
+        this.props.getPhoto(data.path)
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
   }
 
   render() {
@@ -33,7 +33,7 @@ export class FaCamera extends Component {
           >
         <Camera
           ref={(cam) => {
-            this.camera = cam;
+            this.camera = cam
           }}
           style={styles.preview}
           captureTarget={Camera.constants.CaptureTarget.temp}
@@ -44,7 +44,7 @@ export class FaCamera extends Component {
           <Text style={styles.capture} onPress={() => this.props.onClose()}>cancelar</Text>
         </Camera>
       </Modal>
-    );
+    )
   }
 }
 
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 40
   }
-});
+})

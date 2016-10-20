@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, ScrollView, PixelRatio, Platform, Image, Modal, Dimensions } from 'react-native';
-import { ViewContainer, FaHeader, FaRadioList } from 'fa-components';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { Component } from 'react'
+import { Text, TouchableOpacity, View, ScrollView, PixelRatio, Platform, Image, Modal, Dimensions } from 'react-native'
+import { ViewContainer, FaHeader, FaRadioList } from 'fa-components'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import * as Progress from 'react-native-progress';
-
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import ImageZoom from 'react-native-transformable-image';
-
-import Lightbox from 'react-native-lightbox';
+import * as Progress from 'react-native-progress'
 
 
-import PhotoView from 'react-native-photo-view';
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
+import ImageZoom from 'react-native-transformable-image'
+
+import Lightbox from 'react-native-lightbox'
 
 
-import { RNS3 } from 'react-native-aws3';
+import PhotoView from 'react-native-photo-view'
 
 
-import ImagePicker from 'react-native-image-picker';
+import { RNS3 } from 'react-native-aws3'
 
-var {height, width} = Dimensions.get('window');
+
+import ImagePicker from 'react-native-image-picker'
+
+var {height, width} = Dimensions.get('window')
 
 export class PocPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       avatarSource: null,
@@ -43,44 +43,44 @@ export class PocPage extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   uploadePhoto(file) {
-    let self = this;
+    let self = this
     const options = {
       bucket: 'farma-images',
       accessKey: 'AKIAJZXIXLFJVNT6GDTQ',
       secretKey: '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',
       region: 'sa-east-1',
       successActionStatus: 201
-    };
+    }
 
-    this.setState({showProgressBar: true});
+    this.setState({showProgressBar: true})
 
 
     const aa = {
-      uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACiklEQVQ4T6WSX2hScRTHjzQVHza08oItxCcdpoiBljCf9jLYSyTeKF9CnAk+XNhL4kTm4Ip7SMaSxWQjBCnRKKV8TfayK0ljYDoYiMSG/3Da0DF0eI37C0Vp66Xz8ru/c77n8zt/Lgv+01jX5RMEIe71es9omqYB4P3m5ubxVdq/AF6v9zGHw/Hs7+/fq1QqKC4SifoqlepHt9tddrlcn0dBYwCSJFflcvlLqVTKoSgKotEo0uI4DjqdDvL5fOfw8NDrdrtXB5AhwOFwPJ2cnAwZDAa2UCgEFosFuVwOmA6USiX0+32o1WqQSCQuW63WE5IkPzGQIQDH8Wa9XuevrKyAQqFAD7RaLZQ4NTWF7tlsFjweD2AYdhqJRG4PAVarVVwsFn/2ej2Ym5sDi8WCKgiHw+g0mUwIFAwGIZVKwcTEBEgkkjvBYLCMKlhaWnqezWbfisViIAgCuFwuBAIB1AJjKpUKbDYbnJ+fw/r6OpRKJZDL5aaNjY13COB2uw0KheKDVqsdluv3+2Fvbw8B9Ho9AjN2dnYG6XQaDg4OHq2trSUQwGazYbOzs8c6nY4jEAiQkNlCKBRCLZjNZtBoNMjfaDQY8MXu7u7dnZ2dxnCIPp/vu1qtvs/Mgel3ZmYGBrBmswnFYhHYbDbaCkVR35xO54OxLbhcrvlqtfqlUCjcYAIkSYJMJkOvHh0dgdPpRN9SqfSSz+fP+3y+r2MA5rK4uPjm5OTkRafTYS0sLIDRaERJsVgMkskkM9z+9PT06+3t7T8DGf0PBg673Y632+1XarX6llKp5DH+TCZzkc/nT3k8HrG1tfVxoL0SMAgajcabGIY9pGm6Xy6XqXg8/ms08doKrhL9y/cbmdcIIKku5lQAAAAASUVORK5CYII=',
+      uri: 'data:image/pngbase64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACiklEQVQ4T6WSX2hScRTHjzQVHza08oItxCcdpoiBljCf9jLYSyTeKF9CnAk+XNhL4kTm4Ip7SMaSxWQjBCnRKKV8TfayK0ljYDoYiMSG/3Da0DF0eI37C0Vp66Xz8ru/c77n8zt/Lgv+01jX5RMEIe71es9omqYB4P3m5ubxVdq/AF6v9zGHw/Hs7+/fq1QqKC4SifoqlepHt9tddrlcn0dBYwCSJFflcvlLqVTKoSgKotEo0uI4DjqdDvL5fOfw8NDrdrtXB5AhwOFwPJ2cnAwZDAa2UCgEFosFuVwOmA6USiX0+32o1WqQSCQuW63WE5IkPzGQIQDH8Wa9XuevrKyAQqFAD7RaLZQ4NTWF7tlsFjweD2AYdhqJRG4PAVarVVwsFn/2ej2Ym5sDi8WCKgiHw+g0mUwIFAwGIZVKwcTEBEgkkjvBYLCMKlhaWnqezWbfisViIAgCuFwuBAIB1AJjKpUKbDYbnJ+fw/r6OpRKJZDL5aaNjY13COB2uw0KheKDVqsdluv3+2Fvbw8B9Ho9AjN2dnYG6XQaDg4OHq2trSUQwGazYbOzs8c6nY4jEAiQkNlCKBRCLZjNZtBoNMjfaDQY8MXu7u7dnZ2dxnCIPp/vu1qtvs/Mgel3ZmYGBrBmswnFYhHYbDbaCkVR35xO54OxLbhcrvlqtfqlUCjcYAIkSYJMJkOvHh0dgdPpRN9SqfSSz+fP+3y+r2MA5rK4uPjm5OTkRafTYS0sLIDRaERJsVgMkskkM9z+9PT06+3t7T8DGf0PBg673Y632+1XarX6llKp5DH+TCZzkc/nT3k8HrG1tfVxoL0SMAgajcabGIY9pGm6Xy6XqXg8/ms08doKrhL9y/cbmdcIIKku5lQAAAAASUVORK5CYII=',
       name: 'img'+Math.floor((Math.random() * 1000) + 1)+'.png',
       type: 'image/png'
-    };
+    }
 
-    var a = this.state.photos;
+    var a = this.state.photos
 
-    a.push(aa);
+    a.push(aa)
 
 
     RNS3.put(aa, options).then(response => {
       if (response.status !== 201) {
-        throw new Error('Failed to upload image to S3', response);
+        throw new Error('Failed to upload image to S3', response)
       }
       setTimeout( function(){
-        self.setState({showProgressBar: false});
-      }, 1000);
+        self.setState({showProgressBar: false})
+      }, 1000)
 
-      self.setState({photos: a});
+      self.setState({photos: a})
 
-    }).progress((e) => this.teste(e));
+    }).progress((e) => this.teste(e))
   }
 
   selectPhotoTapped() {
@@ -91,48 +91,48 @@ export class PocPage extends Component {
       storageOptions: {
         skipBackup: true
       }
-    };
+    }
 
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
+      console.log('Response = ', response)
 
       if (response.didCancel) {
-        console.log('User cancelled photo picker');
+        console.log('User cancelled photo picker')
       }
       else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
+        console.log('ImagePicker Error: ', response.error)
       }
       else {
-        var source;
+        var source
 
         const file = {
-          uri: 'data:image/jpeg;base64,' + response.data,
+          uri: 'data:image/jpegbase64,' + response.data,
           name: 'img'+Math.floor((Math.random() * 1000) + 1)+'.png',
           type: 'image/jpeg'
-        };
+        }
 
         // You can display the image using either:
-        //source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+        //source = {uri: 'data:image/jpegbase64,' + response.data, isStatic: true}
 
         //Or:
         if (Platform.OS === 'android') {
-          source = {uri: response.uri, isStatic: true};
+          source = {uri: response.uri, isStatic: true}
         } else {
-          source = {uri: response.uri.replace('file://', ''), isStatic: true};
+          source = {uri: response.uri.replace('file://', ''), isStatic: true}
         }
 
-        this.uploadePhoto(file);
+        this.uploadePhoto(file)
 
         this.setState({
           avatarSource: source
-        });
+        })
       }
-    });
+    })
   }
 
   selecionarImagem(foto) {
-    this.setState({selectedImage: foto});
-    this.setState({modalVisible: true});
+    this.setState({selectedImage: foto})
+    this.setState({modalVisible: true})
   }
 
 
@@ -147,7 +147,7 @@ export class PocPage extends Component {
               <TouchableOpacity onPress={() => this.selecionarImagem(foto.uri)} style={{width: 120, height: 120, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue'}}>
                 <Image style={{width: 120, height: 120, resizeMode:"contain"}} source={{uri: foto.uri}} />
               </TouchableOpacity>
-            );
+            )
         })}
       </View>
     )
@@ -242,7 +242,7 @@ const aa = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   }
-});
+})
 
 
 const styles = EStyleSheet.create({
@@ -263,4 +263,4 @@ const styles = EStyleSheet.create({
     width: 150,
     height: 150
   }
-});
+})

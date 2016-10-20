@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Alert, Image } from 'react-native';
-import { ViewContainer, FaHeader, FaButton, FaImageZoom } from 'fa-components';
+import React, { Component } from 'react'
+import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Alert, Image } from 'react-native'
+import { ViewContainer, FaHeader, FaButton, FaImageZoom } from 'fa-components'
 
-import { AccountService, LoaderService } from 'fa-services';
+import { AccountService, LoaderService } from 'fa-services'
 
-import { PedidoModel } from 'fa-models';
+import { PedidoModel } from 'fa-models'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const s = require('../../styles/core.js');
+const s = require('../../styles/core.js')
 
 export class PedidoResumo extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       imageZoomVisible: false,
@@ -29,34 +29,34 @@ export class PedidoResumo extends Component {
       pedido: new PedidoModel()
     }
 
-    this._accountService = new AccountService();
+    this._accountService = new AccountService()
   }
 
   componentDidMount() {
     if(this.props.pedido) {
-      this.setState({pedido: this.props.pedido});
+      this.setState({pedido: this.props.pedido})
     }
   }
 
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   openModal1(id) {
-    this.refs.modal1.open();
+    this.refs.modal1.open()
   }
 
   _continuar() {
 
-    let pedido = this.state.pedido;
+    let pedido = this.state.pedido
 
-    LoaderService.show();
+    LoaderService.show()
 
     this._accountService.getEnderecos()
     .then((response) => {
 
-      LoaderService.hide();
+      LoaderService.hide()
 
       this.props.navigator.push({
           name: "pedido-endereco",
@@ -64,15 +64,15 @@ export class PedidoResumo extends Component {
             pedido: pedido,
             enderecos: response
           }
-      });
+      })
     }).catch((error) => {
-      LoaderService.hide();
-      console.error(error);
-    });
+      LoaderService.hide()
+      console.error(error)
+    })
   }
 
   _editarProduto(index) {
-    let pedido = this.state.pedido;
+    let pedido = this.state.pedido
 
     this.props.navigator.push({
       name: "DetalhePage",
@@ -85,7 +85,7 @@ export class PedidoResumo extends Component {
   }
 
   _addProduto() {
-    let pedido = this.state.pedido;
+    let pedido = this.state.pedido
 
     this.props.navigator.push({
       name: "PedidoBuscar",
@@ -114,7 +114,7 @@ export class PedidoResumo extends Component {
   }
 
   _backToHome() {
-    this.props.navigator.pop();
+    this.props.navigator.pop()
   }
 
   _renderImagem(img, index) {
@@ -131,14 +131,14 @@ export class PedidoResumo extends Component {
   }
 
   _formatarQuantidade(unidade, quantidade) {
-    let label = '';
+    let label = ''
 
     if(quantidade === '' && unidade === '') {
-      label = 'Selecionar';
+      label = 'Selecionar'
     } else if(quantidade !== '' && quantidade !== '01' && unidade !== '') {
-      label = quantidade + ' ' + unidade + 's';
+      label = quantidade + ' ' + unidade + 's'
     } else {
-      label = quantidade + ' ' + unidade;
+      label = quantidade + ' ' + unidade
     }
 
     return label
@@ -167,9 +167,9 @@ export class PedidoResumo extends Component {
   }
 
   _removerProduto(index) {
-    let p = this.state.pedido;
-    p.produtos.splice(index, 1);
-    this.setState({pedido: p});
+    let p = this.state.pedido
+    p.produtos.splice(index, 1)
+    this.setState({pedido: p})
   }
 
   _renderProduto(p, index) {
@@ -295,7 +295,7 @@ const aa = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   }
-});
+})
 
 const product = EStyleSheet.create({
   box: {
@@ -362,4 +362,4 @@ const product = EStyleSheet.create({
     color: 'red',
     color: 'rgba(0,0,0,0.4)'
   }
-});
+})

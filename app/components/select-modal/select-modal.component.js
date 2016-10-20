@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   Text,
   Modal,
   ScrollView
-} from 'react-native';
+} from 'react-native'
 
 import {
   FaRadioList,
   FaButton
-} from 'fa-components';
+} from 'fa-components'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaSelectModal extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         data: []
@@ -33,17 +33,17 @@ export class FaSelectModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    alert('adasd');
-    console.log(nextProps.data);
-    this.setState({data: nextProps.data});
+    alert('adasd')
+    console.log(nextProps.data)
+    this.setState({data: nextProps.data})
   }
 
   componentDidMount() {
-    this.setState({data: this.props.data});
+    this.setState({data: this.props.data})
   }
 
   _onSelected(selected) {
-    console.log(this.state.data);
+    console.log(this.state.data)
   }
 
 
@@ -77,7 +77,7 @@ export class FaSelectModal extends Component {
 
         </View>
       </Modal>
-    );
+    )
   }
 }
 
@@ -99,4 +99,4 @@ const info = EStyleSheet.create({
       marginRight: 3,
       color: '$colors.black3'
     }
-});
+})

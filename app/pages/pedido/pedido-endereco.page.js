@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Dimensions } from 'react-native';
-import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle, FaModalHeader, FaInput } from 'fa-components';
+import React, { Component } from 'react'
+import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Dimensions } from 'react-native'
+import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle, FaModalHeader, FaInput } from 'fa-components'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
-import Picker from 'react-native-picker';
+import EStyleSheet from 'react-native-extended-stylesheet'
+import Picker from 'react-native-picker'
 
-import { PedidoModel, EnderecoModel } from 'fa-models';
+import { PedidoModel, EnderecoModel } from 'fa-models'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-const {height, width} = Dimensions.get('window');
-const pedidoData = require('./_pedidoData.json');
-const s = require('../../styles/core.js');
+const {height, width} = Dimensions.get('window')
+const pedidoData = require('./_pedidoData.json')
+const s = require('../../styles/core.js')
 
 export class PedidoEnderecoPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       isOpen: false,
@@ -38,23 +38,23 @@ export class PedidoEnderecoPage extends Component {
 
   componentDidMount() {
     if(this.props.pedido) {
-      this.setState({pedido: this.props.pedido});
+      this.setState({pedido: this.props.pedido})
     }
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   openModal1(id) {
-    this.refs.modal1.open();
+    this.refs.modal1.open()
   }
 
   _continuar(e) {
 
     if(e === false) {
 
-      this.setState({modalVisible: false});
+      this.setState({modalVisible: false})
 
       e = new EnderecoModel({
         cep: this.refs['cep'].getValue(),
@@ -67,9 +67,9 @@ export class PedidoEnderecoPage extends Component {
       })
     }
 
-    let pedido = this.state.pedido;
+    let pedido = this.state.pedido
 
-    pedido.endereco = e;
+    pedido.endereco = e
 
     this.props.navigator.push({
       name: "pedido-pagamento",
@@ -80,34 +80,34 @@ export class PedidoEnderecoPage extends Component {
   }
 
   _backToHome() {
-    this.props.navigator.pop();
+    this.props.navigator.pop()
   }
 
   aaa() {
-    this.picker.toggle();
+    this.picker.toggle()
   }
 
   _onSelectedQuantidade(selected) {
     this.setState({
       selectedQuantidade: selected
-    });
+    })
   }
 
   _onSelectedUnidade(selected) {
     this.setState({
       selectedUnidade: selected
-    });
+    })
   }
 
   _renderQuantidadeSelecionada() {
-    let label = '';
+    let label = ''
 
     if(this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
-      label = 'Selecionar';
+      label = 'Selecionar'
     } else if(this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade + 's';
+      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade + 's'
     } else {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade;
+      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade
     }
 
     return (
@@ -264,13 +264,13 @@ const aa = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   }
-});
+})
 
 const teste = EStyleSheet.create({
   row: {
     padding: 20
   }
-});
+})
 
 
 const base = EStyleSheet.create({
@@ -286,7 +286,7 @@ const base = EStyleSheet.create({
   padding: {
     padding: 15
   }
-});
+})
 
 const bottom = EStyleSheet.create({
   button: {
@@ -313,7 +313,7 @@ const bottom = EStyleSheet.create({
     color: 'white',
     textDecorationLine: 'underline'
   }
-});
+})
 
 const info = EStyleSheet.create({
   container: {
@@ -336,4 +336,4 @@ const info = EStyleSheet.create({
   value: {
     fontSize: 14
   }
-});
+})

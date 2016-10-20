@@ -9,7 +9,7 @@ module.exports.FACEBOOK = {
     text: {
         color: '$colors.white1'
     }
-};
+}
 
 module.exports.PRIMARY = {
     button: {
@@ -22,7 +22,7 @@ module.exports.PRIMARY = {
     text: {
         color: '$colors.white1'
     }
-};
+}
 
 module.exports.SECONDARY = {
     button: {
@@ -35,7 +35,7 @@ module.exports.SECONDARY = {
     text: {
         color: '$colors.white1'
     }
-};
+}
 
 module.exports.TERNARY = {
     button: {
@@ -48,7 +48,7 @@ module.exports.TERNARY = {
     text: {
         color: '$colors.black1'
     }
-};
+}
 
 module.exports.BLACK = {
     button: {
@@ -61,7 +61,7 @@ module.exports.BLACK = {
     text: {
         color: '$colors.white1'
     }
-};
+}
 
 module.exports.SUCCESS = {
     button: {
@@ -74,7 +74,7 @@ module.exports.SUCCESS = {
     text: {
         color: '$colors.successText'
     }
-};
+}
 
 module.exports.DANGER = {
     button: {
@@ -87,7 +87,7 @@ module.exports.DANGER = {
     text: {
         color: '$colors.dangerText'
     }
-};
+}
 
 module.exports.CLEAN = {
     button: {
@@ -100,7 +100,7 @@ module.exports.CLEAN = {
     text: {
         color: '$colors.black2'
     }
-};
+}
 
 module.exports.LINK = {
     button: {
@@ -114,7 +114,7 @@ module.exports.LINK = {
         color: '$colors.white1',
         fontWeight: 'normal'
     }
-};
+}
 
 module.exports.SIZE_LG = {
     button: {

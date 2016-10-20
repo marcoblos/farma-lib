@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
     StyleSheet,
     Text,
@@ -6,15 +6,15 @@ import {
     TouchableOpacity,
     Image,
     StatusBar
-} from 'react-native';
+} from 'react-native'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
 export class FaModalHeader extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   _renderBackButton() {
@@ -28,7 +28,7 @@ export class FaModalHeader extends Component {
                     <Icon name="keyboard-arrow-left" style={header.backButtonIcon} />
                 </View>
             </TouchableOpacity>
-        );
+        )
     }
 
   _renderRight() {
@@ -39,11 +39,11 @@ export class FaModalHeader extends Component {
               <Icon name="close" style={[header.backButtonIcon, {fontSize: 26}]} />
           </View>
       </TouchableOpacity>
-    );
+    )
   }
 
   _onGoBack() {
-      this.props.onClose();
+      this.props.onClose()
   }
 
   _renderLogo() {
@@ -76,7 +76,7 @@ export class FaModalHeader extends Component {
                 {this._renderRight()}
               </View>
           </View>
-      );
+      )
   }
 
 }
@@ -94,7 +94,7 @@ const logo = EStyleSheet.create({
     width: null,
     height: null
   }
-});
+})
 
 const header = EStyleSheet.create({
   container: {
@@ -132,4 +132,4 @@ const header = EStyleSheet.create({
   text: {
     color: 'white'
   }
-});
+})

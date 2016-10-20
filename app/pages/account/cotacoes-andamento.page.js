@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage} from 'fa-components';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage} from 'fa-components'
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('window')
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-import Swiper from 'react-native-swiper';
+import Swiper from 'react-native-swiper'
 
 
 const renderPagination = (index, total, context) => {
@@ -31,7 +31,7 @@ const renderPagination = (index, total, context) => {
 
 export class CotacoesAndamentoPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false,
@@ -44,26 +44,26 @@ export class CotacoesAndamentoPage extends Component {
   _meusDadosPage() {
     this.props.navigator.push({
         name: 'meus-dados'
-    });
+    })
   }
 
   _meusEnderecosPage() {
     this.props.navigator.push({
         name: 'meus-enderecos'
-    });
+    })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
         name: 'meus-pedidos'
-    });
+    })
   }
 
   _logout() {
 
     this.props.navigator.resetTo({
         name: 'login-page'
-    });
+    })
   }
 
   _renderPhoto() {
@@ -156,7 +156,7 @@ export class CotacoesAndamentoPage extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   render() {
@@ -311,7 +311,7 @@ export class CotacoesAndamentoPage extends Component {
         </Modal>
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -377,7 +377,7 @@ var styles = EStyleSheet.create({
   container: {
     padding: '$sm'
   }
-});
+})
 
 const perfil = EStyleSheet.create({
   container: {
@@ -401,4 +401,4 @@ const perfil = EStyleSheet.create({
     fontWeight: 'bold',
     color: '$colors.black2'
   }
-});
+})

@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, ScrollView, View, StatusBar, Image, Dimensions, Animated } from 'react-native';
-import { ViewContainer, FaHeader, FaInput, FaButton } from 'fa-components';
+import React, { Component } from 'react'
+import { Text, TouchableOpacity, ScrollView, View, StatusBar, Image, Dimensions, Animated } from 'react-native'
+import { ViewContainer, FaHeader, FaInput, FaButton } from 'fa-components'
 
-import KeyboardSpacer from 'react-native-keyboard-spacer';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-var {width, height} = Dimensions.get('window');
+var {width, height} = Dimensions.get('window')
 
 export class AuthPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       showErrors: false,
@@ -22,7 +22,7 @@ export class AuthPage extends Component {
     Animated.timing(
        this.state.opacity,
        {toValue: 1, duration: 650}
-     ).start();
+     ).start()
   }
 
   _navigateToPersonShow() {
@@ -32,7 +32,7 @@ export class AuthPage extends Component {
   }
 
   _backToHome() {
-    this.props.navigator.pop();
+    this.props.navigator.pop()
   }
 
   _novaConta() {
@@ -48,7 +48,7 @@ export class AuthPage extends Component {
   }
 
   _validar() {
-    this.setState({showErrors: true});
+    this.setState({showErrors: true})
   }
 
   //
@@ -161,11 +161,11 @@ const logo = EStyleSheet.create({
     width: null,
     height: null
   }
-});
+})
 
 const style = EStyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '$colors.white1'
     }
-});
+})

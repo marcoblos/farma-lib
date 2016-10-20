@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   TouchableOpacity,
   Text
-} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaMessage extends Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     render() {
@@ -24,7 +24,7 @@ export class FaMessage extends Component {
               <Text style={empty.text}>{this.props.text}</Text>
             </View>
           </View>
-        );
+        )
     }
 }
 
@@ -71,4 +71,4 @@ const empty = EStyleSheet.create({
     paddingTop: 16,
     textAlign: 'center'
   }
-});
+})

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableHighlight, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import React, { Component } from 'react'
+import { Text, View, TouchableHighlight, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
 
-import { ViewContainer, FaHeader, StatusBarBackground } from 'fa-components';
+import { ViewContainer, FaHeader, StatusBarBackground } from 'fa-components'
 
 export class RootPage extends Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     _navigateToPersonShow() {
@@ -16,7 +16,7 @@ export class RootPage extends Component {
   }
 
     _backToHome() {
-        this.props.navigator.pop();
+        this.props.navigator.pop()
     }
 
     render() {
@@ -36,7 +36,7 @@ export class RootPage extends Component {
                   <Text>Fechar</Text>
                 </TouchableOpacity>
             </ViewContainer>
-        );
+        )
     }
 }
 
@@ -46,4 +46,4 @@ const mainStyle = StyleSheet.create({
     backgroundColor: '#999999'
   }
 
-});
+})

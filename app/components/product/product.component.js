@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaProduct extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   _renderIcon(icon) {
@@ -28,7 +28,7 @@ export class FaProduct extends Component {
       )
     }
 
-    return false;
+    return false
   }
 
   _renderTitle() {
@@ -71,32 +71,32 @@ export class FaProduct extends Component {
 
   _renderStatus(s) {
 
-    let label = '';
-    let icon = '';
+    let label = ''
+    let icon = ''
 
     if(s === 1) {
-      label = 'Aguardando resposta da farmácia';
-      icon = 'access-time';
+      label = 'Aguardando resposta da farmácia'
+      icon = 'access-time'
     }
 
     if(s === 2) {
-      label = 'Pedido cotado';
-      icon = 'exit-to-app';
+      label = 'Pedido cotado'
+      icon = 'exit-to-app'
     }
 
     if(s === 3) {
-      label = 'Aguardando a entrega';
-      icon = 'hourglass-empty';
+      label = 'Aguardando a entrega'
+      icon = 'hourglass-empty'
     }
 
     if(s === 4) {
-      label = 'Saiu para entrega';
-      icon = 'motorcycle';
+      label = 'Saiu para entrega'
+      icon = 'motorcycle'
     }
 
     if(s === 5) {
-      label = 'Pedido finalizado';
-      icon = 'check';
+      label = 'Pedido finalizado'
+      icon = 'check'
     }
 
     return (
@@ -198,4 +198,4 @@ const product = EStyleSheet.create({
   icon: {
     fontSize: 18
   }
-});
+})

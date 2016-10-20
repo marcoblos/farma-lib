@@ -1,20 +1,20 @@
 import React,
-{ Component } from 'react';
-import { Text, View } from 'react-native';
+{ Component } from 'react'
+import { Text, View } from 'react-native'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
 export class FaIconMessage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
 
-    let _type = this.props.type || '_';
-    let _size = this.props.size || '_';
+    let _type = this.props.type || '_'
+    let _size = this.props.size || '_'
 
     return (
       <View style={[message.container, customStyle[_type].container]}>
@@ -27,12 +27,12 @@ export class FaIconMessage extends Component {
   }
 }
 
-import { ALERT, INFO, DANGER, SUCCESS } from './_themes';
+import { ALERT, INFO, DANGER, SUCCESS } from './_themes'
 
-const _alertStyle = EStyleSheet.create(ALERT);
-const _infoStyle = EStyleSheet.create(INFO);
-const _dangerStyle = EStyleSheet.create(DANGER);
-const _successStyle = EStyleSheet.create(SUCCESS);
+const _alertStyle = EStyleSheet.create(ALERT)
+const _infoStyle = EStyleSheet.create(INFO)
+const _dangerStyle = EStyleSheet.create(DANGER)
+const _successStyle = EStyleSheet.create(SUCCESS)
 
 const customStyle = {
     '_': {},
@@ -40,7 +40,7 @@ const customStyle = {
     'info': _infoStyle,
     'danger': _dangerStyle,
     'success': _successStyle
-};
+}
 
 
 const message = EStyleSheet.create({
@@ -63,4 +63,4 @@ const message = EStyleSheet.create({
   text: {
     color: '$colors.white1'
   }
-});
+})

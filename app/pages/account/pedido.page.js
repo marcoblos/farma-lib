@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaImageZoom, FaProductList} from 'fa-components';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaImageZoom, FaProductList} from 'fa-components'
 
-import { AccountService } from 'fa-services';
+import { AccountService } from 'fa-services'
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('window')
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class PedidoPage extends Component {
   constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
         showErrors: false,
@@ -22,29 +22,29 @@ export class PedidoPage extends Component {
         imageZoomVisible: false
       }
 
-      this._accountService = new AccountService();
+      this._accountService = new AccountService()
   }
 
   componentDidMount() {
-    console.log(this.props.pedido);
+    console.log(this.props.pedido)
   }
 
   _meusDadosPage() {
     this.props.navigator.push({
         name: 'meus-dados'
-    });
+    })
   }
 
   _meusEnderecosPage() {
     this.props.navigator.push({
         name: 'meus-enderecos'
-    });
+    })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
         name: 'meus-pedidos'
-    });
+    })
   }
 
   onMomentumScrollEnd(e, state, context) {
@@ -53,14 +53,14 @@ export class PedidoPage extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   _cancelarPedido() {
 
     let data = {
       IDPedido: this.props.pedido.idPedido
-    };
+    }
 
     this._accountService.cancelarPedido(data)
     .then((response) => {
@@ -69,8 +69,8 @@ export class PedidoPage extends Component {
       })
     })
     .catch((error) => {
-      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.');
-    });
+      alert('Não foi possível cancelar o pedido. Tente novamente mais tarde.')
+    })
   }
 
   _alertCancelarPedido() {
@@ -164,7 +164,7 @@ export class PedidoPage extends Component {
       </ScrollView>
 
       </ViewContainer>
-    );
+    )
   }
 }
 
@@ -175,4 +175,4 @@ var styles = EStyleSheet.create({
     padding: '$md',
     backgroundColor: '$colors.white1'
   }
-});
+})
