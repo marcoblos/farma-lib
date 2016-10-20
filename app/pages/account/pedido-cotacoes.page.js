@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle} from 'fa-components';
-
+import { PedidoModel } from 'fa-models';
 import { AccountService } from 'fa-services';
 
 const window = Dimensions.get('window');
+
+import {MaskService} from 'react-native-masked-text';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import Swiper from 'react-native-swiper';
-
 
 const renderPagination = (index, total, context) => {
   return (
@@ -40,15 +41,19 @@ export class PedidoCotacoesPage extends Component {
         visible: false,
         page: 0,
         modalVisible: false,
-        cotacaoAtual: {}
+        cotacaoAtual: {},
+        pedido: new PedidoModel(),
+        total: 0
       }
 
       this._accountService = new AccountService();
+      this._maskService = new MaskService();
   }
 
   componentDidMount() {
     console.log(this.props.pedido);
     this.setState({
+      pedido: this.props.pedido,
       contato: this.props.pedido.contato
     });
   }
@@ -113,7 +118,7 @@ export class PedidoCotacoesPage extends Component {
             </View>
 
             <View style={{flex: 1}}>
-              <FaInfo label='Total' valueStyle={{fontWeight: 'bold'}} last={true} value={c.totalFormatado} />
+              <FaInfo label='Total' valueStyle={{fontWeight: 'bold'}} last={true} value={this._maskService.toMoney(c.total > 0 ? c.total : 0)} />
             </View>
           </View>
         </View>
@@ -132,18 +137,53 @@ export class PedidoCotacoesPage extends Component {
     }
   }
 
-  _renderProduto(p, i) {
+  _toggleAceito(p, cotacaoIndex) {
+
+    let pedido = this.state.pedido;
+    let cotacao = pedido.cotacoes[cotacaoIndex];
+    let produtos = cotacao.produtos;
+
+    produtos.forEach((prod) => {
+      if(prod.id === p.id) {
+        if(p.aceito === 1) {
+          p.aceito = 0;
+          cotacao.total = cotacao.total - p.valor;
+        } else {
+          p.aceito = 1;
+          cotacao.total = cotacao.total + p.valor;
+        }
+      }
+    });
+
+    this.setState({pedido});
+  }
+
+  _renderToggle(p, indexCotacao) {
+
+    if(this.state.pedido.cotacoes[indexCotacao].produtos.length) {
+      return (
+        <View>
+          <TouchableOpacity onPress={() => this._toggleAceito(p, indexCotacao)}>
+            <Icon name='remove-circle-outline' size={25} style={{color: '#999'}} />
+          </TouchableOpacity>
+        </View>
+      )
+    }
+  }
+
+  _renderProduto(p, i, index) {
 
     return (
-      <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
+      <View key={i} style={[p.aceito === 0 ? {opacity: 0.4} : {}, {flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}]}>
         <View style={{flex: 1}}>
           <Text>{p.nome}</Text>
           {this._renderDescricao(p)}
           <Text style={{color: 'rgba(0,0,0,0.5)', paddingTop: 3}}>{`${p.quantidade} ${p.unidade}`}</Text>
         </View>
         <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-          <Text style={{fontWeight: 'bold'}}>{p.valorFormatado}</Text>
+          <Text style={[p.aceito === 0 ? {color: 'red'} : {}, {fontWeight: 'bold'}]}>{p.valorFormatado}</Text>
         </View>
+        {this._renderToggle(p, index)}
       </View>
     )
   }
@@ -151,21 +191,21 @@ export class PedidoCotacoesPage extends Component {
   _renderGroup(c, index) {
     return (
       <View key={index} style={[this.state.page === index ? {} : {position: 'absolute', height: 0, top: 0, overflow: 'hidden'}]}>
-        {c.produtos.map((p, i) => this._renderProduto(p, i))}
+        {c.produtos.map((p, i) => this._renderProduto(p, i, index))}
       </View>
     )
   }
 
   _renderListaDeProdutos() {
 
-    if(this.props.pedido.cotacoes.length) {
-      return this.props.pedido.cotacoes.map((c, index) => this._renderGroup(c, index));
+    if(this.state.pedido.cotacoes.length) {
+      return this.state.pedido.cotacoes.map((c, index) => this._renderGroup(c, index));
     }
   }
 
   _modalAceitarCotacao() {
 
-    this.setState({cotacaoAtual: this.props.pedido.cotacoes[this.state.page]});
+    this.setState({cotacaoAtual: this.state.pedido.cotacoes[this.state.page]});
 
     this.setModalVisible(true);
   }
@@ -218,6 +258,9 @@ export class PedidoCotacoesPage extends Component {
       },
 
     }
+
+    debugger;
+    return false;
 
     this._accountService.aceitarCotacao(data)
     .then((response) => {
@@ -364,7 +407,7 @@ export class PedidoCotacoesPage extends Component {
                         </View>
 
                         <View style={{flex: 1}}>
-                          <FaInfo label='Total' last={true} valueStyle={{fontWeight: 'bold'}} value={this.state.cotacaoAtual.totalFormatado} />
+                          <FaInfo label='Total' last={true} valueStyle={{fontWeight: 'bold'}} value={this._maskService.toMoney(this.state.cotacaoAtual.total > 0 ? this.state.cotacaoAtual.total : 0)} />
                         </View>
                       </View>
                     </View>

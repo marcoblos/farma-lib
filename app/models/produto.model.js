@@ -15,6 +15,7 @@ export class ProdutoModel extends BaseModel {
         this.quantidade = '';
         this.unidade = '';
         this.imagens = [];
+        this.aceito = 1;
 
 
         super.bind(props);
