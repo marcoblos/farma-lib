@@ -59,6 +59,7 @@ export class MeusPedidosPage extends Component {
       })
     })
     .catch((error) => {
+      console.error(error)
       alert('Não foi possível carregar os dados do pedido.')
       LoaderService.hide()
     })
