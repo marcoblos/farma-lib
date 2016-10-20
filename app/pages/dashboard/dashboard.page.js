@@ -149,17 +149,17 @@ export class DashboardPage extends Component {
           pedidos: response
         }
       })
+    }).catch((error) => {
+      debugger;
     })
 
   }
-
 
   takePicture() {
     this.refs['cam'].capture()
       .then((data) => console.log(data))
       .catch(err => console.error(err))
   }
-
 
 render() {
   return (

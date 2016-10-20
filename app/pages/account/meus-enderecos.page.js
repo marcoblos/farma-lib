@@ -61,30 +61,33 @@ export class MeusEnderecosPage extends Component {
 
   _renderPage() {
 
-    if(this.props.enderecos.length) {
+    if(this.props.enderecos.length > 0) {
 
-      <ScrollView keyboardShouldPersistTaps={true}>
+      return (
+        <ScrollView style={{flex: 1}} keyboardShouldPersistTaps={true}>
 
-      {this.props.enderecos.map((e, index) => {
+          {this.props.enderecos.map((e, index) => {
 
-        let label = [
-          `${e.rua}, ${e.numero}, ${e.complemento}`,
-          `${e.bairro}, ${e.cidade}`,
-          `${e.cep}`,
-        ]
+            let label = [
+              `${e.rua}, ${e.numero}, ${e.complemento}`,
+              `${e.bairro}, ${e.cidade}`,
+              `${e.cep}`,
+            ]
 
-        return (
-          <FaFullButton
-            key={index}
-            title={e.bairro.toUpperCase()}
-            label={label}
-            onPress={() => this._enderecoDetalhePage(e)}
-            borderBottom={true}
-            padding={20} />
-        )
-      })}
+            return (
+              <FaFullButton
+                key={index}
+                title={e.bairro.toUpperCase()}
+                label={label}
+                onPress={() => this._enderecoDetalhePage(e)}
+                borderBottom={true}
+                padding={20} />
+            )
+          })}
 
-    </ScrollView>
+        </ScrollView>
+      )
+      
     } else {
 
       return(

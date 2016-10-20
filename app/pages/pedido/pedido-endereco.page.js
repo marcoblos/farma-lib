@@ -180,7 +180,7 @@ render() {
 
                 <View style={{flexDirection: 'row'}}>
                   <View style={{flex: 1, paddingRight: 15}}>
-                    <FaInput label='CEP' ref='cep' value='' required={true} showErrors={this.state.showErrors} />
+                    <FaInput label='CEP' ref='cep' mask={{type: 'zip-code'}} value='' required={true} showErrors={this.state.showErrors} />
                   </View>
                   <View style={{flex: 1}}></View>
                 </View>
@@ -199,7 +199,7 @@ render() {
 
                 <View style={{flexDirection: 'row'}}>
                   <View style={{flex: 1, paddingRight: 15}}>
-                    <FaInput label='Número' ref='numero' value='' required={true} showErrors={this.state.showErrors} />
+                    <FaInput label='Número' mask={{type: 'only-numbers'}} ref='numero' value='' required={true} showErrors={this.state.showErrors} />
                   </View>
                   <View style={{flex: 1, paddingLeft: 15}}>
                     <FaInput label='Complemento' ref='complemento' value='' required={true} showErrors={this.state.showErrors} />

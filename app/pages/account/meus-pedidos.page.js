@@ -154,7 +154,7 @@ export class MeusPedidosPage extends Component {
 
   _renderPage() {
 
-    if(this.state.pedidosList.length) {
+    if(this.props.pedidos.length > 0) {
       return (
         <ListView
           dataSource = {this.state.pedidosList}

@@ -157,7 +157,7 @@ export class NotificacoesPage extends Component {
 
   _renderPage() {
 
-    if(this.state.pedidosList.length) {
+    if(this.props.pedidos.length) {
       return (
         <ListView
           dataSource = {this.state.pedidosList}
