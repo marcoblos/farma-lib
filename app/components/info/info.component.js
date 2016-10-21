@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
-  Text
-} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+  Text,
+} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaInfo extends Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     _renderIcon() {
@@ -34,7 +34,7 @@ export class FaInfo extends Component {
                 </Text>
               </View>
             </View>
-        );
+        )
     }
 }
 
@@ -56,4 +56,4 @@ const info = EStyleSheet.create({
       marginRight: 3,
       color: '$colors.black3'
     }
-});
+})

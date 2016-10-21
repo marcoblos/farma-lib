@@ -1,8 +1,8 @@
 'use strict'
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 
-import { PocPage, MainPage } from 'fa-pages';
+import { PocPage, MainPage } from 'fa-pages'
 
 export class ViewContainer extends Component {
   render() {
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     position: 'relative'
   }
 
-});
+})

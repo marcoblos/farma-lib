@@ -1,74 +1,74 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
     View,
     TouchableOpacity,
     Text,
     InteractionManager,
     Animated
-} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { ToasterService } from 'fa-services';
+import { ToasterService } from 'fa-services'
 
-const TOASTER_TIME = 4000;
-const TOASTER_HEIGHT = 75;
-const BREAKING_LINE_TEXT_LENGTH = 40;
+const TOASTER_TIME = 4000
+const TOASTER_HEIGHT = 75
+const BREAKING_LINE_TEXT_LENGTH = 40
 
 
 export class FaToaster extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             visible: false,
             message: '',
             type: ''
-        };
+        }
 
-        this._top = new Animated.Value(-TOASTER_HEIGHT);
+        this._top = new Animated.Value(-TOASTER_HEIGHT)
 
-        ToasterService.registerListener((data) => this._onRequestMessage(data));
+        ToasterService.registerListener((data) => this._onRequestMessage(data))
     }
 
     _onRequestMessage(data) {
-        let self = this;
+        let self = this
 
         InteractionManager.runAfterInteractions(() => {
             self.setState({
                 visible: true,
                 message: data.message,
                 type: data.type
-            }, () => self._show());
-        });
+            }, () => self._show())
+        })
     }
 
     _renderIcon() {
         return (
             <Icon name={this.state.type === 'ERROR' ? 'close' : 'check' }
                     size={20} style={style.icon} />
-        );
+        )
     }
 
     _show() {
-        let self = this;
+        let self = this
 
         Animated.timing(
             this._top,
             { toValue: 0, duration: 300}
-        ).start();
+        ).start()
 
         setTimeout(function() {
-            self._hide();
-        }, TOASTER_TIME);
+            self._hide()
+        }, TOASTER_TIME)
     }
 
     _hide() {
         Animated.timing(
             this._top,
             { toValue: -TOASTER_HEIGHT, duration: 200 }
-        ).start();
+        ).start()
     }
 
     render() {
@@ -85,7 +85,7 @@ export class FaToaster extends Component {
                 </View>
 
             </Animated.View>
-        );
+        )
     }
 }
 
@@ -125,4 +125,4 @@ const style = EStyleSheet.create({
         fontSize: 14,
         color: '$colors.white1'
     }
-});
+})

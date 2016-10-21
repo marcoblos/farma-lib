@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Dimensions } from 'react-native';
-import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle } from 'fa-components';
+import React, { Component } from 'react'
+import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Dimensions } from 'react-native'
+import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle } from 'fa-components'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
-import Picker from 'react-native-picker';
+import EStyleSheet from 'react-native-extended-stylesheet'
+import Picker from 'react-native-picker'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const {height, width} = Dimensions.get('window');
-const pedidoData = require('./_pedidoData.json');
-const s = require('../../styles/core.js');
+const {height, width} = Dimensions.get('window')
+const pedidoData = require('./_pedidoData.json')
+const s = require('../../styles/core.js')
 
 export class PedidoPagamentoCartaoPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       isOpen: false,
@@ -39,16 +39,16 @@ export class PedidoPagamentoCartaoPage extends Component {
 
   componentDidMount() {
 
-    let p = this.props.currentProduct;
+    let p = this.props.currentProduct
 
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({modalVisible: visible})
   }
 
   openModal1(id) {
-    this.refs.modal1.open();
+    this.refs.modal1.open()
   }
 
   _continuar() {
@@ -65,34 +65,34 @@ export class PedidoPagamentoCartaoPage extends Component {
   }
 
   _backToHome() {
-    this.props.navigator.pop();
+    this.props.navigator.pop()
   }
 
   aaa() {
-    this.picker.toggle();
+    this.picker.toggle()
   }
 
   _onSelectedQuantidade(selected) {
     this.setState({
       cartao: selected
-    });
+    })
   }
 
   _onSelectedUnidade(selected) {
     this.setState({
       selectedUnidade: selected
-    });
+    })
   }
 
   _renderQuantidadeSelecionada() {
-    let label = '';
+    let label = ''
 
     if(this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
-      label = 'Selecionar';
+      label = 'Selecionar'
     } else if(this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade + 's';
+      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade + 's'
     } else {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade;
+      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade
     }
 
     return (
@@ -204,13 +204,13 @@ const aa = EStyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   }
-});
+})
 
 const teste = EStyleSheet.create({
   row: {
     padding: 20
   }
-});
+})
 
 
 const base = EStyleSheet.create({
@@ -226,7 +226,7 @@ const base = EStyleSheet.create({
   padding: {
     padding: 15
   }
-});
+})
 
 const bottom = EStyleSheet.create({
   button: {
@@ -253,13 +253,13 @@ const bottom = EStyleSheet.create({
     color: 'white',
     textDecorationLine: 'underline'
   }
-});
+})
 
 const styles = EStyleSheet.create({
   box: {
     paddingTop: '$md'
   }
-});
+})
 
 const info = EStyleSheet.create({
   container: {
@@ -282,4 +282,4 @@ const info = EStyleSheet.create({
   value: {
     fontSize: 14
   }
-});
+})

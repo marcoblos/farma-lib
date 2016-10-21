@@ -1,13 +1,13 @@
-import {BaseModel} from './_base.model';
+import {BaseModel} from './_base.model'
 
 export class CategoryModel extends BaseModel {
     constructor(properties) {
-        super();
+        super()
         
-        this.id = 0;
-        this.image = '';
-        this.name = '';
+        this.id = 0
+        this.image = ''
+        this.name = ''
         
-        super.bind(properties);
+        super.bind(properties)
     }
 }

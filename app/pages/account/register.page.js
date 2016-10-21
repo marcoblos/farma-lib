@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, Dimensions } from 'react-native';
-import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-components';
+import React, { Component } from 'react'
+import { View, ScrollView, Text, TouchableOpacity, Dimensions } from 'react-native'
+import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-components'
 
-import EStyleSheet from 'react-native-extended-stylesheet';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
-import {UserModel} from 'fa-models';
-import {AccountService} from 'fa-services';
+import {UserModel} from 'fa-models'
+import {AccountService} from 'fa-services'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-const {height, width} = Dimensions.get('window');
-const s = require('../../styles/core.js');
+const {height, width} = Dimensions.get('window')
+const s = require('../../styles/core.js')
 
 
-import CryptoJS from 'crypto-js';
+import CryptoJS from 'crypto-js'
 
 
 export class RegisterPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       showErrors: false,
@@ -29,15 +29,15 @@ export class RegisterPage extends Component {
       phone: ''
     }
 
-    this._accountService = new AccountService();
+    this._accountService = new AccountService()
   }
 
 
   _isFormValid(e) {
 
     if(!e.isValid()) {
-      this.valid = false;
-      this.setState({showErrors: true});
+      this.valid = false
+      this.setState({showErrors: true})
     }
 
   }
@@ -51,24 +51,24 @@ export class RegisterPage extends Component {
       this.refs['phone']
     ]
 
-    this.valid = true;
-    campos.forEach((campo) => this._isFormValid(campo));
+    this.valid = true
+    campos.forEach((campo) => this._isFormValid(campo))
 
     let user = new UserModel({
       usuario: 'acp@gmail.com',
       senha: CryptoJS.MD5('farma')
-    });
+    })
 
 
     this._accountService.teste(user)
       .then((response) => {
-        alert('OK');
-        debugger;
+        alert('OK')
+        debugger
       }).catch((error) => {
-        debugger;
-      });
+        debugger
+      })
 
-    return false;
+    return false
 
     if(this.valid) {
 
@@ -77,14 +77,14 @@ export class RegisterPage extends Component {
         email: this.state.email,
         password: this.state.password,
         phone: this.state.phone
-      });
+      })
 
       this._accountService.createUser(user)
         .then((response) => {
-          alert('OK');
+          alert('OK')
         }).catch((error) => {
-          alert(error.response.data.message);
-        });
+          alert(error.response.data.message)
+        })
     }
   }
 
@@ -121,4 +121,4 @@ const styles = EStyleSheet.create({
     paddingBottom: '$lg',
     backgroundColor: '$colors.white1'
   }
-});
+})

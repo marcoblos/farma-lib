@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import React, { Component } from 'react'
+import { View, Text } from 'react-native'
 
-import * as axios from 'axios';
+import * as axios from 'axios'
 
-import {ConfigTheme} from 'fa-config';
+import {ConfigTheme} from 'fa-config'
 
-import { StorageService } from 'fa-services';
+import { StorageService } from 'fa-services'
 
-import { AppNavigator, FaLoader, FaToaster } from 'fa-components';
+import { AppNavigator, FaLoader, FaToaster } from 'fa-components'
 
 console.disableYellowBox = true;
 
 export class Farma extends Component {
     constructor(props) {
-        super(props);
-        ConfigTheme.build();
+        super(props)
+        ConfigTheme.build()
 
-        // this.initialRoute = 'LoginPage';
-        // this.initialRoute = 'PocPage';
-        // this.initialRoute = 'cotacoes-empty';
-        this.initialRoute = 'DashboardPage';
+        // this.initialRoute = 'LoginPage'
+        // this.initialRoute = 'PocPage'
+        // this.initialRoute = 'cotacoes-empty'
+        this.initialRoute = 'DashboardPage'
     }
 
     componentDidMount() {
@@ -29,7 +29,6 @@ export class Farma extends Component {
             axios.defaults.headers.common['Usertoken'] = Usertoken.toString();
           }
         })
-
     }
 
     render() {
@@ -40,6 +39,6 @@ export class Farma extends Component {
             <AppNavigator
                 initialRoute={{name: this.initialRoute}} />
           </View>
-        );
+        )
     }
 }

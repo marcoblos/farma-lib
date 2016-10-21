@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { ViewContainer, FaHeader } from 'fa-components';
+import React, { Component } from 'react'
+import { Text, TouchableOpacity } from 'react-native'
+import { ViewContainer, FaHeader } from 'fa-components'
 
 export class DashboardPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   _navigateToPersonShow() {
@@ -14,7 +14,7 @@ export class DashboardPage extends Component {
   }
 
   _backToHome() {
-    this.props.navigator.pop();
+    this.props.navigator.pop()
   }
 
 render() {

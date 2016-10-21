@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TouchableHighlight, Image, ActivityIndicator, Animated } from 'react-native';
-import { ViewContainer, FaHeader } from 'fa-components';
-import { AccountService, LoaderService, StorageService } from 'fa-services';
-import { HttpRequestSettingsModel } from 'fa-models';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import * as axios from 'axios';
-import { PedidoModel } from 'fa-models';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, TouchableHighlight, Image, ActivityIndicator, Animated } from 'react-native'
+import { ViewContainer, FaHeader } from 'fa-components'
+import { AccountService, LoaderService, StorageService } from 'fa-services'
+import { HttpRequestSettingsModel } from 'fa-models'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import * as axios from 'axios'
+import { PedidoModel } from 'fa-models'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
 import FCM from 'react-native-fcm';
 
 export class DashboardPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       notificacoes: 0,
@@ -21,37 +21,37 @@ export class DashboardPage extends Component {
       opacity: new Animated.Value(0),
     }
 
-    this._accountService = new AccountService();
+    this._accountService = new AccountService()
   }
 
   componentWillReceiveProps(next) {
-    // this._refresh();
+    // this._refresh()
   }
 
   componentDidMount() {
-    let self = this;
+    let self = this
 
     StorageService.getString('Usertoken')
       .then((Usertoken) => {
         if(Usertoken === null) {
-          this.props.navigator.resetTo({name: "auth-page"});
+          this.props.navigator.resetTo({name: "auth-page"})
         } else {
-          axios.defaults.headers.common['Usertoken'] = Usertoken;
+          axios.defaults.headers.common['Usertoken'] = Usertoken
           setTimeout( function() {
-            self._refresh();
-          }, 100);
+            self._refresh()
+          }, 100)
         }
       })
 
       Animated.timing(
          this.state.opacity,
          {toValue: 1, duration: 650}
-       ).start();
+       ).start()
 
     StorageService.getObject('notificacoes')
     .then((response) => {
-      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes});
-    });
+      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes})
+    })
 
 
 
@@ -77,24 +77,24 @@ export class DashboardPage extends Component {
 
   _refresh(Usertoken) {
 
-    this.setState({loading: true});
+    this.setState({loading: true})
 
     this._accountService.retornarNotificacoes()
     .then((response) => {
 
-      this.setState({loading: false});
-      StorageService.setObject('notificacoes', response);
-      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes});
+      this.setState({loading: false})
+      StorageService.setObject('notificacoes', response)
+      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes})
 
     }).catch((error) => {
-      this.setState({loading: false});
-      alert('Algo deu errado. Tente novamente mais tarde.');
-    });
+      this.setState({loading: false})
+      alert('Algo deu errado. Tente novamente mais tarde.')
+    })
   }
 
   _novoPedido() {
 
-    let pedido = new PedidoModel();
+    let pedido = new PedidoModel()
 
     this.props.navigator.push({
       name: "PedidoBuscar",
@@ -112,17 +112,17 @@ export class DashboardPage extends Component {
   }
 
   _backToHome() {
-    this.props.navigator.pop();
+    this.props.navigator.pop()
   }
 
   _meusPedidosPage() {
 
-    requestAnimationFrame(() => LoaderService.show());
+    requestAnimationFrame(() => LoaderService.show())
 
     this._accountService.getPedidosLista()
     .then((response) => {
 
-      LoaderService.hide();
+      LoaderService.hide()
 
       this.props.navigator.push({
         name: "meus-pedidos",
@@ -130,29 +130,29 @@ export class DashboardPage extends Component {
           pedidos: response,
           type: 'pedidos'
         }
-      });
+      })
     }).catch((error) => {
-      console.error(error);
+      console.error(error)
     })
 
   }
 
   _historico() {
 
-    requestAnimationFrame(() => LoaderService.show());
+    requestAnimationFrame(() => LoaderService.show())
 
     this._accountService.getInformacoesUsuario()
     .then((response) => {
 
-      LoaderService.hide();
+      LoaderService.hide()
 
       this.props.navigator.push({
         name: "meus-pedidos",
         passProps: {
           pedidos: response
         }
-      });
-    });
+      })
+    })
 
   }
 
@@ -163,27 +163,25 @@ export class DashboardPage extends Component {
     this._accountService.getNotificacoesLista()
     .then((response) => {
 
-      LoaderService.hide();
+      LoaderService.hide()
 
       this.props.navigator.push({
         name: "notificacoes",
         passProps: {
           pedidos: response
         }
-      });
+      })
     }).catch((error) => {
       debugger;
     })
 
   }
 
-
   takePicture() {
     this.refs['cam'].capture()
       .then((data) => console.log(data))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
   }
-
 
 render() {
   return (
@@ -255,7 +253,7 @@ const logo = EStyleSheet.create({
     width: '75%',
     height: '27%'
   }
-});
+})
 
 const dashboard = EStyleSheet.create({
   ButtonContainer: {
@@ -312,4 +310,4 @@ const dashboard = EStyleSheet.create({
     marginRight: 10
   }
 
-});
+})

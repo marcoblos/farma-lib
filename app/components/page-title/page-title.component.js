@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   View,
   TouchableOpacity,
   Text
-} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+} from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
 export class FaPageTitle extends Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     _renderTitle() {
@@ -45,7 +45,7 @@ export class FaPageTitle extends Component {
                 {this._renderTitle()}
                 {this._renderSubTitle()}
             </View>
-        );
+        )
     }
 }
 
@@ -66,4 +66,4 @@ const pageTitle = EStyleSheet.create({
     highlight: {
       color: '$colors.secondary'
     }
-});
+})

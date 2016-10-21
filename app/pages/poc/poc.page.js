@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   Dimensions,
@@ -6,16 +6,16 @@ import {
   Text,
   TouchableHighlight,
   View
-} from 'react-native';
+} from 'react-native'
 
 
-import {FaInput} from 'fa-components';
+import {FaInput} from 'fa-components'
 
 
 export class PocPage extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       cep: '',
@@ -25,12 +25,12 @@ export class PocPage extends Component {
   }
 
   atualiza(t) {
-    this.setState({cep: t});
+    this.setState({cep: t})
   }
 
 
   _salvar() {
-    this.setState({showErrors: true});
+    this.setState({showErrors: true})
   }
 
   render() {
@@ -46,7 +46,7 @@ export class PocPage extends Component {
 
 
       </View>
-    );
+    )
   }
 
 }
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 50
   }
-});
+})

@@ -1,2 +1,2 @@
 
-export { Farma } from './farma-app';
+export { Farma } from './farma-app'

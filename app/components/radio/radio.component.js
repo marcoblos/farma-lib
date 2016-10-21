@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React, { Component } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
 
 export class FaRadioList extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   _onSelected(value) {
     this.setState({
         selectedSize: value
-    });
-    this.props.onSelected(value);
+    })
+    this.props.onSelected(value)
   }
 
   render() {
@@ -28,10 +28,10 @@ export class FaRadioList extends Component {
                     </View>
                     <Text>{option.value}</Text>
                 </TouchableOpacity>
-              );
+              )
           })}
         </View>
-      );
+      )
   }
 
 }
@@ -67,4 +67,4 @@ const radio = EStyleSheet.create({
   iconInSelected: {
     opacity: 1
   }
-});
+})

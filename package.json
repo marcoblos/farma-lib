@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint app"
   },
   "dependencies": {
     "axios": "^0.14.0",
@@ -28,5 +29,13 @@
     "react-native-transformable-image": "0.0.18",
     "react-native-vector-icons": "^2.1.0",
     "redux": "3.5.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react-native": "^2.0.0"
   }
 }

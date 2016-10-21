@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Text, View, TextInput, Animated, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { TextInputMask } from 'react-native-masked-text';
+import React, { Component } from 'react'
+import { Text, View, TextInput, Animated, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { TextInputMask } from 'react-native-masked-text'
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaInput extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             actived: false,
@@ -45,109 +45,109 @@ export class FaInput extends Component {
         }
 
         if (nextProps.value) {
-            this.setState({ height: new Animated.Value(36) });
+            this.setState({ height: new Animated.Value(36) })
         }
     }
 
     componentDidMount() {
-        var self = this;
+        var self = this
 
         if (self.props.required) {
-            self.setState({ valid: false });
+            self.setState({ valid: false })
         }
 
         if (this.props.value) {
-            this.setState({ height: new Animated.Value(36), text: this.props.value });
+            this.setState({ height: new Animated.Value(36), text: this.props.value })
         }
     }
 
     _getTextInputComponent() {
         if(this.props.mask) {
-            return this.refs['campo'].getElement();
+            return this.refs['campo'].getElement()
         }
         else {
-            return this.refs['campo'];
+            return this.refs['campo']
         }
     }
 
     _activeGroup() {
-        this.setState({ actived: true, showErrors: false, showMessage: false });
-        this.focus();
+        this.setState({ actived: true, showErrors: false, showMessage: false })
+        this.focus()
 
         Animated.timing(
             this.state.height,
             { toValue: 36, duration: 250 }
-        ).start();
+        ).start()
     }
 
     _blur() {
 
-        let valid = this.isValid();
+        let valid = this.isValid()
 
-        this.setState({ valid, actived: false });
+        this.setState({ valid, actived: false })
 
         if (this.state.text.length === 0) {
             Animated.timing(
                 this.state.height,
                 { toValue: 25, duration: 250 }
-            ).start();
+            ).start()
         }
 
     }
 
     _change(campo) {
-        this.setState({ text: campo.text });
-        this.setState({ showErrors: false });
+        this.setState({ text: campo.text })
+        this.setState({ showErrors: false })
         if(this.props.onChangeText){
-            this.props.onChangeText(campo.text);
+            this.props.onChangeText(campo.text)
         }
     }
 
     _onSubmitEditing(event) {
         if(this.props.onSubmitEditing){
-            this.props.onSubmitEditing(event);
+            this.props.onSubmitEditing(event)
         }
     }
 
     _validate() {
 
         if (!this.isValid()) {
-            this.setState({ showErrors: true });
-            this.setState({ showMessage: true });
+            this.setState({ showErrors: true })
+            this.setState({ showMessage: true })
         }
 
         let validations = [
             this._validateRequired.bind(this),
             this._validateEmail.bind(this)
-        ];
+        ]
 
-        validations.forEach((v) => v());
+        validations.forEach((v) => v())
     }
 
     _validateRequired() {
 
         if (this.props.required && this.state.text.length === 0) {
-            this.errors.required.error = true;
-            this.setState({ message: this.errors.required.message });
-            return false;
+            this.errors.required.error = true
+            this.setState({ message: this.errors.required.message })
+            return false
         }
     }
 
     _validateEmail() {
 
-        let isBlank = this.state.text.length === 0;
-        let emailValid = this._isEmailValid(this.state.text);
+        let isBlank = this.state.text.length === 0
+        let emailValid = this._isEmailValid(this.state.text)
 
         if (this.props.type === 'email-address' && !isBlank) {
-            this.errors.email.error = true;
-            this.setState({ message: this.errors.email.message });
-            return false;
+            this.errors.email.error = true
+            this.setState({ message: this.errors.email.message })
+            return false
         }
     }
 
     _isEmailValid(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
+        var re = /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return re.test(email)
     }
 
     _renderMessage() {
@@ -172,37 +172,37 @@ export class FaInput extends Component {
 
 
     isValid() {
-        let type = this.props.type;
-        let isEmailValid = this._isEmailValid(this.state.text);
+        let type = this.props.type
+        let isEmailValid = this._isEmailValid(this.state.text)
 
         if (this.props.required && this.state.text.length === 0) {
-            return false;
+            return false
         }
         if (type === 'email-address' && !isEmailValid) {
-            return false;
+            return false
         }
 
-        return true;
+        return true
     }
 
     getValue() {
-        return this.state.text;
+        return this.state.text
     }
 
     focus() {
-        this._getTextInputComponent().focus();
+        this._getTextInputComponent().focus()
     }
 
     _clean() {
-        this.setState({ text: '' });
+        this.setState({ text: '' })
     }
 
     _showPassword() {
 
         if (this.state.showPassword) {
-            this.setState({ showPassword: false, passwordText: 'mostrar' });
+            this.setState({ showPassword: false, passwordText: 'mostrar' })
         } else {
-            this.setState({ showPassword: true, passwordText: 'esconder' });
+            this.setState({ showPassword: true, passwordText: 'esconder' })
         }
     }
 
@@ -222,7 +222,7 @@ export class FaInput extends Component {
     _renderInputComponent() {
         let customStyleByType = {
             paddingRight: this.props.password ? 90 : 20
-        };
+        }
 
         if(!!this.props.mask) {
             return (
@@ -243,7 +243,7 @@ export class FaInput extends Component {
                     value={this.state.text}
                     underlineColorAndroid={'transparent'}
                 />
-            );
+            )
         }
         else {
             return (
@@ -261,7 +261,7 @@ export class FaInput extends Component {
                     value={this.state.text}
                     underlineColorAndroid={'transparent'}
                     />
-            );
+            )
         }
     }
 
@@ -288,7 +288,7 @@ export class FaInput extends Component {
                 </Animated.View>
                 {this._renderMessage() }
             </View>
-        );
+        )
     }
 }
 
@@ -376,4 +376,4 @@ const input = EStyleSheet.create({
     icon: {
         color: '#999'
     }
-});
+})
