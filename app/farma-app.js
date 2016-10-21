@@ -9,8 +9,6 @@ import { StorageService } from 'fa-services';
 
 import { AppNavigator, FaLoader, FaToaster } from 'fa-components';
 
-import FCM from 'react-native-fcm';
-
 console.disableYellowBox = true;
 
 export class Farma extends Component {
@@ -27,30 +25,11 @@ export class Farma extends Component {
     componentDidMount() {
       StorageService.getString('Usertoken')
         .then((Usertoken) => {
-          axios.defaults.headers.common['Usertoken'] = Usertoken.toString();
+          if(Usertoken) {
+            axios.defaults.headers.common['Usertoken'] = Usertoken.toString();
+          }
         })
 
-        FCM.requestPermissions(); // for iOS
-        FCM.getFCMToken().then(token => {
-            console.log("token device: ", token)
-            StorageService.setString('Devicetoken', token)
-            // store fcm token in your server
-        });
-        this.notificationUnsubscribe = FCM.on('notification', (notif) => {
-
-            console.log(notif);
-            // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
-            if(notif.local_notification) {
-              //this is a local notification
-            }
-            if(notif.opened_from_tray){
-              //app is open/resumed because user clicked banner
-            }
-        });
-        this.refreshUnsubscribe = FCM.on('refreshToken', (token) => {
-            console.log(token)
-            // fcm token may not be available on first load, catch it here
-        });
     }
 
     render() {

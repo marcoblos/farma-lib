@@ -8,6 +8,8 @@ import * as axios from 'axios';
 import { PedidoModel } from 'fa-models';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+import FCM from 'react-native-fcm';
+
 export class DashboardPage extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +53,26 @@ export class DashboardPage extends Component {
       this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes});
     });
 
+
+
+    FCM.requestPermissions();
+    FCM.getFCMToken().then(token => {
+        console.log("token device: ", token)
+        if(token) {
+          StorageService.setString('Devicetoken', token)
+        }
+    });
+    this.notificationUnsubscribe = FCM.on('notification', (notif) => {
+
+        console.log(notif);
+
+        if(notif.local_notification) {
+
+        }
+        if(notif.opened_from_tray){
+
+        }
+    });
   }
 
   _refresh(Usertoken) {
