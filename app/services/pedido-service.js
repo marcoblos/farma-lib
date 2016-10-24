@@ -14,10 +14,17 @@ export class PedidoService {
     })
   }
 
+  historicoPedido() {
+    return this.httpService.get(`/RetornaPedidosFinalizados`)
+    .then(response => {
+      return response
+    })
+  }
+
   getProducts(text) {
     return this.httpService.get(`/mobile/getRemedio?query=${text}`)
     .then(response => {
-    return response
+      return response
     })
   }
 

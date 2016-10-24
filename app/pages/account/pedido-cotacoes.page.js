@@ -117,7 +117,7 @@ export class PedidoCotacoesPage extends Component {
             </View>
 
             <View style={{flex: 1}}>
-              <FaInfo label='Total' valueStyle={{fontWeight: 'bold'}} last={true} value={this._maskService.toMoney(c.total > 0 ? c.total : 0)} />
+              <FaInfo label='Total' valueStyle={{fontWeight: 'bold'}} last={true} value={this._maskService.toMoney(c.total > 0 ? c.totalFormatado : 0)} />
             </View>
           </View>
         </View>
@@ -404,7 +404,7 @@ export class PedidoCotacoesPage extends Component {
                         </View>
 
                         <View style={{flex: 1}}>
-                          <FaInfo label='Total' last={true} valueStyle={{fontWeight: 'bold'}} value={this._maskService.toMoney(this.state.cotacaoAtual.total > 0 ? this.state.cotacaoAtual.total : 0)} />
+                          <FaInfo label='Total' last={true} valueStyle={{fontWeight: 'bold'}} value={this._maskService.toMoney(this.state.cotacaoAtual.total > 0 ? this.state.cotacaoAtual.totalFormatado : 0)} />
                         </View>
                       </View>
                     </View>

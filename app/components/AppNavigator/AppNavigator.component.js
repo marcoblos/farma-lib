@@ -35,7 +35,8 @@ import {
     PedidoEntregaPage,
     PedidoCotacoesPage,
     PedidoFinalizadoPage,
-    NotificacoesPage
+    NotificacoesPage,
+    HistoricoPedidoPage
 } from 'fa-pages'
 
 export class AppNavigator extends Component {
@@ -102,6 +103,8 @@ export class AppNavigator extends Component {
               return ( <PedidoFinalizadoPage {...globalNavigatorProps} {...route.passProps} />)
             case 'notificacoes':
               return ( <NotificacoesPage {...globalNavigatorProps} {...route.passProps} />)
+            case 'historico-pedido':
+              return ( <HistoricoPedidoPage {...globalNavigatorProps} {...route.passProps} />)
         }
     }
 

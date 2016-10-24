@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, TouchableHighlight, Image, ActivityIndicator, Animated } from 'react-native'
 import { ViewContainer, FaHeader } from 'fa-components'
-import { AccountService, LoaderService, StorageService } from 'fa-services'
+import { AccountService, LoaderService, StorageService, PedidoService } from 'fa-services'
 import { HttpRequestSettingsModel } from 'fa-models'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import * as axios from 'axios'
@@ -22,6 +22,7 @@ export class DashboardPage extends Component {
     }
 
     this._accountService = new AccountService()
+    this.pedidoService = new PedidoService()
   }
 
   componentWillReceiveProps(next) {
@@ -52,8 +53,6 @@ export class DashboardPage extends Component {
     .then((response) => {
       this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes})
     })
-
-
 
     FCM.requestPermissions();
     FCM.getFCMToken().then(token => {
@@ -137,15 +136,11 @@ export class DashboardPage extends Component {
 
   }
 
-  _historico() {
-
+  _historifffco() {
     requestAnimationFrame(() => LoaderService.show())
-
     this._accountService.getInformacoesUsuario()
     .then((response) => {
-
       LoaderService.hide()
-
       this.props.navigator.push({
         name: "meus-pedidos",
         passProps: {
@@ -153,7 +148,19 @@ export class DashboardPage extends Component {
         }
       })
     })
+  }
 
+   _historico() {
+    this.pedidoService.historicoPedido().then(r => {
+      console.log('retorno historico R: ', r)
+    })
+
+    //this.props.navigator.push({
+     // name: "historico-pedido",
+      //passProps: {
+       // pedido: pedido
+     // }
+   // })
   }
 
   _notificacoes() {
