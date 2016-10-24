@@ -1,26 +1,33 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Dimensions,
   Text,
   View,
   StyleSheet,
-  Modal
-} from 'react-native'
+  Modal,
+  TouchableOpacity
+} from 'react-native';
 
-import Camera from 'react-native-camera'
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import Camera from 'react-native-camera';
 
 export class FaCamera extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
+    this.state = {
+      uri: ''
+    }
   }
 
   takePicture() {
     this.camera.capture()
       .then((data) => {
-        this.props.getPhoto(data.path)
+        this.props.getPhoto(data.path);
+        this.props.onClose();
       })
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -33,18 +40,36 @@ export class FaCamera extends Component {
           >
         <Camera
           ref={(cam) => {
-            this.camera = cam
+            this.camera = cam;
           }}
           style={styles.preview}
           captureTarget={Camera.constants.CaptureTarget.temp}
-          captureQuality={Camera.constants.CaptureQuality.medium}
+          captureQuality={Camera.constants.CaptureQuality.high}
           captureAudio={false}
           aspect={Camera.constants.Aspect.fill}>
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-          <Text style={styles.capture} onPress={() => this.props.onClose()}>cancelar</Text>
+
+
+          <View style={{backgroundColor: 'rgba(0,0,0,0.6)', padding: 10, flex: 1, flexDirection: 'row'}}>
+
+            <View style={{flex: 1, alignItems: 'center'}}></View>
+
+            <View style={{flex: 1, alignItems: 'center'}}>
+              <TouchableOpacity onPress={this.takePicture.bind(this)} style={{backgroundColor: 'transparent'}}>
+                <Icon name='photo-camera' size={60} style={{color: 'white'}} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center', paddingRight: 20}}>
+              <TouchableOpacity onPress={() => this.props.onClose()} style={{backgroundColor: 'transparent'}}>
+                <Icon name='close' size={30} style={{color: 'white'}} />
+              </TouchableOpacity>
+            </View>
+
+          </View>
+
         </Camera>
       </Modal>
-    )
+    );
   }
 }
 
@@ -55,8 +80,9 @@ const styles = StyleSheet.create({
   },
   preview: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width
   },
@@ -68,4 +94,4 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 40
   }
-})
+});
