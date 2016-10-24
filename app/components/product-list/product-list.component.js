@@ -64,7 +64,7 @@ export class FaProductList extends Component {
             </View>
 
             <View style={{width: 80, paddingRight: 0, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>R$ 15,00</Text>
+              <Text style={{fontWeight: 'bold'}}>{this.props.product.valorFormatado}</Text>
               <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-end'}}>
                 {this.props.product.imagens.map((img, index) => this._renderImagem(img, index))}
               </View>

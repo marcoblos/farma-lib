@@ -208,11 +208,8 @@ export class PedidoCotacoesPage extends Component {
   }
 
   _aceitarCotacao() {
-
     let aceitos = []
-
     let produtos = []
-
     this.state.cotacaoAtual.produtos.forEach((p) => {
       produtos.push({
         Nome: p.nome,
@@ -251,13 +248,12 @@ export class PedidoCotacoesPage extends Component {
         Telefone:13123123123,
         Contato: this.refs['contato'].getValue(),
         Celular: this.refs['celular'].getValue(),
-        Aceitos: aceitos
+        Aceitos: aceitos,
       },
 
     }
 
     debugger
-    return false
 
     this._accountService.aceitarCotacao(data)
     .then((response) => {
