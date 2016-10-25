@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Dimensions } from 'react-native'
 import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle, FaMessage } from 'fa-components'
 
-import { PedidoService, LoaderService } from 'fa-services'
+import { PedidoService, LoaderService, ToasterService } from 'fa-services'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Picker from 'react-native-picker'
@@ -58,6 +58,18 @@ export class PedidoPagamentoPage extends Component {
   }
 
   _continuar() {
+
+    if(this.state.sDinheiro === false && this.state.sCartao === false) {
+      ToasterService.error('Selecione uma forma de pagamento.')
+      return false
+    }
+
+    if(this.state.sCartao && this.state.cartao === '') {
+      ToasterService.error('Selecione um cartão.')
+      return false
+    }
+
+
     let pedido = this.state.pedido
 
     if(this.state.sDinheiro) {
@@ -115,6 +127,8 @@ export class PedidoPagamentoPage extends Component {
 
     this._pedidoService.realizarPedido(data)
     .then((response) => {
+
+      debugger;
 
       LoaderService.hide()
 

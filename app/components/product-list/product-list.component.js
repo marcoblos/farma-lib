@@ -54,6 +54,14 @@ export class FaProductList extends Component {
       }
     }
 
+    _renderValorFormatado() {
+      if(this.props.valor > 0) {
+        return (
+          <Text style={{fontWeight: 'bold'}}>{this.props.product.valorFormatado}</Text>
+        )
+      }
+    }
+
     render() {
         return (
           <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
@@ -64,7 +72,7 @@ export class FaProductList extends Component {
             </View>
 
             <View style={{width: 80, paddingRight: 0, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>{this.props.product.valorFormatado}</Text>
+              {this._renderValorFormatado()}
               <View style={{flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-end'}}>
                 {this.props.product.imagens.map((img, index) => this._renderImagem(img, index))}
               </View>

@@ -44,7 +44,7 @@ export class FaCamera extends Component {
           }}
           style={styles.preview}
           captureTarget={Camera.constants.CaptureTarget.temp}
-          captureQuality={Camera.constants.CaptureQuality.high}
+          captureQuality={Camera.constants.CaptureQuality.medium}
           captureAudio={false}
           aspect={Camera.constants.Aspect.fill}>
 

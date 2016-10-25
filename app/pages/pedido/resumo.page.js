@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Alert, Image } from 'react-native'
 import { ViewContainer, FaHeader, FaButton, FaImageZoom } from 'fa-components'
 
-import { AccountService, LoaderService } from 'fa-services'
+import { AccountService, LoaderService, ToasterService } from 'fa-services'
 
 import { PedidoModel } from 'fa-models'
 
@@ -50,6 +50,11 @@ export class PedidoResumo extends Component {
   _continuar() {
 
     let pedido = this.state.pedido
+
+    if(pedido.produtos && pedido.produtos.length === 0) {
+      ToasterService.error('Adicione produtos para continuar com o pedido.')
+      return false;
+    }
 
     LoaderService.show()
 
