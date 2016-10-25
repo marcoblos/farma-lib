@@ -9,6 +9,7 @@ export class UserModel extends BaseModel {
         this.password = ''
         this.celular = ''
         this.cpf = ''
+        this.token = ''
 
         super.bind(props)
     }

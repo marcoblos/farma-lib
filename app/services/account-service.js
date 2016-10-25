@@ -68,6 +68,10 @@ export class AccountService {
     return this._userService.getInformacoesUsuario()
   }
 
+  createVisitante() {
+    return this._userService.createVisitante()
+  }
+
   vincularDevice(data) {
     console.log("DENTRO DO VINCULAR DEVICE")
     return this._httpService.post('/VincularDevice', data)
@@ -87,14 +91,9 @@ class UserService {
 
   createUser(user) {
 
-    let settings = new HttpRequestSettingsModel({
-      useRawUrl: true,
-      contentType: 'application/json'
-    })
-
-    return this._httpService.post('https://farmaexpress-create-user.now.sh', user, settings)
+    return this._httpService.post('/SalvarCliente', user)
       .then((response) => {
-        return this._convertToUserModel(response)
+        return response
       })
   }
 
@@ -103,7 +102,8 @@ class UserService {
     return new UserModel({
       nome: response.Nome,
       email: response.Email,
-      celular: response.Celular
+      celular: response.Celular,
+      token: response.Token
     })
   }
 
@@ -238,6 +238,14 @@ class UserService {
     return this._httpService.post('/webapp/RemoveEndereco', data)
       .then((response) => {
         return response
+      })
+  }
+
+  createVisitante() {
+
+    return this._httpService.post('/SalvarVisitante')
+      .then((response) => {
+        return this._convertToUserModel(response)
       })
   }
 

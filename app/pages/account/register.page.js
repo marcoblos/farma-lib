@@ -5,13 +5,15 @@ import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-comp
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 import {UserModel} from 'fa-models'
-import {AccountService} from 'fa-services'
+import {AccountService, LoaderService, StorageService, ToasterService, AuthService} from 'fa-services'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 const {height, width} = Dimensions.get('window')
 const s = require('../../styles/core.js')
+
+import * as axios from 'axios'
 
 
 import CryptoJS from 'crypto-js'
@@ -29,6 +31,7 @@ export class RegisterPage extends Component {
       phone: ''
     }
 
+    this._authService = new AuthService()
     this._accountService = new AccountService()
   }
 
@@ -54,36 +57,56 @@ export class RegisterPage extends Component {
     this.valid = true
     campos.forEach((campo) => this._isFormValid(campo))
 
-    let user = new UserModel({
-      usuario: 'acp@gmail.com',
-      senha: CryptoJS.MD5('farma')
-    })
-
-
-    this._accountService.teste(user)
-      .then((response) => {
-        alert('OK')
-        debugger
-      }).catch((error) => {
-        debugger
-      })
-
-    return false
-
     if(this.valid) {
 
-      let user = new UserModel({
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        phone: this.state.phone
-      })
+      let user = {
+        Nome: this.refs['name'].getValue(),
+        Email: this.refs['email'].getValue(),
+        Senha: CryptoJS.MD5(this.refs['password'].getValue()).toString(),
+        Celular: this.refs['phone'].getValue(),
+        CEP: ''
+      }
+
+      LoaderService.show()
 
       this._accountService.createUser(user)
         .then((response) => {
-          alert('OK')
-        }).catch((error) => {
-          alert(error.response.data.message)
+
+          if(response.status) {
+
+            let data = {
+              Email: this.refs['email'].getValue(),
+              Senha: CryptoJS.MD5(this.refs['password'].getValue()).toString()
+            }
+
+            this._authService.doLogin(data)
+            .then((response) => {
+
+              if(response.result === false) {
+                LoaderService.hide()
+
+                setTimeout( function() {
+                  LoaderService.hide()
+                  ToasterService.error(response.msg)
+                }, 500)
+
+              }
+
+              let Usertoken = response.Usertoken.toString()
+              axios.defaults.headers.common['Usertoken'] = Usertoken
+              StorageService.setString('Usertoken', Usertoken)
+              .then((response) => {
+                LoaderService.hide()
+                this.props.navigator.resetTo({name: "DashboardPage"})
+              })
+            }).catch((error) => {
+              console.error(error);
+            })
+
+          } else {
+            LoaderService.hide()
+            ToasterService.error(response.resultado)
+          }
         })
     }
   }
@@ -100,11 +123,11 @@ render() {
           <FaPageTitle title='Nova conta' subTitle='Informe seus dados para criar uma nova conta' />
 
             <FaInput label='E-mail' ref='email' value={this.state.email} onChange={(text) => this.setState({email: text})} required={true} showErrors={this.state.showErrors} type='email-address' />
-            <FaInput label='Senha' ref='password' value={this.state.password} onChange={(text) => this.setState({password: text})} required={true} showErrors={this.state.showErrors} />
+            <FaInput label='Senha' ref='password' password={true} value={this.state.password} onChange={(text) => this.setState({password: text})} required={true} showErrors={this.state.showErrors} />
             <FaInput label='Nome' ref='name' value={this.state.name} onChange={(text) => this.setState({name: text})} required={true} showErrors={this.state.showErrors} />
-            <FaInput label='Celular' ref='phone' value={this.state.phone} onChange={(text) => this.setState({phone: text})} required={true} showErrors={this.state.showErrors} type='numeric' />
+            <FaInput label='Celular' ref='phone' mask={{type: 'cel-phone'}} value={this.state.phone} onChange={(text) => this.setState({phone: text})} required={true} showErrors={this.state.showErrors} type='numeric' />
 
-            <FaButton label='FINALIZAR' style={{marginTop: 20}} size='md' type='primary' onPress={() => this._register()} />
+            <FaButton label='CADASTRAR' style={{marginTop: 20}} size='md' type='primary' onPress={() => this._register()} />
         </View>
 
         <KeyboardSpacer/>

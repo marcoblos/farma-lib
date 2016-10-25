@@ -12,6 +12,8 @@ export class HttpService {
       return axios.get(resolvedUrl)
           .then((response) => {
               return response.data
+          }).catch(error => {
+            console.log(error);
           })
     }
 
@@ -21,6 +23,8 @@ export class HttpService {
       return axios.post(resolvedUrl, data, settings)
         .then((response) => {
           return response.data
+        }).catch(error => {
+          console.log(error);
         })
     }
 

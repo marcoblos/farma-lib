@@ -107,14 +107,8 @@ export class AccountPage extends Component {
 
       <View style={{backgroundColor: 'white', padding: 30}}>
 
-        <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 1}}>
-          <FaInfo label='E-mail' last={true} value={this.state.user.email} />
-        </View>
-        <View style={{flex: 1}}>
-          <FaInfo label='Celular' last={true} value={this.state.user.celular} />
-        </View>
-        </View>
+        <FaInfo label='E-mail' value={this.state.user.email} />
+        <FaInfo label='Celular' last={true} value={this.state.user.celular} />
 
       </View>
 

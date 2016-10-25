@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Text, TouchableOpacity, ScrollView, View, StatusBar, Image, Dimensions, Animated } from 'react-native'
 import { ViewContainer, FaHeader, FaInput, FaButton } from 'fa-components'
 
+import { LoaderService, AccountService, StorageService } from 'fa-services'
+
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
@@ -15,6 +17,8 @@ export class AuthPage extends Component {
       showErrors: false,
       opacity: new Animated.Value(0)
     }
+
+    this._accountService = new AccountService()
   }
 
 
@@ -23,6 +27,8 @@ export class AuthPage extends Component {
        this.state.opacity,
        {toValue: 1, duration: 650}
      ).start()
+
+     StorageService.remove('user')
   }
 
   _navigateToPersonShow() {
@@ -45,6 +51,21 @@ export class AuthPage extends Component {
     this.props.navigator.push({
       name: "login-page"
     })
+  }
+
+  _visitante() {
+
+    LoaderService.show()
+
+    this._accountService.createVisitante()
+      .then(response => {
+
+        StorageService.setString('Usertoken', response.token)
+        .then((response) => {
+          LoaderService.hide()
+          this.props.navigator.resetTo({name: "DashboardPage"})
+        })
+      })
   }
 
   _validar() {
@@ -80,7 +101,7 @@ render() {
           <FaButton label='CRIAR NOVA CONTA' style={{marginBottom: 20}} type='secondary' onPress={() => this._novaConta()} />
 
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <TouchableOpacity style={{paddingBottom: 10, paddingTop: 10}} onPress={ () => this._validar() }>
+              <TouchableOpacity style={{paddingBottom: 10, paddingTop: 10}} onPress={ () => this._visitante() }>
                 <Text style={{textDecorationLine: 'underline', color: '#555', fontSize: 15}}>Continuar sem cadastro</Text>
               </TouchableOpacity>
             </View>

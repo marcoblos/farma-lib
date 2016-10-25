@@ -1,5 +1,4 @@
 const API_URL = 'https://www.farmaexpress.com.br/pedido_teste/index.php'
-const API_AUTH_URL = 'https://www.farmaexpress.com.br/pedido_teste/index.php'
 const GCM_SENDER_ID = ''
 
 export class ConfigSettings {
@@ -8,7 +7,7 @@ export class ConfigSettings {
     }
 
     static apiAuthUrl() {
-        return API_AUTH_URL
+        return API_URL
     }
 
     static getGCMSenderId() {
