@@ -5,7 +5,8 @@ import {
     View,
     TouchableOpacity,
     Image,
-    StatusBar
+    StatusBar,
+    Platform
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -98,7 +99,10 @@ const logo = EStyleSheet.create({
 const header = EStyleSheet.create({
   container: {
     height: 70,
-    paddingTop: 20,
+    paddingTop: Platform.select({
+                    ios: 20,
+                    android: 0
+                }),
     flexDirection: 'row',
     backgroundColor: '$colors.headerBackground',
     alignItems: 'center',

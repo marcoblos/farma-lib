@@ -8,8 +8,10 @@ export class PedidoService {
   realizarPedido(data) {
     return this.httpService.post('/FazerPedido', data)
     .then(response => {
+      debugger;
       return response
     }).catch(error => {
+      debugger;
       return error
     })
   }
@@ -22,7 +24,7 @@ export class PedidoService {
   }
 
   getProducts(text) {
-    return this.httpService.get(`/mobile/getRemedio?query=${text}`)
+    return this.httpService.get(`/RetornaRemedios/?query=${text}`)
     .then(response => {
       return response
     })

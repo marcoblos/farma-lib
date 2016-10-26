@@ -290,8 +290,8 @@ const dashboard = EStyleSheet.create({
     borderWidth: 1,
     borderLeftWidth: 0,
     borderColor: '#ccc',
-    paddingTop: 30,
-    paddingBottom: 30,
+    paddingTop: 20,
+    paddingBottom: 20,
     marginRight: -1
   },
   textLarge: {

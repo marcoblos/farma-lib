@@ -1,5 +1,5 @@
-const API_URL = 'https://www.farmaexpress.com.br/pedido_teste/index.php'
-// const API_URL = 'https://ec2-52-67-173-69.sa-east-1.compute.amazonaws.com/pedido_app/index.php'
+// const API_URL = 'https://www.farmaexpress.com.br/pedido_teste/index.php'
+const API_URL = 'https://criacaodesites.info/pedido_app/index.php'
 const GCM_SENDER_ID = ''
 
 export class ConfigSettings {
