@@ -1,63 +1,91 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Dimensions } from 'react-native'
-import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle, FaMessage } from 'fa-components'
-
+import { Text, TouchableOpacity, View, Switch, ListView, TextInput, ScrollView, Modal, Dimensions } from 'react-native'
+import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle, FaMessage, FaProduct } from 'fa-components'
+import { AccountService, LoaderService } from 'fa-services'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Picker from 'react-native-picker'
 
 const {height, width} = Dimensions.get('window')
-const pedidoData = require('./_pedidoData.json')
-const s = require('../../styles/core.js')
 
-export class FinalPage extends Component {
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.IDPedido !== r2.IDPedido});
+
+export class HistoricoPedidoPage extends Component {
   constructor(props) {
     super(props)
-
+    this.accountService = new AccountService()
+    
     this.state = {
-      pedidos: {},
+      dataSource: ds.cloneWithRows([])
     }
   }
 
   componentDidMount() {
+    debugger
     if(this.props.pedidos) {
       this.setState({pedidos: this.props.pedidos})
+      this.setState({dataSource: ds.cloneWithRows(this.props.pedidos)})
     }
-
-    if(this.props.produtoIndex) {
-
-      let p = this.props.pedido.produtos[produtoIndex]
-
-      this.setState({
-        selectedQuantidade: p.quantidade,
-        selectedUnidade: p.unidade,
-        descricao: p.obs,
-        aceitaGenericos: p.generico,
-        aceitaSimilares: p.similares,
-        pedido: this.state.pedido.produtos.slice(produtoIndex-1, 1)
-      })
-    }
-
   }
 
-render() {
-  return (
-    <ViewContainer>
-      <FaHeader title='Detalhe do produto' onGoBack={() => this.props.navigator.pop()} />
+  _detalharPedido(idPedido, status) {
+    let page = 'pedido-finalizado',
+      data = {
+        IDPedido: idPedido
+      }
+    requestAnimationFrame(() => LoaderService.show())
+    this.accountService.getPedido(data)
+      .then((response) => {
+        LoaderService.hide()
+        this.props.navigator.push({
+          name: page,
+          passProps: {
+            pedido: response
+          }
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+        alert('Não foi possível carregar os dados do pedido.')
+        LoaderService.hide()
+      })
+  }
 
-        <View style={[this.state.showProgressBar ? {opacity: 1} : {opacity: 0}]}>
-          <Progress.Bar progress={this.state.progress} height={4} color='#f90' borderRadius={0} width={width} />
-        </View>
 
-      <ScrollView style={{flex: 1}}>
-        <View style={[s.box, {paddingBottom: 10}]}>
+  _renderRow(p, index) {
+    let title = `Pedido nº ${p.IDPedido}`
+    let product = 'Olá'
+    return (
+      <FaProduct key={index} title={title} product={product} status={p.Status} onPress={() => this._detalharPedido(p.IDPedido, p.Status)} />
+    )
+  }
 
-          <View style={info.item}>
-            <FaInfo label='Nome' last={true} value={this.props.nome} />
+  _renderPage() {
+    if(this.props.pedidos.length > 0) {
+      return (
+        <ListView
+        dataSource = {this.state.dataSource}
+        renderRow = {(p, index) => this._renderRow(p, index)}
+        />
+      )
+      } else {
+        return (
+          <View style={{flex: 1}}>
+          <FaMessage icon='inbox' title='Sem pedidos :(' text='Você não tem pedidos. Faça um pedido e receba as melhores ofertas! :)' />
+          <FaButton label='NOVO PEDIDO' type='primary' size='lg' style={{borderRadius: 0}} />
           </View>
+        )
+      }
+    }
 
-        </View>
-      </ScrollView>
+  render() {
+      return (
+        <ViewContainer>
 
-    </ViewContainer>
-  )}
+            <FaHeader title='Histórico de pedidos' onGoBack={() => this.props.navigator.pop()} />
+
+              {this._renderPage()}
+
+        </ViewContainer>
+      )
+  }
 }

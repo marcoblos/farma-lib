@@ -150,17 +150,64 @@ export class DashboardPage extends Component {
     })
   }
 
-   _historico() {
-    this.pedidoService.historicoPedido().then(r => {
-      console.log('retorno historico R: ', r)
-    })
+  getHistoricoPedidos() {
+    return [
+      {
+        "IDPedido": 1,
+        "NumNotificacoes": 0,
+        "Prd": "compra",
+        "QtdCot": 1,
+        "QtdProd": 1,
+        "Status": 5
+      },
+      {
+        "IDPedido": 2,
+        "NumNotificacoes": 0,
+        "Prd": "compra",
+        "QtdCot": 1,
+        "QtdProd": 1,
+        "Status": 5
+      },
+      {
+        "IDPedido": 3,
+        "NumNotificacoes": 0,
+        "Prd": "compra",
+        "QtdCot": 1,
+        "QtdProd": 1,
+        "Status": 5
+      },
+      {
+        "IDPedido": 4,
+        "NumNotificacoes": 0,
+        "Prd": "compra",
+        "QtdCot": 1,
+        "QtdProd": 1,
+        "Status": 5
+      },
+      {
+        "IDPedido": 5,
+        "NumNotificacoes": 0,
+        "Prd": "compra",
+        "QtdCot": 1,
+        "QtdProd": 1,
+        "Status": 5
+      },
+    ]
+  }
 
-    //this.props.navigator.push({
-     // name: "historico-pedido",
-      //passProps: {
-       // pedido: pedido
-     // }
-   // })
+  _historico() {
+    this.pedidoService.historicoPedido().then(response => {
+      console.log('Histórico de pedido: ', this.getHistoricoPedidos())
+      this.props.navigator.push({
+        name: "historico-pedido",
+        passProps: {
+          pedidos: this.getHistoricoPedidos()
+        }
+      })
+    })
+    .catch((E) => {
+      console.log("CAAAAAAAAAAAAAAAAAAAAAAAAAAATCH", E)
+    })
   }
 
   _notificacoes() {
