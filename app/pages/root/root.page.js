@@ -1,21 +1,35 @@
-import React, { Component } from 'react'
-import { Text, View, TouchableHighlight, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import React, {
+  Component,
+} from 'react'
 
-import { ViewContainer, FaHeader, StatusBarBackground } from 'fa-components'
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native'
+
+import {
+  ViewContainer,
+  FaHeader,
+  StatusBarBackground,
+} from 'fa-components'
+
+const mainStyle = StyleSheet.create({
+  teste: {
+    backgroundColor: '#999999',
+  },
+
+})
 
 export class RootPage extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  _navigateToPersonShow() {
+  navigateToPersonShow() {
     this.props.navigator.push({
       name: 'PedidoBuscar',
       data: 'dataTeste',
     })
   }
 
-  _backToHome() {
+  backToHome() {
     this.props.navigator.pop()
   }
 
@@ -25,10 +39,10 @@ export class RootPage extends Component {
 
         <StatusBarBackground />
 
-        <FaHeader title="aaaaa" onGoBack={() => this._backToHome()} />
+        <FaHeader title="aaaaa" onGoBack={() => this.backToHome()} />
 
         <Text>MAIN</Text>
-        <TouchableOpacity onPress={() => this._navigateToPersonShow()}>
+        <TouchableOpacity onPress={() => this.navigateToPersonShow()}>
           <Text>Ir para POC</Text>
         </TouchableOpacity>
 
@@ -39,11 +53,3 @@ export class RootPage extends Component {
         )
   }
 }
-
-const mainStyle = StyleSheet.create({
-
-  teste: {
-    backgroundColor: '#999999',
-  },
-
-})
