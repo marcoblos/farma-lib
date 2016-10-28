@@ -1,9 +1,9 @@
-import {HttpService} from './http-service'
+import { HttpService } from './http-service'
 import * as axios from 'axios'
 
 import { StorageService } from 'fa-services'
 
-import {UserModel, LoginModel, HttpRequestSettingsModel, ErrorModel, ProdutoModel, PedidoModel, EnderecoModel, CotacaoModel} from 'fa-models'
+import { UserModel, LoginModel, HttpRequestSettingsModel, ErrorModel, ProdutoModel, PedidoModel, EnderecoModel, CotacaoModel } from 'fa-models'
 
 export class AccountService {
   constructor() {
@@ -48,7 +48,6 @@ export class AccountService {
   }
 
   teste(data) {
-
     return this._userService.teste(data)
   }
 
@@ -73,10 +72,10 @@ export class AccountService {
   }
 
   vincularDevice(data) {
-    console.log("DENTRO DO VINCULAR DEVICE")
+    console.log('DENTRO DO VINCULAR DEVICE')
     return this._httpService.post('/VincularDevice', data)
       .then((response) => {
-        console.log("account-service vincular device", response)
+        console.log('account-service vincular device', response)
         return response
       }, (error) => {
         console.log('Erro URL vincular device', error)
@@ -90,7 +89,6 @@ class UserService {
   }
 
   createUser(user) {
-
     return this._httpService.post('/SalvarCliente', user)
       .then((response) => {
         return response
@@ -98,17 +96,15 @@ class UserService {
   }
 
   _convertToUserModel(response) {
-
     return new UserModel({
       nome: response.Nome,
       email: response.Email,
       celular: response.Celular,
-      token: response.Token
+      token: response.Token,
     })
   }
 
   getPedidosLista() {
-
     return this._httpService.post('/RetornaPedidos')
       .then((response) => {
         return response
@@ -117,7 +113,6 @@ class UserService {
 
   // IDPedido
   cancelarPedido(data) {
-
     return this._httpService.post('/CancelarPedido', data)
       .then((response) => {
         return response
@@ -126,10 +121,8 @@ class UserService {
 
   // IDPedido
   cancelarCompra(data) {
-
     return this._httpService.post('/CancelarCompra', data)
       .then((response) => {
-
         return response
       }).catch((error) => {
         debugger
@@ -137,7 +130,6 @@ class UserService {
   }
 
   teste(data) {
-
     return this._httpService.get('/webapp/teste')
       .then((response) => {
         return response
@@ -147,7 +139,6 @@ class UserService {
   }
 
   retornarNotificacoes() {
-
     return this._httpService.get('/RetornaPainelNotificacoes')
       .then((response) => {
         return response
@@ -155,10 +146,8 @@ class UserService {
   }
 
   getNotificacoesLista() {
-
     return this._httpService.post('/RetornaPedidosNotificados')
       .then((response) => {
-
         return response
       }).catch((error) => {
         debugger
@@ -166,10 +155,8 @@ class UserService {
   }
 
   getHistoricoLista() {
-
     return this._httpService.post('/RetornaPedidosFinalizados')
       .then((response) => {
-
         return response
       }).catch((error) => {
         debugger
@@ -177,7 +164,6 @@ class UserService {
   }
 
   getInformacoesUsuario() {
-
     return this._httpService.post('/RetornaDadosCliente')
       .then((response) => {
         return this._convertToUserModel(response)
@@ -188,7 +174,6 @@ class UserService {
   }
 
   finalizarPedido(data) {
-
     return this._httpService.post('/mobile/finalizarPedido', data)
       .then((response) => {
         return response
@@ -196,7 +181,6 @@ class UserService {
   }
 
   getEnderecos() {
-
     return this._httpService.post('/RetornaEnderecos')
       .then((response) => {
         return this._convertToEnderecoModel(response)
@@ -204,10 +188,9 @@ class UserService {
   }
 
   _convertToEnderecoModel(response) {
+    const enderecos = []
 
-    let enderecos = []
-
-    if(response && response.length) {
+    if (response && response.length) {
       response.forEach((e) => {
         enderecos.push(new EnderecoModel({
           id: e.IDEndereco,
@@ -217,7 +200,7 @@ class UserService {
           rua: e.Rua,
           numero: e.Numero,
           complemento: e.Complemento,
-          uf: e.UF
+          uf: e.UF,
         }))
       })
     }
@@ -226,7 +209,6 @@ class UserService {
   }
 
   aceitarCotacao(data) {
-
     return this._httpService.post('/ComprarCotacao', data)
       .then((response) => {
         return response
@@ -234,7 +216,6 @@ class UserService {
   }
 
   removerEndereco(data) {
-
     return this._httpService.post('/webapp/RemoveEndereco', data)
       .then((response) => {
         return response
@@ -242,7 +223,6 @@ class UserService {
   }
 
   createVisitante() {
-
     return this._httpService.post('/SalvarVisitante')
       .then((response) => {
         return this._convertToUserModel(response)
@@ -250,7 +230,6 @@ class UserService {
   }
 
   getPedido(data) {
-
     return this._httpService.post('/RetornaCotacoesPedido', data)
       .then((response) => {
         return this._convertToPedidoModel(response)
@@ -258,11 +237,10 @@ class UserService {
   }
 
   _convertToPedidoModel(response) {
+    const produtos = []
+    const cotacoes = []
 
-    let produtos = []
-    let cotacoes = []
-
-    if(response.Pedido.Produtos && response.Pedido.Produtos.length) {
+    if (response.Pedido.Produtos && response.Pedido.Produtos.length) {
       response.Pedido.Produtos.forEach((p) => {
         produtos.push(new ProdutoModel({
           generico: p.AceitaGenerico,
@@ -275,16 +253,14 @@ class UserService {
           valorFormatado: p.PrecoFormatado,
           quantidade: p.Qtd,
           unidade: p.Un,
-          imagens: p.Imagens
+          imagens: p.Imagens,
         }))
       })
     }
 
-    if(response.Cotacoes && response.Cotacoes.length) {
-
+    if (response.Cotacoes && response.Cotacoes.length) {
       response.Cotacoes.forEach((c) => {
-
-        let produtosCotacao = []
+        const produtosCotacao = []
 
         cotacoes.push(new CotacaoModel({
           formaPagamento: c.FormaPagamento,
@@ -296,10 +272,10 @@ class UserService {
           tempoDeEntrega: c.TempoEntrega,
           total: c.Total,
           totalFormatado: c.TotalFormatado,
-          produtos: produtosCotacao
+          produtos: produtosCotacao,
         }))
 
-        if(c.Produtos && c.Produtos.length) {
+        if (c.Produtos && c.Produtos.length) {
           c.Produtos.forEach((p) => {
             produtosCotacao.push(new ProdutoModel({
               generico: p.AceitaGenerico,
@@ -311,7 +287,7 @@ class UserService {
               valor: p.Preco,
               valorFormatado: p.PrecoFormatado,
               quantidade: p.Qtd,
-              unidade: p.Un
+              unidade: p.Un,
             }))
           })
         }
@@ -335,10 +311,10 @@ class UserService {
         rua: response.Pedido.Rua,
         numero: response.Pedido.Numero,
         complemento: response.Pedido.Complemento,
-        uf: response.Pedido.UF
+        uf: response.Pedido.UF,
       }),
-      produtos: produtos,
-      cotacoes: cotacoes
+      produtos,
+      cotacoes,
     })
   }
 

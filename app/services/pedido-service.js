@@ -6,27 +6,25 @@ export class PedidoService {
   }
 
   realizarPedido(data) {
-    console.log(data);
     return this.httpService.post('/FinalizarPedido', data)
     .then(response => {
-      debugger;
       return response
-    }).catch(error => {
-      debugger;
+    }).catch((error) => {
+      debugger
       return error
     })
   }
 
   historicoPedido() {
-    return this.httpService.get(`/RetornaPedidosFinalizados`)
-    .then(response => {
+    return this.httpService.get('/RetornaPedidosFinalizados')
+    .then((response) => {
       return response
     })
   }
 
   getProducts(text) {
     return this.httpService.get(`/RetornaRemedios/?query=${text}`)
-    .then(response => {
+    .then((response) => {
       return response
     })
   }

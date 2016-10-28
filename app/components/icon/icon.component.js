@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 export class FaIcon extends Component {
   constructor(props) {
     super(props)
-
   }
 
   render() {

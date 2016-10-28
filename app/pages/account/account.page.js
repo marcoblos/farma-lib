@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaInfo} from 'fa-components'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaInfo } from 'fa-components'
 
 import { UserModel } from 'fa-models'
 
@@ -14,52 +14,49 @@ export class AccountPage extends Component {
     super(props)
 
     this.state = {
-    showErrors: false,
-    visible: false,
-    user: new UserModel()
+      showErrors: false,
+      visible: false,
+      user: new UserModel(),
     }
 
     this._accountService = new AccountService()
   }
 
   componentDidMount() {
-  StorageService.getObject('user')
-    .then(user => {
-    if(user === null) {
-      this._accountService.getInformacoesUsuario()
-      .then(response => {
-        this.setState({user: response})
+    StorageService.getObject('user')
+    .then((user) => {
+      if (user === null) {
+        this._accountService.getInformacoesUsuario()
+      .then((response) => {
+        this.setState({ user: response })
         StorageService.setObject('user', response)
-      }).catch(error => {
+      }).catch((error) => {
         alert('Erro ao carregar dados do usuário')
       })
-    } else {
-      this.setState({user})
-    }
-
+      } else {
+        this.setState({ user })
+      }
     })
   }
 
   _meusDadosPage() {
-  this.props.navigator.push({
-    name: 'meus-dados'
-  })
+    this.props.navigator.push({
+      name: 'meus-dados',
+    })
   }
 
   _meusEnderecosPage() {
+    LoaderService.show()
 
-  LoaderService.show()
-
-  this._accountService.getEnderecos()
+    this._accountService.getEnderecos()
   .then((response) => {
-
     LoaderService.hide()
 
     this.props.navigator.push({
       name: 'meus-enderecos',
       passProps: {
-      enderecos: response
-      }
+        enderecos: response,
+      },
     })
   }).catch((error) => {
     console.error(error)
@@ -67,16 +64,15 @@ export class AccountPage extends Component {
   }
 
   _meusPedidosPage() {
-  this.props.navigator.push({
-    name: 'meus-pedidos'
-  })
+    this.props.navigator.push({
+      name: 'meus-pedidos',
+    })
   }
 
   _logout() {
-
-  StorageService.remove('Usertoken')
+    StorageService.remove('Usertoken')
   .then((response) => {
-    this.props.navigator.resetTo({name: 'auth-page'})
+    this.props.navigator.resetTo({ name: 'auth-page' })
   })
   }
 
@@ -87,69 +83,69 @@ export class AccountPage extends Component {
   }
 
   render() {
-  return (
-    <ViewContainer>
+    return (
+      <ViewContainer>
 
-      <FaHeader showLogo={true} onGoBack={() => this.props.navigator.pop()} />
+        <FaHeader showLogo onGoBack={() => this.props.navigator.pop()} />
 
-      <ScrollView style={{flex: 1}}>
+        <ScrollView style={{ flex: 1 }}>
 
-      <View style={perfil.container}>
+          <View style={perfil.container}>
 
-        {this._renderPhoto()}
+            {this._renderPhoto()}
 
-        <Icon name='person-pin' size={90} style={{color: '#999', marginBottom: 20, marginTop: 10}} />
+            <Icon name="person-pin" size={90} style={{ color: '#999', marginBottom: 20, marginTop: 10 }} />
 
-        <View style={perfil.name}>
-        <Text style={perfil.nameText}>Olá, {this.state.user.nome}</Text>
+            <View style={perfil.name}>
+              <Text style={perfil.nameText}>Olá, {this.state.user.nome}</Text>
+            </View>
+          </View>
+
+          <View style={{ backgroundColor: 'white', padding: 30 }}>
+
+            <FaInfo label="E-mail" value={this.state.user.email} />
+            <FaInfo label="Celular" last value={this.state.user.celular} />
+
+          </View>
+
+          <FaFullButton label="MEUS ENDEREÇOS" onPress={() => this._meusEnderecosPage()} />
+
+        </ScrollView>
+
+        <View style={styles.container}>
+          <FaButton label="Sair" type="primary" size="md" style={{ marginTop: 20 }} onPress={() => this._logout()} />
         </View>
-      </View>
 
-      <View style={{backgroundColor: 'white', padding: 30}}>
-
-        <FaInfo label='E-mail' value={this.state.user.email} />
-        <FaInfo label='Celular' last={true} value={this.state.user.celular} />
-
-      </View>
-
-      <FaFullButton label='MEUS ENDEREÇOS' onPress={() => this._meusEnderecosPage()} />
-
-      </ScrollView>
-
-      <View style={styles.container}>
-      <FaButton label='Sair' type='primary' size='md' style={{marginTop: 20}} onPress={() => this._logout() } />
-      </View>
-
-    </ViewContainer>
+      </ViewContainer>
   )
   }
 }
 
 const styles = EStyleSheet.create({
   container: {
-  padding: '$sm'
-  }
+    padding: '$sm',
+  },
 })
 
 const perfil = EStyleSheet.create({
   container: {
-  backgroundColor: 'white',
-  padding: 20,
-  alignItems: 'center',
-  borderBottomWidth: 1,
-  borderColor: '$colors.gray2'
+    backgroundColor: 'white',
+    padding: 20,
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: '$colors.gray2',
   },
   photoImage: {
-  resizeMode: 'contain',
-  width: 120,
-  height: 120,
-  borderRadius: 60,
-  borderWidth: 1,
-  borderColor: '$colors.gray2'
+    resizeMode: 'contain',
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 1,
+    borderColor: '$colors.gray2',
   },
   nameText: {
-  fontSize: 16,
-  fontWeight: 'bold',
-  color: '$colors.black2'
-  }
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '$colors.black2',
+  },
 })

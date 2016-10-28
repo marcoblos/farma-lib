@@ -7,161 +7,154 @@ import { PedidoService } from 'fa-services'
 
 import { ViewContainer, FaHeader } from 'fa-components'
 
-var DismissKeyboard = require('dismissKeyboard')
+const DismissKeyboard = require('dismissKeyboard')
 
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import { PedidoModel } from 'fa-models'
 
 const ds = new ListView.DataSource({
-    rowHasChanged: (r1, r2) => r1.id !== r2.id
+  rowHasChanged: (r1, r2) => r1.id !== r2.id,
 })
 
 export class PedidoBuscar extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = {
-          productsDataSource: ds.cloneWithRows([]),
-          text: '',
-          currentProduct: {},
-          isLoading: false,
-          pedido: new PedidoModel()
-        }
+    this.state = {
+      productsDataSource: ds.cloneWithRows([]),
+      text: '',
+      currentProduct: {},
+      isLoading: false,
+      pedido: new PedidoModel(),
+    }
+  }
+
+  componentDidMount() {
+    const self = this
+
+    if (this.props.pedido) {
+      this.setState({ pedido: this.props.pedido })
     }
 
-    componentDidMount() {
-      let self = this
+    setTimeout(() => {
+      self.refs.input.focus()
+    }, 500)
+  }
 
-      if(this.props.pedido) {
-        this.setState({pedido: this.props.pedido})
-      }
+  _buscar(el) {
+    const self = this
 
-      setTimeout( function() {
-        self.refs['input'].focus()
-      }, 500)
-    }
+    clearTimeout(global.__waitTimer)
 
-    _buscar(el) {
+    global.__waitTimer = setTimeout(() => {
+      if (el.text.length > 2) {
+        const pedidoService = new PedidoService()
 
-      let self = this
+        self.setState({
+          text: el.text,
+          isLoading: true,
+        })
 
-      clearTimeout(global.__waitTimer)
-
-      global.__waitTimer = setTimeout(function () {
-
-        if(el.text.length > 2) {
-
-          let pedidoService = new PedidoService()
-
-          self.setState({
-            text: el.text,
-            isLoading: true
-          })
-
-          pedidoService.getProducts(el.text)
+        pedidoService.getProducts(el.text)
             .then((res) => {
-              let d = res
-              d.unshift({IDMedicamento: 0, Nome: el.text})
+              const d = res
+              d.unshift({ IDMedicamento: 0, Nome: el.text })
 
               self.setState({
                 productsDataSource: ds.cloneWithRows(d),
-                isLoading: false
+                isLoading: false,
               })
-
             })
             .catch((error) => {
-                console.error(error)
+              console.error(error)
             })
-        }
-
-      }, 500)
-    }
-
-    selectProduct(nome) {
-
-      let self = this
-
-      DismissKeyboard()
-
-      let product = {
-        nome: nome,
-        aceitaSimilares: false,
-        aceitaGenericos: false,
-        descricao: '',
-        quantidade: '',
-        fotos: ''
       }
+    }, 500)
+  }
 
+  selectProduct(nome) {
+    const self = this
+
+    DismissKeyboard()
+
+    const product = {
+      nome,
+      aceitaSimilares: false,
+      aceitaGenericos: false,
+      descricao: '',
+      quantidade: '',
+      fotos: '',
+    }
+
+    self.props.navigator.push({
+      name: 'DetalhePage',
+      passProps: {
+        pedido: this.state.pedido,
+        nome,
+      },
+    })
+  }
+
+  _back() {
+    const self = this
+
+    DismissKeyboard()
+
+    setTimeout(() => {
       self.props.navigator.push({
-        name: "DetalhePage",
-        passProps: {
-          pedido: this.state.pedido,
-          nome: nome
-        }
+        name: route,
+        currentProduct: product,
       })
-    }
+    }, 500)
+  }
 
-    _back() {
-      let self = this
+  render() {
+    return (
+      <ViewContainer style={{ backgroundColor: 'white' }}>
 
-      DismissKeyboard()
+        <FaHeader title="Selecionar produto" onGoBack={() => this.props.navigator.pop()} />
 
-      setTimeout( function(){
-        self.props.navigator.push({
-          name: route,
-          currentProduct: product
-        })
-      }, 500)
-    }
+        <View style={buscar.container}>
+          <TextInput
+            ref="input"
+            style={buscar.input}
+            autoCorrect={false}
+            autoCapitalize={'none'}
+            placeholder="Digite o nome do produto"
+            onChangeText={text => this._buscar({ text })}
+            underlineColorAndroid={'transparent'}
+          />
+        </View>
 
-    render() {
-        return (
-            <ViewContainer style={{backgroundColor: 'white'}}>
+        <View style={[buscar.loader, this.state.isLoading ? buscar.loaderActive : {}]}>
+          <ActivityIndicator size="large" />
+        </View>
 
-                <FaHeader title='Selecionar produto' onGoBack={() => this.props.navigator.pop()} />
-
-                <View style={buscar.container}>
-                  <TextInput
-                    ref='input'
-                    style={buscar.input}
-                    autoCorrect={false}
-                    autoCapitalize={'none'}
-                    placeholder="Digite o nome do produto"
-                    onChangeText={(text) => this._buscar({text})}
-                    underlineColorAndroid={'transparent'}
-                  />
-                </View>
-
-                <View style={[buscar.loader, this.state.isLoading ? buscar.loaderActive : {}]}>
-                  <ActivityIndicator size="large" />
-                </View>
-
-                <ListView
-                    keyboardShouldPersistTaps={true}
-                    dataSource = {this.state.productsDataSource}
-                    style={[this.state.isLoading ? {top: -900} : {}]}
-                    renderRow = {
-                       (rowData) => (
-                          <TouchableOpacity onPress={() => this.selectProduct(rowData.Nome)} style={poc.row}>
-                             <Text>{rowData.Nome}</Text>
-                          </TouchableOpacity>
+        <ListView
+          keyboardShouldPersistTaps
+          dataSource={this.state.productsDataSource}
+          style={[this.state.isLoading ? { top: -900 } : {}]}
+          renderRow={
+                       rowData => (
+                         <TouchableOpacity onPress={() => this.selectProduct(rowData.Nome)} style={poc.row}>
+                           <Text>{rowData.Nome}</Text>
+                         </TouchableOpacity>
                        )
                     }
-                />
-              <KeyboardSpacer/>
+        />
+        <KeyboardSpacer />
 
-            </ViewContainer>
+      </ViewContainer>
         )
-    }
+  }
 }
-
 
 
 const buscar = EStyleSheet.create({
   container: {
     padding: 7,
-    backgroundColor: '$colors.gray1'
+    backgroundColor: '$colors.gray1',
   },
   input: {
     borderColor: 'white',
@@ -171,18 +164,18 @@ const buscar = EStyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: '$radius',
-    fontSize: 14
+    fontSize: 14,
   },
   loader: {
     position: 'absolute',
     top: -100,
     left: 0,
     right: 0,
-    zIndex: 10
+    zIndex: 10,
   },
   loaderActive: {
-    top: 130
-  }
+    top: 130,
+  },
 })
 
 
@@ -193,6 +186,6 @@ const poc = EStyleSheet.create({
     height: 50,
     paddingLeft: 15,
     paddingRight: 15,
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 })

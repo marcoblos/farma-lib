@@ -8,15 +8,15 @@ export class ProductsService {
 
   getProductDetail(id) {
     return this.httpService.get(`/product-detail/${id}`)
-      .then(response => {
+      .then((response) => {
         return this._convertToProductDetail(response)
       })
   }
 
   getProductList(page = 1) {
     return this.httpService.get(`/product-list/${page}`)
-      .then(response => {
-        return response.map(p => {
+      .then((response) => {
+        return response.map((p) => {
           return this._convertToProductDetail(p)
         })
       })

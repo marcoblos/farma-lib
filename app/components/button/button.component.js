@@ -13,43 +13,45 @@ export class FaButton extends Component {
   }
 
   _renderIcon(icon) {
-
-    if(icon === undefined) {
+    if (icon === undefined) {
       return false
     }
 
-    let _type = this.props.type || '_'
+    const _type = this.props.type || '_'
 
     return (
       <Icon name={icon} size={this.props.iconSize || 20} style={[
-            baseStyle.icon,
-            customStyle[_type].icon
-        ]} />
+        baseStyle.icon,
+        customStyle[_type].icon,
+      ]}
+      />
     )
   }
 
   render() {
-      let _type = this.props.type || '_'
-      let _size = this.props.size || '_'
+    const _type = this.props.type || '_'
+    const _size = this.props.size || '_'
     return (
-      <TouchableOpacity activeOpacity={this.props.activeOpacity || 0.5} onPress={ () => this.props.onPress() }>
+      <TouchableOpacity activeOpacity={this.props.activeOpacity || 0.5} onPress={() => this.props.onPress()}>
         <View style={
           [
             baseStyle.button,
-            this.props.iconPosition === 'left' ? {flexDirection: 'row-reverse'} : {},
-            this.props.radius ? {borderRadius: 5} : {},
+            this.props.iconPosition === 'left' ? { flexDirection: 'row-reverse' } : {},
+            this.props.radius ? { borderRadius: 5 } : {},
             customStyle[_type].button,
             sizeStyle[_size].button,
-            this.props.style || {}
-          ]}>
+            this.props.style || {},
+          ]}
+        >
           <Text style={
             [
               baseStyle.text,
               customStyle[_type].text,
-              sizeStyle[_size].text
-            ]}>{this.props.label}</Text>
+              sizeStyle[_size].text,
+            ]}
+          >{this.props.label}</Text>
 
-            {this._renderIcon(this.props.icon)}
+          {this._renderIcon(this.props.icon)}
 
         </View>
       </TouchableOpacity>
@@ -76,8 +78,8 @@ const _sizeSm = EStyleSheet.create(SIZE_SM)
 const _sizeMd = EStyleSheet.create(SIZE_MD)
 
 const _defaultSize = EStyleSheet.create({
-    button: {},
-    text: {}
+  button: {},
+  text: {},
 })
 
 
@@ -85,42 +87,42 @@ const _defaultSize = EStyleSheet.create({
  * STYLES
  */
 const baseStyle = EStyleSheet.create({
-    button: {
-        height: 48,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        borderWidth: 1,
-        borderRadius: 3
-    },
-    icon: {
-        marginLeft: 5,
-        marginRight: 5
-    },
-    text: {
-        fontWeight: 'bold',
-        fontSize: 16,
-        letterSpacing: -0.5
-    }
+  button: {
+    height: 48,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderRadius: 3,
+  },
+  icon: {
+    marginLeft: 5,
+    marginRight: 5,
+  },
+  text: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    letterSpacing: -0.5,
+  },
 })
 
 const customStyle = {
-    '_': {},
-    'facebook': _facebookStyle,
-    'primary': _primaryStyle,
-    'secondary': _secondaryStyle,
-    'ternary': _ternaryStyle,
-    'black': _blackStyle,
-    'clean': _cleanStyle,
-    'success': _successStyle,
-    'danger': _dangerStyle,
-    'link': _linkStyle,
+  _: {},
+  facebook: _facebookStyle,
+  primary: _primaryStyle,
+  secondary: _secondaryStyle,
+  ternary: _ternaryStyle,
+  black: _blackStyle,
+  clean: _cleanStyle,
+  success: _successStyle,
+  danger: _dangerStyle,
+  link: _linkStyle,
 }
 
 const sizeStyle = {
-    '_': _defaultSize,
-    'lg': _sizeLg,
-    'sm': _sizeSm,
-    'md': _sizeMd
+  _: _defaultSize,
+  lg: _sizeLg,
+  sm: _sizeSm,
+  md: _sizeMd,
 }

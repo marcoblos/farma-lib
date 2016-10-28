@@ -5,7 +5,7 @@ import {
     View,
     TouchableOpacity,
     Image,
-    StatusBar
+    StatusBar,
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -18,38 +18,37 @@ export class FaModalHeader extends Component {
   }
 
   _renderBackButton() {
-        if (this.props.hideBackButton) {
-            return null
-        }
-
-        return (
-            <TouchableOpacity onPress={() => this._onGoBack() } style={header.backButton}>
-                <View>
-                    <Icon name="keyboard-arrow-left" style={header.backButtonIcon} />
-                </View>
-            </TouchableOpacity>
-        )
+    if (this.props.hideBackButton) {
+      return null
     }
 
-  _renderRight() {
-
     return (
-      <TouchableOpacity onPress={() => this._onGoBack() } style={[header.backButton, {justifyContent: 'flex-end'}]}>
-          <View>
-              <Icon name="close" style={[header.backButtonIcon, {fontSize: 26}]} />
-          </View>
+      <TouchableOpacity onPress={() => this._onGoBack()} style={header.backButton}>
+        <View>
+          <Icon name="keyboard-arrow-left" style={header.backButtonIcon} />
+        </View>
+      </TouchableOpacity>
+        )
+  }
+
+  _renderRight() {
+    return (
+      <TouchableOpacity onPress={() => this._onGoBack()} style={[header.backButton, { justifyContent: 'flex-end' }]}>
+        <View>
+          <Icon name="close" style={[header.backButtonIcon, { fontSize: 26 }]} />
+        </View>
       </TouchableOpacity>
     )
   }
 
   _onGoBack() {
-      this.props.onClose()
+    this.props.onClose()
   }
 
   _renderLogo() {
     return (
       <View style={logo.container}>
-        <View style={{width: 160, height: 40}}><Image style={logo.farma} source={require('../../assets/img/farma-express-logo-white.png')} /></View>
+        <View style={{ width: 160, height: 40 }}><Image style={logo.farma} source={require('../../assets/img/farma-express-logo-white.png')} /></View>
       </View>
     )
   }
@@ -61,21 +60,21 @@ export class FaModalHeader extends Component {
   }
 
   render() {
-      return (
-          <View style={[header.container, this.props.style]}>
+    return (
+      <View style={[header.container, this.props.style]}>
 
-              <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" />
 
-              <View style={header.left}>
-                {this._renderBackButton()}
-              </View>
+        <View style={header.left}>
+          {this._renderBackButton()}
+        </View>
 
-              {this.props.showLogo ? this._renderLogo() : this._renderTitle()}
+        {this.props.showLogo ? this._renderLogo() : this._renderTitle()}
 
-              <View style={header.right}>
-                {this._renderRight()}
-              </View>
-          </View>
+        <View style={header.right}>
+          {this._renderRight()}
+        </View>
+      </View>
       )
   }
 
@@ -86,14 +85,14 @@ const logo = EStyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   farma: {
     flex: 1,
     resizeMode: 'contain',
     width: null,
-    height: null
-  }
+    height: null,
+  },
 })
 
 const header = EStyleSheet.create({
@@ -106,30 +105,30 @@ const header = EStyleSheet.create({
     justifyContent: 'center',
   },
   left: {
-    width: 80
+    width: 80,
   },
   backButton: {
     width: 60,
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   backButtonIcon: {
-      fontSize: 32,
-      color: '$colors.white1'
+    fontSize: 32,
+    color: '$colors.white1',
   },
   title: {
     flex: 3,
     color: '$colors.white1',
     fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   right: {
-    width: 80
+    width: 80,
   },
   text: {
-    color: 'white'
-  }
+    color: 'white',
+  },
 })

@@ -5,11 +5,11 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
 } from 'react-native'
 
 
-import {FaInput} from 'fa-components'
+import { FaInput } from 'fa-components'
 
 
 export class PocPage extends Component {
@@ -19,18 +19,17 @@ export class PocPage extends Component {
 
     this.state = {
       cep: '',
-      showErrors: false
+      showErrors: false,
     }
-
   }
 
   atualiza(t) {
-    this.setState({cep: t})
+    this.setState({ cep: t })
   }
 
 
   _salvar() {
-    this.setState({showErrors: true})
+    this.setState({ showErrors: true })
   }
 
   render() {
@@ -38,11 +37,11 @@ export class PocPage extends Component {
       <View style={styles.container}>
 
 
-        <FaInput label='CEP' ref='cep' mask='cpf' value='' required={true} showErrors={this.state.showErrors} type='numeric' />
-        <FaInput label='CEP' ref='cep' value='' required={true} showErrors={this.state.showErrors} type='numeric' />
+        <FaInput label="CEP" ref="cep" mask="cpf" value="" required showErrors={this.state.showErrors} type="numeric" />
+        <FaInput label="CEP" ref="cep" value="" required showErrors={this.state.showErrors} type="numeric" />
 
 
-         <TouchableHighlight onPress={() => this._salvar()}><Text>[SALVAR]</Text></TouchableHighlight>
+        <TouchableHighlight onPress={() => this._salvar()}><Text>[SALVAR]</Text></TouchableHighlight>
 
 
       </View>
@@ -55,6 +54,6 @@ export class PocPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50
-  }
+    padding: 50,
+  },
 })
