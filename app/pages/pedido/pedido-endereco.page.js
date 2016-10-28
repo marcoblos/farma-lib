@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
-const {height, width} = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 const pedidoData = require('./_pedidoData.json')
 const s = require('../../styles/core.js')
 
@@ -32,18 +32,18 @@ export class PedidoEnderecoPage extends Component {
       aceitaGenericos: false,
       aceitaSimilares: false,
       quantidade: '',
-      pedido: new PedidoModel()
+      pedido: new PedidoModel(),
     }
   }
 
   componentDidMount() {
-    if(this.props.pedido) {
-      this.setState({pedido: this.props.pedido})
+    if (this.props.pedido) {
+      this.setState({ pedido: this.props.pedido })
     }
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+    this.setState({ modalVisible: visible })
   }
 
   openModal1(id) {
@@ -51,31 +51,29 @@ export class PedidoEnderecoPage extends Component {
   }
 
   _continuar(e) {
-
-    if(e === false) {
-
-      this.setState({modalVisible: false})
+    if (e === false) {
+      this.setState({ modalVisible: false })
 
       e = new EnderecoModel({
-        cep: this.refs['cep'].getValue(),
-        cidade: this.refs['cidade'].getValue(),
-        bairro: this.refs['bairro'].getValue(),
-        rua: this.refs['rua'].getValue(),
-        numero: this.refs['numero'].getValue(),
-        complemento: this.refs['complemento'].getValue(),
-        uf: this.refs['uf'].getValue()
+        cep: this.refs.cep.getValue(),
+        cidade: this.refs.cidade.getValue(),
+        bairro: this.refs.bairro.getValue(),
+        rua: this.refs.rua.getValue(),
+        numero: this.refs.numero.getValue(),
+        complemento: this.refs.complemento.getValue(),
+        uf: this.refs.uf.getValue(),
       })
     }
 
-    let pedido = this.state.pedido
+    const pedido = this.state.pedido
 
     pedido.endereco = e
 
     this.props.navigator.push({
-      name: "pedido-pagamento",
+      name: 'pedido-pagamento',
       passProps: {
-        pedido: pedido
-      }
+        pedido,
+      },
     })
   }
 
@@ -89,25 +87,25 @@ export class PedidoEnderecoPage extends Component {
 
   _onSelectedQuantidade(selected) {
     this.setState({
-      selectedQuantidade: selected
+      selectedQuantidade: selected,
     })
   }
 
   _onSelectedUnidade(selected) {
     this.setState({
-      selectedUnidade: selected
+      selectedUnidade: selected,
     })
   }
 
   _renderQuantidadeSelecionada() {
     let label = ''
 
-    if(this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
+    if (this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
       label = 'Selecionar'
-    } else if(this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade + 's'
+    } else if (this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
+      label = `${this.state.selectedQuantidade} ${this.state.selectedUnidade}s`
     } else {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade
+      label = `${this.state.selectedQuantidade} ${this.state.selectedUnidade}`
     }
 
     return (
@@ -115,41 +113,41 @@ export class PedidoEnderecoPage extends Component {
     )
   }
 
-render() {
-  return (
-    <ViewContainer style={{backgroundColor: '#e6e6e6'}}>
-      <FaHeader title='Selecionar endereço' onGoBack={() => this._backToHome()} />
+  render() {
+    return (
+      <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
+        <FaHeader title="Selecionar endereço" onGoBack={() => this._backToHome()} />
 
-      <ScrollView style={{flex: 1}}>
+        <ScrollView style={{ flex: 1 }}>
 
-        <View style={[s.padding]}>
+          <View style={[s.padding]}>
 
-          <FaPageTitle title='Endereço de entrega' paddingBottom={false} subTitle='Selecione ou adicione o endereço de entrega.' />
+            <FaPageTitle title="Endereço de entrega" paddingBottom={false} subTitle="Selecione ou adicione o endereço de entrega." />
 
-        </View>
+          </View>
 
-        <View style={s.padding}>
+          <View style={s.padding}>
 
-          {this.props.enderecos.map((e, index) => {
+            {this.props.enderecos.map((e, index) => {
+              const label = [
+                `${e.rua}, ${e.numero}, ${e.complemento}`,
+                `${e.bairro}, ${e.cidade}`,
+                `${e.cep}`,
+              ]
 
-            let label = [
-              `${e.rua}, ${e.numero}, ${e.complemento}`,
-              `${e.bairro}, ${e.cidade}`,
-              `${e.cep}`,
-            ]
-
-            return (
-              <FaFullButton
-                key={index}
-                title={e.bairro.toUpperCase()}
-                label={label}
-                onPress={() => this._continuar(e)}
-                borderBottom={true}
-                padding={20} />
+              return (
+                <FaFullButton
+                  key={index}
+                  title={e.bairro.toUpperCase()}
+                  label={label}
+                  onPress={() => this._continuar(e)}
+                  borderBottom
+                  padding={20}
+                />
             )
-          })}
+            })}
 
-            <TouchableOpacity style={aa.row} onPress={() => this.setModalVisible(true) }>
+            <TouchableOpacity style={aa.row} onPress={() => this.setModalVisible(true)}>
               <View>
                 <Text style={aa.valueLarge}>Adicionar endereço</Text>
               </View>
@@ -158,51 +156,51 @@ render() {
               </View>
             </TouchableOpacity>
 
-        </View>
+          </View>
 
-      </ScrollView>
+        </ScrollView>
 
 
-      <Modal
-        animationType={"slide"}
-        transparent={true}
-        visible={this.state.modalVisible}
+        <Modal
+          animationType={'slide'}
+          transparent
+          visible={this.state.modalVisible}
         >
-        <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
+          <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start' }}>
 
-          <FaModalHeader title='Adicionar endereço' onClose={() => this.setModalVisible(false)} />
+            <FaModalHeader title="Adicionar endereço" onClose={() => this.setModalVisible(false)} />
 
-            <ScrollView keyboardShouldPersistTaps={true}>
+            <ScrollView keyboardShouldPersistTaps>
 
-              <View style={{backgroundColor: 'white', padding: 20, paddingBottom: 40}}>
+              <View style={{ backgroundColor: 'white', padding: 20, paddingBottom: 40 }}>
 
-                <FaPageTitle title='Cadastro de endereço' paddingBottom={30} subTitle='Informe o endereço de entrega.' />
+                <FaPageTitle title="Cadastro de endereço" paddingBottom={30} subTitle="Informe o endereço de entrega." />
 
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{flex: 1, paddingRight: 15}}>
-                    <FaInput label='CEP' ref='cep' mask={{type: 'zip-code'}} value='' required={true} showErrors={this.state.showErrors} />
+                <View style={{ flexDirection: 'row' }}>
+                  <View style={{ flex: 1, paddingRight: 15 }}>
+                    <FaInput label="CEP" ref="cep" mask={{ type: 'zip-code' }} value="" required showErrors={this.state.showErrors} />
                   </View>
-                  <View style={{flex: 1}}></View>
+                  <View style={{ flex: 1 }} />
                 </View>
 
-                <FaInput label='Rua' ref='rua' value='' required={true} showErrors={this.state.showErrors} />
-                <FaInput label='Bairro' ref='bairro' value='' required={true} showErrors={this.state.showErrors} />
+                <FaInput label="Rua" ref="rua" value="" required showErrors={this.state.showErrors} />
+                <FaInput label="Bairro" ref="bairro" value="" required showErrors={this.state.showErrors} />
 
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{flex: 1, paddingRight: 15}}>
-                    <FaInput label='Cidade' ref='cidade' value='' required={true} showErrors={this.state.showErrors} />
+                <View style={{ flexDirection: 'row' }}>
+                  <View style={{ flex: 1, paddingRight: 15 }}>
+                    <FaInput label="Cidade" ref="cidade" value="" required showErrors={this.state.showErrors} />
                   </View>
-                  <View style={{flex: 1, paddingLeft: 15}}>
-                    <FaInput label='Estado' ref='uf' value='RS' required={true} showErrors={this.state.showErrors} />
+                  <View style={{ flex: 1, paddingLeft: 15 }}>
+                    <FaInput label="Estado" ref="uf" value="RS" required showErrors={this.state.showErrors} />
                   </View>
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{flex: 1, paddingRight: 15}}>
-                    <FaInput label='Número' mask={{type: 'only-numbers'}} ref='numero' value='' required={true} showErrors={this.state.showErrors} />
+                <View style={{ flexDirection: 'row' }}>
+                  <View style={{ flex: 1, paddingRight: 15 }}>
+                    <FaInput label="Número" mask={{ type: 'only-numbers' }} ref="numero" value="" required showErrors={this.state.showErrors} />
                   </View>
-                  <View style={{flex: 1, paddingLeft: 15}}>
-                    <FaInput label='Complemento' ref='complemento' value='' required={true} showErrors={this.state.showErrors} />
+                  <View style={{ flex: 1, paddingLeft: 15 }}>
+                    <FaInput label="Complemento" ref="complemento" value="" required showErrors={this.state.showErrors} />
                   </View>
                 </View>
 
@@ -211,21 +209,20 @@ render() {
 
             </ScrollView>
 
-          <View style={{padding: 10}}>
-            <FaButton label='Continuar' type='primary' onPress={() => this._continuar(false) } />
+            <View style={{ padding: 10 }}>
+              <FaButton label="Continuar" type="primary" onPress={() => this._continuar(false)} />
+            </View>
+
+            <KeyboardSpacer />
+
+
           </View>
 
-          <KeyboardSpacer />
+        </Modal>
 
-
-        </View>
-
-      </Modal>
-
-    </ViewContainer>
-  )}
+      </ViewContainer>
+  ) }
 }
-
 
 
 const aa = EStyleSheet.create({
@@ -240,36 +237,36 @@ const aa = EStyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 15,
     borderRadius: 3,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   label: {
     fontSize: 11,
     color: 'rgba(0,0,0,0.7)',
-    paddingBottom: 2
+    paddingBottom: 2,
   },
   value: {
     fontSize: 15,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   valueLarge: {
     fontSize: 17,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   icon: {
     width: 50,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   iconContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 })
 
 const teste = EStyleSheet.create({
   row: {
-    padding: 20
-  }
+    padding: 20,
+  },
 })
 
 
@@ -278,14 +275,14 @@ const base = EStyleSheet.create({
     borderWidth: 1,
     borderColor: '$colors.gray1',
     padding: 15,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   right: {
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   padding: {
-    padding: 15
-  }
+    padding: 15,
+  },
 })
 
 const bottom = EStyleSheet.create({
@@ -294,30 +291,30 @@ const bottom = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 45,
-    borderRadius: 6
+    borderRadius: 6,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
   },
   link: {
     marginTop: 20,
     marginBottom: 20,
     height: 30,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   linkText: {
     fontSize: 16,
     color: 'white',
-    textDecorationLine: 'underline'
-  }
+    textDecorationLine: 'underline',
+  },
 })
 
 const info = EStyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   item: {
     flex: 1,
@@ -326,14 +323,14 @@ const info = EStyleSheet.create({
     paddingBottom: 10,
     justifyContent: 'center',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
   },
   label: {
     fontSize: 12,
     paddingBottom: 3,
-    color: 'rgba(0,0,0,0.5)'
+    color: 'rgba(0,0,0,0.5)',
   },
   value: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 })

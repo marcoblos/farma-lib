@@ -26,21 +26,21 @@ export class PedidoResumo extends Component {
       trueSwitchIsOn: true,
       falseSwitchIsOn: false,
       modalVisible: false,
-      pedido: new PedidoModel()
+      pedido: new PedidoModel(),
     }
 
     this._accountService = new AccountService()
   }
 
   componentDidMount() {
-    if(this.props.pedido) {
-      this.setState({pedido: this.props.pedido})
+    if (this.props.pedido) {
+      this.setState({ pedido: this.props.pedido })
     }
   }
 
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+    this.setState({ modalVisible: visible })
   }
 
   openModal1(id) {
@@ -48,27 +48,25 @@ export class PedidoResumo extends Component {
   }
 
   _continuar() {
+    const pedido = this.state.pedido
 
-    let pedido = this.state.pedido
-
-    if(pedido.produtos && pedido.produtos.length === 0) {
+    if (pedido.produtos && pedido.produtos.length === 0) {
       ToasterService.error('Adicione produtos para continuar com o pedido.')
-      return false;
+      return false
     }
 
     LoaderService.show()
 
     this._accountService.getEnderecos()
     .then((response) => {
-
       LoaderService.hide()
 
       this.props.navigator.push({
-          name: "pedido-endereco",
-          passProps: {
-            pedido: pedido,
-            enderecos: response
-          }
+        name: 'pedido-endereco',
+        passProps: {
+          pedido,
+          enderecos: response,
+        },
       })
     }).catch((error) => {
       LoaderService.hide()
@@ -77,33 +75,32 @@ export class PedidoResumo extends Component {
   }
 
   _editarProduto(index) {
-    let pedido = this.state.pedido
+    const pedido = this.state.pedido
 
     this.props.navigator.push({
-      name: "DetalhePage",
+      name: 'DetalhePage',
       passProps: {
-        pedido: pedido,
+        pedido,
         produtoIndex: index,
-        nome: pedido.produtos[index].nome
-      }
+        nome: pedido.produtos[index].nome,
+      },
     })
   }
 
   _addProduto() {
-    let pedido = this.state.pedido
+    const pedido = this.state.pedido
 
     this.props.navigator.push({
-      name: "PedidoBuscar",
+      name: 'PedidoBuscar',
       passProps: {
-        pedido: pedido
-      }
+        pedido,
+      },
     })
   }
 
   _cancelarPedido() {
-
     this.props.navigator.resetTo({
-      name: "DashboardPage"
+      name: 'DashboardPage',
     })
   }
 
@@ -112,8 +109,8 @@ export class PedidoResumo extends Component {
       'Cancelar pedido',
       'Tem certeza que deseja cancelar o pedido?',
       [
-        {text: 'Não', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'Sim', onPress: () => this._cancelarPedido()},
+        { text: 'Não', onPress: () => console.log('Cancel Pressed!') },
+        { text: 'Sim', onPress: () => this._cancelarPedido() },
       ]
     )
   }
@@ -123,12 +120,11 @@ export class PedidoResumo extends Component {
   }
 
   _renderImagem(img, index) {
-
     return (
-      <View key={index} style={{position: 'relative', width: 50}}>
+      <View key={index} style={{ position: 'relative', width: 50 }}>
         <TouchableOpacity onPress={() => this._renderModal(img)}>
-          <View style={{padding: 5, backgroundColor: '#fff'}}>
-            <Image style={{width: 40, height: 40, resizeMode:"cover"}} source={img} />
+          <View style={{ padding: 5, backgroundColor: '#fff' }}>
+            <Image style={{ width: 40, height: 40, resizeMode: 'cover' }} source={img} />
           </View>
         </TouchableOpacity>
       </View>
@@ -138,43 +134,43 @@ export class PedidoResumo extends Component {
   _formatarQuantidade(unidade, quantidade) {
     let label = ''
 
-    if(quantidade === '' && unidade === '') {
+    if (quantidade === '' && unidade === '') {
       label = 'Selecionar'
-    } else if(quantidade !== '' && quantidade !== '01' && unidade !== '') {
-      label = quantidade + ' ' + unidade + 's'
+    } else if (quantidade !== '' && quantidade !== '01' && unidade !== '') {
+      label = `${quantidade} ${unidade}s`
     } else {
-      label = quantidade + ' ' + unidade
+      label = `${quantidade} ${unidade}`
     }
 
     return label
   }
 
   _renderGenericos(p) {
-    if(p.generico) {
+    if (p.generico) {
       return (<Text style={product.text}>Aceita genéricos</Text>)
     }
   }
 
   _renderSimilares(p) {
-    if(p.similares) {
+    if (p.similares) {
       return (<Text style={product.text}>Aceita similares</Text>)
     }
   }
 
   _renderDescricao(p) {
-    if(p.obs) {
+    if (p.obs) {
       return (<Text style={product.text}>{p.obs}</Text>)
     }
   }
 
   _renderModal(img) {
-    this.setState({imageZoomVisible: true, selectedImagemZoom: img})
+    this.setState({ imageZoomVisible: true, selectedImagemZoom: img })
   }
 
   _removerProduto(index) {
-    let p = this.state.pedido
+    const p = this.state.pedido
     p.produtos.splice(index, 1)
-    this.setState({pedido: p})
+    this.setState({ pedido: p })
   }
 
   _renderProduto(p, index) {
@@ -198,12 +194,13 @@ export class PedidoResumo extends Component {
               'Excluir produto',
               'Tem certeza que deseja excluir?',
               [
-                {text: 'Cancelar', onPress: () => console.log('Cancel Pressed!')},
-                {text: 'Excluir', onPress: () => this._removerProduto(index)},
+                { text: 'Cancelar', onPress: () => console.log('Cancel Pressed!') },
+                { text: 'Excluir', onPress: () => this._removerProduto(index) },
               ]
-            )}>
+            )}
+          >
             <View style={product.bottomColIcon}>
-              <Icon name='delete' size={20} style={product.bottomLinkIcon} />
+              <Icon name="delete" size={20} style={product.bottomLinkIcon} />
             </View>
             <View style={product.bottomCol}>
               <Text style={product.bottomLinkText}>Excluir</Text>
@@ -212,7 +209,7 @@ export class PedidoResumo extends Component {
 
         </View>
 
-        <View style={[s.padding, {flexDirection: 'row', position: 'absolute', bottom: 0, right: 0}]}>
+        <View style={[s.padding, { flexDirection: 'row', position: 'absolute', bottom: 0, right: 0 }]}>
           {p.imagens.map((img, index) => this._renderImagem(img, index))}
         </View>
 
@@ -220,47 +217,48 @@ export class PedidoResumo extends Component {
     )
   }
 
-render() {
-  return (
-    <ViewContainer style={{backgroundColor: '#e6e6e6'}}>
-      <FaHeader title='Resumo do pedido' hideBackButton={true} />
+  render() {
+    return (
+      <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
+        <FaHeader title="Resumo do pedido" hideBackButton />
 
 
-      <ScrollView>
+        <ScrollView>
 
-        <View style={s.box}>
-          {this.state.pedido.produtos.map((p, index) => this._renderProduto(p, index))}
-        </View>
+          <View style={s.box}>
+            {this.state.pedido.produtos.map((p, index) => this._renderProduto(p, index))}
+          </View>
+
+          <View style={s.padding}>
+            <TouchableOpacity style={aa.row} onPress={() => this._addProduto()}>
+              <View>
+                <Text style={aa.valueLarge}>Adicionar produto</Text>
+              </View>
+              <View style={aa.icon}>
+                <Icon name="add-circle" size={35} color="#999" />
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{ marginTop: 25, marginBottom: 25, alignItems: 'center' }} onPress={() => this._cancelarPedidoAlert()}>
+              <Text style={{ fontSize: 14, color: 'rgba(0,0,0,0.3)', textDecorationLine: 'underline' }}>Cancelar pedido</Text>
+            </TouchableOpacity>
+          </View>
+
+
+        </ScrollView>
 
         <View style={s.padding}>
-          <TouchableOpacity style={aa.row} onPress={() => this._addProduto() }>
-            <View>
-              <Text style={aa.valueLarge}>Adicionar produto</Text>
-            </View>
-            <View style={aa.icon}>
-              <Icon name="add-circle" size={35} color="#999" />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{marginTop: 25, marginBottom: 25, alignItems: 'center'}} onPress={() => this._cancelarPedidoAlert() }>
-            <Text style={{fontSize: 14, color: 'rgba(0,0,0,0.3)', textDecorationLine: 'underline'}}>Cancelar pedido</Text>
-          </TouchableOpacity>
+          <FaButton label="CONTINUAR" size="lg" iconSize={30} icon="arrow-forward" type="primary" onPress={() => this._continuar()} />
         </View>
 
+        <FaImageZoom
+          image={this.state.selectedImagemZoom}
+          visible={this.state.imageZoomVisible}
+          onClose={() => this.setState({ imageZoomVisible: false })}
+        />
 
-      </ScrollView>
-
-      <View style={s.padding}>
-        <FaButton label='CONTINUAR' size='lg' iconSize={30} icon='arrow-forward' type='primary' onPress={() => this._continuar()} />
-      </View>
-
-      <FaImageZoom
-        image={this.state.selectedImagemZoom}
-        visible={this.state.imageZoomVisible}
-        onClose={() => this.setState({imageZoomVisible: false})} />
-
-    </ViewContainer>
-  )}
+      </ViewContainer>
+  ) }
 }
 
 
@@ -276,52 +274,52 @@ const aa = EStyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 15,
     borderRadius: 3,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   label: {
     fontSize: 11,
     color: 'rgba(0,0,0,0.7)',
-    paddingBottom: 2
+    paddingBottom: 2,
   },
   value: {
     fontSize: 15,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   valueLarge: {
     fontSize: 17,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   icon: {
     width: 50,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   iconContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 })
 
 const product = EStyleSheet.create({
   box: {
     backgroundColor: '$colors.white1',
     padding: 15,
-    borderRadius: 3
+    borderRadius: 3,
   },
   header: {
     borderBottomWidth: 1,
     borderColor: 'rgba(0,0,0,0.1)',
     marginBottom: 7,
-    paddingBottom: 7
+    paddingBottom: 7,
   },
   headerName: {
     fontSize: 16,
-    color: '#333'
+    color: '#333',
   },
   text: {
     fontSize: 13,
     marginTop: 2,
-    color: 'rgba(0,0,0,0.6)'
+    color: 'rgba(0,0,0,0.6)',
   },
   iconWrap: {
     position: 'absolute',
@@ -340,7 +338,7 @@ const product = EStyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     bottom: -5,
-    left: -5
+    left: -5,
   },
   iconCountText: {
     color: 'white',
@@ -348,7 +346,7 @@ const product = EStyleSheet.create({
   },
   bottom: {
     flexDirection: 'row',
-    paddingTop: 10
+    paddingTop: 10,
   },
   bottomLink: {
     flexDirection: 'row',
@@ -358,13 +356,13 @@ const product = EStyleSheet.create({
     paddingLeft: 8,
     backgroundColor: 'rgba(0,0,0,0.1)',
     marginRight: 10,
-    borderRadius: 3
+    borderRadius: 3,
   },
   bottomColIcon: {
-    paddingRight: 5
+    paddingRight: 5,
   },
   bottomLinkIcon: {
     color: 'red',
-    color: 'rgba(0,0,0,0.4)'
-  }
+    color: 'rgba(0,0,0,0.4)',
+  },
 })

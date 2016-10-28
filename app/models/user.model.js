@@ -1,16 +1,16 @@
-import {BaseModel} from './_base.model'
+import { BaseModel } from './_base.model'
 
 export class UserModel extends BaseModel {
-    constructor(props) {
-        super()
+  constructor(props) {
+    super()
 
-        this.nome = ''
-        this.email = ''
-        this.password = ''
-        this.celular = ''
-        this.cpf = ''
-        this.token = ''
+    this.nome = ''
+    this.email = ''
+    this.password = ''
+    this.celular = ''
+    this.cpf = ''
+    this.token = ''
 
-        super.bind(props)
-    }
+    super.bind(props)
+  }
 }

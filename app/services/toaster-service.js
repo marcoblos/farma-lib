@@ -6,11 +6,11 @@ function toasterStore(state = null, action) {
 
 function sendEvent(type, message, options) {
   global.toasterStore.dispatch({
-    type: type,
+    type,
     data: {
-      type: type,
-      message: message,
-      options: options,
+      type,
+      message,
+      options,
     },
   })
 }
@@ -22,7 +22,7 @@ const MESSAGE_TYPES = {
   ERROR: 'ERROR',
 }
 
-const EMPTY_FUNCTION = function() { }
+const EMPTY_FUNCTION = function () { }
 
 export class ToasterService {
   static registerListener(listener) {

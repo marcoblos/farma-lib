@@ -2,40 +2,40 @@ import React, { Component } from 'react'
 import {
   View,
   TouchableOpacity,
-  Text
+  Text,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaMessage extends Component {
-    constructor(props) {
-        super(props)
-    }
+  constructor(props) {
+    super(props)
+  }
 
-    render() {
-        return (
-          <View style={empty.container}>
-            <View style={empty.header}>
-              <Icon style={empty.headerIcon} name={this.props.icon} size={this.props.iconSize || 120} />
-            </View>
-            <View style={empty.footer}>
-              <Text style={empty.title}>{this.props.title.toUpperCase()}</Text>
-              <Text style={empty.text}>{this.props.text}</Text>
-            </View>
-          </View>
+  render() {
+    return (
+      <View style={empty.container}>
+        <View style={empty.header}>
+          <Icon style={empty.headerIcon} name={this.props.icon} size={this.props.iconSize || 120} />
+        </View>
+        <View style={empty.footer}>
+          <Text style={empty.title}>{this.props.title.toUpperCase()}</Text>
+          <Text style={empty.text}>{this.props.text}</Text>
+        </View>
+      </View>
         )
-    }
+  }
 }
 
 const empty = EStyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   header: {
-    position: 'relative'
+    position: 'relative',
   },
   headerNum: {
     position: 'absolute',
@@ -46,29 +46,29 @@ const empty = EStyleSheet.create({
     borderRadius: 30,
     backgroundColor: '$colors.secondary',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headerNumText: {
     color: '$colors.white1',
     fontSize: 26,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   headerIcon: {
-    color: 'rgba(0,0,0,0.2)'
+    color: 'rgba(0,0,0,0.2)',
   },
   footer: {
     paddingTop: 30,
     paddingBottom: 30,
     alignItems: 'center',
-    width: 290
+    width: 290,
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 20,
   },
   text: {
     fontSize: 15,
     paddingTop: 16,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 })

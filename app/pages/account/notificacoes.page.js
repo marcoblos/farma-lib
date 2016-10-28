@@ -1,54 +1,52 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, ScrollView, Image, ListView, RefreshControl } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaProduct, FaMessage} from 'fa-components'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaProduct, FaMessage } from 'fa-components'
 import { AccountService, LoaderService } from 'fa-services'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const ds = new ListView.DataSource({
-    rowHasChanged: (r1, r2) => r1.id !== r2.id
+  rowHasChanged: (r1, r2) => r1.id !== r2.id,
 })
 
 export class NotificacoesPage extends Component {
   constructor(props) {
-      super(props)
+    super(props)
 
-      this.state = {
-        pedidosList: ds.cloneWithRows([]),
-        showErrors: false,
-        visible: false,
-        refreshing: false
-      }
+    this.state = {
+      pedidosList: ds.cloneWithRows([]),
+      showErrors: false,
+      visible: false,
+      refreshing: false,
+    }
 
-      this._accountService = new AccountService()
+    this._accountService = new AccountService()
   }
 
   componentDidMount() {
     console.log(this.props.pedidos)
 
-    this.setState({pedidosList: ds.cloneWithRows(this.props.pedidos)})
+    this.setState({ pedidosList: ds.cloneWithRows(this.props.pedidos) })
   }
 
 
   _detalharPedido(idPedido, status) {
-
     let page = 'pedido'
 
-    if(status === 2) { page = 'pedido-cotacoes' }
-    if(status === 3) { page = 'pedido-andamento' }
-    if(status === 4) { page = 'pedido-entrega' }
-    if(status === 5) { page = 'pedido-finalizado' }
+    if (status === 2) { page = 'pedido-cotacoes' }
+    if (status === 3) { page = 'pedido-andamento' }
+    if (status === 4) { page = 'pedido-entrega' }
+    if (status === 5) { page = 'pedido-finalizado' }
 
-    let data = {
-      IDPedido: idPedido
+    const data = {
+      IDPedido: idPedido,
     }
 
     requestAnimationFrame(() => LoaderService.show())
 
     this._accountService.getPedido(data)
     .then((response) => {
-
       debugger
 
       LoaderService.hide()
@@ -56,8 +54,8 @@ export class NotificacoesPage extends Component {
       this.props.navigator.push({
         name: page,
         passProps: {
-          pedido: response
-        }
+          pedido: response,
+        },
       })
     })
     .catch((error) => {
@@ -83,25 +81,23 @@ export class NotificacoesPage extends Component {
     //       name: 'cotacoes-entrega'
     //   })
     // }
-
   }
 
   _meusEnderecosPage() {
     this.props.navigator.push({
-        name: 'meus-enderecos'
+      name: 'meus-enderecos',
     })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
-        name: 'meus-pedidos'
+      name: 'meus-pedidos',
     })
   }
 
   _logout() {
-
     this.props.navigator.resetTo({
-        name: 'login-page'
+      name: 'login-page',
     })
   }
 
@@ -112,17 +108,16 @@ export class NotificacoesPage extends Component {
   }
 
   _renderRow(p, index) {
-
-    let title = `Pedido nº ${p.IDPedido}`
-    let produtos = []
+    const title = `Pedido nº ${p.IDPedido}`
+    const produtos = []
 
     produtos.push(p.Prd)
 
-    if(p.QtdPrd === 2) {
-      produtos.push(` e mais 1 produto`)
+    if (p.QtdPrd === 2) {
+      produtos.push(' e mais 1 produto')
     }
 
-    if(p.QtdPrd > 2) {
+    if (p.QtdPrd > 2) {
       produtos.push(` e mais ${p.QtdPrd} produtos`)
     }
 
@@ -132,15 +127,14 @@ export class NotificacoesPage extends Component {
   }
 
   _atualizarPedidos() {
-
     let user = {
-      TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255'
+      TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255',
     }
 
-    if(this.props.type === 'historico') {
+    if (this.props.type === 'historico') {
       user = {
         TokenIonic: '37399709-9593-45fc-9d8c-8192ebcf2255',
-        SomenteFinalizados: true
+        SomenteFinalizados: true,
       }
     }
 
@@ -148,31 +142,28 @@ export class NotificacoesPage extends Component {
 
     this._accountService.getPedidosLista(user)
     .then((response) => {
-
       LoaderService.hide()
-      this.setState({pedidosList: ds.cloneWithRows(response)})
-
+      this.setState({ pedidosList: ds.cloneWithRows(response) })
     })
   }
 
   _renderPage() {
-
-    if(this.props.pedidos.length) {
+    if (this.props.pedidos.length) {
       return (
         <ListView
-          dataSource = {this.state.pedidosList}
+          dataSource={this.state.pedidosList}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
               onRefresh={() => this._atualizarPedidos()}
             />
           }
-          renderRow = {(p, index) => this._renderRow(p, index)}
+          renderRow={(p, index) => this._renderRow(p, index)}
         />
       )
     } else {
       return (
-        <FaMessage icon='notifications-active' title='Sem notificações' text='Você não tem nenhuma notificação.' />
+        <FaMessage icon="notifications-active" title="Sem notificações" text="Você não tem nenhuma notificação." />
       )
     }
   }
@@ -181,9 +172,9 @@ export class NotificacoesPage extends Component {
     return (
       <ViewContainer>
 
-          <FaHeader title='Notificações' onGoBack={() => this.props.navigator.pop()} />
+        <FaHeader title="Notificações" onGoBack={() => this.props.navigator.pop()} />
 
-            {this._renderPage()}
+        {this._renderPage()}
 
       </ViewContainer>
     )
@@ -192,8 +183,8 @@ export class NotificacoesPage extends Component {
 
 const styles = EStyleSheet.create({
   container: {
-    padding: '$sm'
-  }
+    padding: '$sm',
+  },
 })
 
 const perfil = EStyleSheet.create({
@@ -203,7 +194,7 @@ const perfil = EStyleSheet.create({
     marginBottom: 30,
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: '$colors.gray2'
+    borderColor: '$colors.gray2',
   },
   photoImage: {
     resizeMode: 'contain',
@@ -211,11 +202,11 @@ const perfil = EStyleSheet.create({
     height: 120,
     borderRadius: 60,
     borderWidth: 1,
-    borderColor: '$colors.gray2'
+    borderColor: '$colors.gray2',
   },
   nameText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '$colors.black2'
-  }
+    color: '$colors.black2',
+  },
 })

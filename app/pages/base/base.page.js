@@ -9,7 +9,7 @@ export class DashboardPage extends Component {
 
   _navigateToPersonShow() {
     this.props.navigator.push({
-      name: "PocPage"
+      name: 'PocPage',
     })
   }
 
@@ -17,17 +17,17 @@ export class DashboardPage extends Component {
     this.props.navigator.pop()
   }
 
-render() {
-  return (
-    <ViewContainer>
-      <FaHeader title='Dashboard' onGoBack={() => this._backToHome()} />
+  render() {
+    return (
+      <ViewContainer>
+        <FaHeader title="Dashboard" onGoBack={() => this._backToHome()} />
 
-      <Text>DASHBOARD</Text>
+        <Text>DASHBOARD</Text>
 
-      <TouchableOpacity onPress={() => this._navigateToPersonShow() }>
-        <Text>Ir para POC</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={() => this._navigateToPersonShow()}>
+          <Text>Ir para POC</Text>
+        </TouchableOpacity>
 
-    </ViewContainer>
-  )}
+      </ViewContainer>
+  ) }
 }

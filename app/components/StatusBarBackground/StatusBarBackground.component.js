@@ -3,12 +3,12 @@ import { View, StyleSheet, StatusBar } from 'react-native'
 
 export class StatusBarBackground extends Component {
 
-  //light-content
+  // light-content
 
   render() {
     return (
       <View style={[styles.statusBarBackground, this.props.style || {}]}>
-        <StatusBar barStyle={this.props.barStyle || "default"} />
+        <StatusBar barStyle={this.props.barStyle || 'default'} />
       </View>
     )
   }
@@ -17,6 +17,6 @@ export class StatusBarBackground extends Component {
 const styles = StyleSheet.create({
   statusBarBackground: {
     height: 20,
-    backgroundColor: 'black'
-  }
+    backgroundColor: 'black',
+  },
 })

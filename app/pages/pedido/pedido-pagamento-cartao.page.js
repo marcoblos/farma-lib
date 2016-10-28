@@ -7,7 +7,7 @@ import Picker from 'react-native-picker'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const {height, width} = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 const pedidoData = require('./_pedidoData.json')
 const s = require('../../styles/core.js')
 
@@ -27,24 +27,22 @@ export class PedidoPagamentoCartaoPage extends Component {
       descricao: '',
       aceitaGenericos: false,
       aceitaSimilares: false,
-      quantidade: ''
+      quantidade: '',
     }
 
     this.cartoes = [
-      { "value": "Visa" },
-      { "value": "Master" },
-      { "value": "Elo Refeição" }
+      { value: 'Visa' },
+      { value: 'Master' },
+      { value: 'Elo Refeição' },
     ]
   }
 
   componentDidMount() {
-
-    let p = this.props.currentProduct
-
+    const p = this.props.currentProduct
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+    this.setState({ modalVisible: visible })
   }
 
   openModal1(id) {
@@ -53,14 +51,14 @@ export class PedidoPagamentoCartaoPage extends Component {
 
   _continuar() {
     this.props.navigator.push({
-      name: "PedidoResumo",
-      products: product
+      name: 'PedidoResumo',
+      products: product,
     })
   }
 
   _selecionarCartao() {
     this.props.navigator.push({
-      name: "pedido-pagamento-cartao"
+      name: 'pedido-pagamento-cartao',
     })
   }
 
@@ -74,25 +72,25 @@ export class PedidoPagamentoCartaoPage extends Component {
 
   _onSelectedQuantidade(selected) {
     this.setState({
-      cartao: selected
+      cartao: selected,
     })
   }
 
   _onSelectedUnidade(selected) {
     this.setState({
-      selectedUnidade: selected
+      selectedUnidade: selected,
     })
   }
 
   _renderQuantidadeSelecionada() {
     let label = ''
 
-    if(this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
+    if (this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
       label = 'Selecionar'
-    } else if(this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade + 's'
+    } else if (this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
+      label = `${this.state.selectedQuantidade} ${this.state.selectedUnidade}s`
     } else {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade
+      label = `${this.state.selectedQuantidade} ${this.state.selectedUnidade}`
     }
 
     return (
@@ -100,72 +98,74 @@ export class PedidoPagamentoCartaoPage extends Component {
     )
   }
 
-render() {
-  return (
-    <ViewContainer style={{backgroundColor: '#e6e6e6'}}>
-      <FaHeader title='Forma de pagamento' onGoBack={() => this._backToHome()} />
+  render() {
+    return (
+      <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
+        <FaHeader title="Forma de pagamento" onGoBack={() => this._backToHome()} />
 
-      <ScrollView style={{flex: 1}}>
+        <ScrollView style={{ flex: 1 }}>
 
-        <View style={[s.padding, styles.box]}>
+          <View style={[s.padding, styles.box]}>
 
-          <FaPageTitle title='CARTAO DE CRÉDITO' paddingBottom={20} subTitle='Selecione a forma do cartão de crédito.' />
-
-          <FaFullButton
-            title='VISA'
-            onPress={() => this._continuar()}
-            borderBottom={true}
-            padding={20} />
+            <FaPageTitle title="CARTAO DE CRÉDITO" paddingBottom={20} subTitle="Selecione a forma do cartão de crédito." />
 
             <FaFullButton
-              title='MASTER'
-              onPress={() => this._selecionarCartao()}
-              borderBottom={true}
-              padding={20} />
+              title="VISA"
+              onPress={() => this._continuar()}
+              borderBottom
+              padding={20}
+            />
 
             <FaFullButton
-              title='REFEIÇÃO'
+              title="MASTER"
               onPress={() => this._selecionarCartao()}
-              borderBottom={true}
-              padding={20} />
+              borderBottom
+              padding={20}
+            />
 
-        </View>
-
-      </ScrollView>
-
-
-      <Modal
-        animationType={"fade"}
-        transparent={true}
-        visible={this.state.modalVisible}
-        >
-        <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'flex-end', paddingLeft: 30, paddingRight: 30}}>
-
-        <Text style={{color: 'white'}}>Cartão de crédito:</Text>
-        <Text style={{fontWeight: 'bold', paddingBottom: 20, fontSize: 20, color: 'white'}}>{this._renderQuantidadeSelecionada()}</Text>
-
-        <View style={{paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 100}}>
-          <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={(selected) => this._onSelectedQuantidade(selected)} />
+            <FaFullButton
+              title="REFEIÇÃO"
+              onPress={() => this._selecionarCartao()}
+              borderBottom
+              padding={20}
+            />
 
           </View>
 
-          <TouchableOpacity style={bottom.button} onPress={() => this.setModalVisible(false) }>
-            <Text style={bottom.buttonText}>Selecionar</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={bottom.link} onPress={() => this.setModalVisible(false) }>
-            <Text style={bottom.linkText}>Cancelar</Text>
-          </TouchableOpacity>
+        </ScrollView>
 
 
-        </View>
+        <Modal
+          animationType={'fade'}
+          transparent
+          visible={this.state.modalVisible}
+        >
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'flex-end', paddingLeft: 30, paddingRight: 30 }}>
 
-      </Modal>
+            <Text style={{ color: 'white' }}>Cartão de crédito:</Text>
+            <Text style={{ fontWeight: 'bold', paddingBottom: 20, fontSize: 20, color: 'white' }}>{this._renderQuantidadeSelecionada()}</Text>
 
-    </ViewContainer>
-  )}
+            <View style={{ paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 100 }}>
+              <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={selected => this._onSelectedQuantidade(selected)} />
+
+            </View>
+
+            <TouchableOpacity style={bottom.button} onPress={() => this.setModalVisible(false)}>
+              <Text style={bottom.buttonText}>Selecionar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={bottom.link} onPress={() => this.setModalVisible(false)}>
+              <Text style={bottom.linkText}>Cancelar</Text>
+            </TouchableOpacity>
+
+
+          </View>
+
+        </Modal>
+
+      </ViewContainer>
+  ) }
 }
-
 
 
 const aa = EStyleSheet.create({
@@ -180,36 +180,36 @@ const aa = EStyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 15,
     borderRadius: 3,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   label: {
     fontSize: 11,
     color: 'rgba(0,0,0,0.7)',
-    paddingBottom: 2
+    paddingBottom: 2,
   },
   value: {
     fontSize: 15,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   valueLarge: {
     fontSize: 17,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   icon: {
     width: 50,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   iconContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 })
 
 const teste = EStyleSheet.create({
   row: {
-    padding: 20
-  }
+    padding: 20,
+  },
 })
 
 
@@ -218,14 +218,14 @@ const base = EStyleSheet.create({
     borderWidth: 1,
     borderColor: '$colors.gray1',
     padding: 15,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   right: {
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   padding: {
-    padding: 15
-  }
+    padding: 15,
+  },
 })
 
 const bottom = EStyleSheet.create({
@@ -234,36 +234,36 @@ const bottom = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 45,
-    borderRadius: 6
+    borderRadius: 6,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
   },
   link: {
     marginTop: 20,
     marginBottom: 20,
     height: 30,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   linkText: {
     fontSize: 16,
     color: 'white',
-    textDecorationLine: 'underline'
-  }
+    textDecorationLine: 'underline',
+  },
 })
 
 const styles = EStyleSheet.create({
   box: {
-    paddingTop: '$md'
-  }
+    paddingTop: '$md',
+  },
 })
 
 const info = EStyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   item: {
     flex: 1,
@@ -272,14 +272,14 @@ const info = EStyleSheet.create({
     paddingBottom: 10,
     justifyContent: 'center',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
   },
   label: {
     fontSize: 12,
     paddingBottom: 3,
-    color: 'rgba(0,0,0,0.5)'
+    color: 'rgba(0,0,0,0.5)',
   },
   value: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 })

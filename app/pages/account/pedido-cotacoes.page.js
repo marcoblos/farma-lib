@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle} from 'fa-components'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle } from 'fa-components'
 import { PedidoModel } from 'fa-models'
 import { AccountService } from 'fa-services'
 
 const window = Dimensions.get('window')
 
-import {MaskService} from 'react-native-masked-text'
+import { MaskService } from 'react-native-masked-text'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
@@ -19,13 +19,15 @@ const renderPagination = (index, total, context) => {
     <View style={{
       position: 'absolute',
       bottom: -25,
-      right: 10
-    }}>
+      right: 10,
+    }}
+    >
       <Text>
         <Text style={{
           color: '#007aff',
-          fontSize: 20
-        }}>{index + 1}</Text>/{total}
+          fontSize: 20,
+        }}
+        >{index + 1}</Text>/{total}
       </Text>
     </View>
   )
@@ -33,52 +35,51 @@ const renderPagination = (index, total, context) => {
 
 export class PedidoCotacoesPage extends Component {
   constructor(props) {
-      super(props)
+    super(props)
 
-      this.state = {
-        showErrors: false,
-        visible: false,
-        page: 0,
-        modalVisible: false,
-        cotacaoAtual: {},
-        pedido: new PedidoModel(),
-        total: 0
-      }
+    this.state = {
+      showErrors: false,
+      visible: false,
+      page: 0,
+      modalVisible: false,
+      cotacaoAtual: {},
+      pedido: new PedidoModel(),
+      total: 0,
+    }
 
-      this._accountService = new AccountService()
-      this._maskService = new MaskService()
+    this._accountService = new AccountService()
+    this._maskService = new MaskService()
   }
 
   componentDidMount() {
     console.log(this.props.pedido)
     this.setState({
       pedido: this.props.pedido,
-      contato: this.props.pedido.contato
+      contato: this.props.pedido.contato,
     })
   }
 
   _meusDadosPage() {
     this.props.navigator.push({
-        name: 'meus-dados'
+      name: 'meus-dados',
     })
   }
 
   _meusEnderecosPage() {
     this.props.navigator.push({
-        name: 'meus-enderecos'
+      name: 'meus-enderecos',
     })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
-        name: 'meus-pedidos'
+      name: 'meus-pedidos',
     })
   }
 
   _logout() {
-
     this.props.navigator.resetTo({
-        name: 'login-page'
+      name: 'login-page',
     })
   }
 
@@ -89,35 +90,34 @@ export class PedidoCotacoesPage extends Component {
   }
 
   onMomentumScrollEnd(e, state, context) {
-    this.setState({page: context.state.index})
+    this.setState({ page: context.state.index })
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+    this.setState({ modalVisible: visible })
   }
 
   _renderSlide(c, index) {
-
     return (
       <View key={index} style={styles.slideWrapper}>
         <View style={styles.slide}>
 
-          <View style={{flexDirection: 'row'}}>
-            <View style={{flex: 2}}>
-              <FaInfo icon='store' label='Farmácia' value={c.farmacia} />
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 2 }}>
+              <FaInfo icon="store" label="Farmácia" value={c.farmacia} />
             </View>
-            <View style={{flex: 1}}>
-              <FaInfo label='Tele' value={c.freteFormatado} />
+            <View style={{ flex: 1 }}>
+              <FaInfo label="Tele" value={c.freteFormatado} />
             </View>
           </View>
 
-          <View style={{flexDirection: 'row'}}>
-            <View style={{flex: 2}}>
-              <FaInfo icon='access-time' last={true} label='Tempo de entrega' value={c.tempoDeEntrega} />
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 2 }}>
+              <FaInfo icon="access-time" last label="Tempo de entrega" value={c.tempoDeEntrega} />
             </View>
 
-            <View style={{flex: 1}}>
-              <FaInfo label='Total' valueStyle={{fontWeight: 'bold'}} last={true} value={this._maskService.toMoney(c.total > 0 ? c.totalFormatado : 0)} />
+            <View style={{ flex: 1 }}>
+              <FaInfo label="Total" valueStyle={{ fontWeight: 'bold' }} last value={this._maskService.toMoney(c.total > 0 ? c.totalFormatado : 0)} />
             </View>
           </View>
         </View>
@@ -126,25 +126,24 @@ export class PedidoCotacoesPage extends Component {
   }
 
   _renderDescricao(p) {
-    if(p.obs) {
+    if (p.obs) {
       return (
-        <View style={{flexDirection: 'row'}}>
-          <Icon name='message' size={13} style={{color: 'rgba(0,0,0,0.3)', marginTop: 5, marginRight: 3}} />
-          <Text style={{flex: 1, color: 'rgba(0,0,0,0.5)', paddingTop: 3}}>{p.obs}</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <Icon name="message" size={13} style={{ color: 'rgba(0,0,0,0.3)', marginTop: 5, marginRight: 3 }} />
+          <Text style={{ flex: 1, color: 'rgba(0,0,0,0.5)', paddingTop: 3 }}>{p.obs}</Text>
         </View>
       )
     }
   }
 
   _toggleAceito(p, cotacaoIndex) {
-
-    let pedido = this.state.pedido
-    let cotacao = pedido.cotacoes[cotacaoIndex]
-    let produtos = cotacao.produtos
+    const pedido = this.state.pedido
+    const cotacao = pedido.cotacoes[cotacaoIndex]
+    const produtos = cotacao.produtos
 
     produtos.forEach((prod) => {
-      if(prod.id === p.id) {
-        if(p.aceito === 1) {
+      if (prod.id === p.id) {
+        if (p.aceito === 1) {
           p.aceito = 0
           cotacao.total = cotacao.total - p.valor
         } else {
@@ -154,16 +153,15 @@ export class PedidoCotacoesPage extends Component {
       }
     })
 
-    this.setState({pedido})
+    this.setState({ pedido })
   }
 
   _renderToggle(p, indexCotacao) {
-
-    if(this.state.pedido.cotacoes[indexCotacao].produtos.length) {
+    if (this.state.pedido.cotacoes[indexCotacao].produtos.length) {
       return (
         <View>
           <TouchableOpacity onPress={() => this._toggleAceito(p, indexCotacao)}>
-            <Icon name='remove-circle-outline' size={25} style={{color: '#999'}} />
+            <Icon name="remove-circle-outline" size={25} style={{ color: '#999' }} />
           </TouchableOpacity>
         </View>
       )
@@ -171,16 +169,15 @@ export class PedidoCotacoesPage extends Component {
   }
 
   _renderProduto(p, i, index) {
-
     return (
-      <View key={i} style={[p.aceito === 0 ? {opacity: 0.4} : {}, {flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}]}>
-        <View style={{flex: 1}}>
+      <View key={i} style={[p.aceito === 0 ? { opacity: 0.4 } : {}, { flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10 }]}>
+        <View style={{ flex: 1 }}>
           <Text>{p.nome}</Text>
           {this._renderDescricao(p)}
-          <Text style={{color: 'rgba(0,0,0,0.5)', paddingTop: 3}}>{`${p.quantidade} ${p.unidade}`}</Text>
+          <Text style={{ color: 'rgba(0,0,0,0.5)', paddingTop: 3 }}>{`${p.quantidade} ${p.unidade}`}</Text>
         </View>
-        <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-          <Text style={[p.aceito === 0 ? {color: 'red'} : {}, {fontWeight: 'bold'}]}>{p.valorFormatado}</Text>
+        <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+          <Text style={[p.aceito === 0 ? { color: 'red' } : {}, { fontWeight: 'bold' }]}>{p.valorFormatado}</Text>
         </View>
         {this._renderToggle(p, index)}
       </View>
@@ -189,27 +186,26 @@ export class PedidoCotacoesPage extends Component {
 
   _renderGroup(c, index) {
     return (
-      <View key={index} style={[this.state.page === index ? {} : {position: 'absolute', height: 0, top: 0, overflow: 'hidden'}]}>
+      <View key={index} style={[this.state.page === index ? {} : { position: 'absolute', height: 0, top: 0, overflow: 'hidden' }]}>
         {c.produtos.map((p, i) => this._renderProduto(p, i, index))}
       </View>
     )
   }
 
   _renderListaDeProdutos() {
-
-    if(this.state.pedido.cotacoes.length) {
+    if (this.state.pedido.cotacoes.length) {
       return this.state.pedido.cotacoes.map((c, index) => this._renderGroup(c, index))
     }
   }
 
   _modalAceitarCotacao() {
-    this.setState({cotacaoAtual: this.state.pedido.cotacoes[this.state.page]})
+    this.setState({ cotacaoAtual: this.state.pedido.cotacoes[this.state.page] })
     this.setModalVisible(true)
   }
 
   _aceitarCotacao() {
-    let aceitos = []
-    let produtos = []
+    const aceitos = []
+    const produtos = []
     this.state.cotacaoAtual.produtos.forEach((p) => {
       produtos.push({
         Nome: p.nome,
@@ -218,36 +214,36 @@ export class PedidoCotacoesPage extends Component {
         Detalhes: p.obs,
         AceitaGenerico: p.generico,
         AceitaSimilares: p.similares,
-        Imagens: p.imagens
+        Imagens: p.imagens,
       })
 
       aceitos.push({
         IDProduto: p.id,
         Nome: p.nome,
-        Aceito: 1
+        Aceito: 1,
       })
     })
 
-    let data = {
+    const data = {
       Pedido: {
         Produtos: produtos,
-        TempoEntregaHoras:'0',
-        TempoEntregaMinutos:'30',
+        TempoEntregaHoras: '0',
+        TempoEntregaMinutos: '30',
         IDPedido: this.props.pedido.idPedido,
         FormaPagamento: this.state.cotacaoAtual.formaPagamento,
-        Cartao:'',
-        TrocoPara: this.refs['troco'].getValue(),
-        OutroPagamento:'',
-        Status:2,
+        Cartao: '',
+        TrocoPara: this.refs.troco.getValue(),
+        OutroPagamento: '',
+        Status: 2,
         IDCotacao: this.state.cotacaoAtual.idCotacao,
         Nome: this.state.cotacaoAtual.farmacia,
         Frete: this.state.cotacaoAtual.frete,
         TempoEntrega: this.state.cotacaoAtual.tempoDeEntrega,
         Total: this.state.cotacaoAtual.total,
-        Horarios:'',
-        Telefone:13123123123,
-        Contato: this.refs['contato'].getValue(),
-        Celular: this.refs['celular'].getValue(),
+        Horarios: '',
+        Telefone: 13123123123,
+        Contato: this.refs.contato.getValue(),
+        Celular: this.refs.celular.getValue(),
         Aceitos: aceitos,
       },
 
@@ -265,19 +261,18 @@ export class PedidoCotacoesPage extends Component {
   }
 
   _next() {
-    this.refs['swiper'].scrollBy(1)
+    this.refs.swiper.scrollBy(1)
   }
 
   _cancelarPedido() {
-
-    let data = {
-      IDPedido: this.props.pedido.idPedido
+    const data = {
+      IDPedido: this.props.pedido.idPedido,
     }
 
     this._accountService.cancelarPedido(data)
     .then((response) => {
       this.props.navigator.resetTo({
-        name: 'DashboardPage'
+        name: 'DashboardPage',
       })
     })
     .catch((error) => {
@@ -290,24 +285,23 @@ export class PedidoCotacoesPage extends Component {
       'Cancelar pedido',
       'Tem certeza que deseja cancelar o pedido?',
       [
-        {text: 'Não', onPress: () => console.log('Cancel Pressed!')},
-        {text: 'Sim', onPress: () => this._cancelarPedido()},
+        { text: 'Não', onPress: () => console.log('Cancel Pressed!') },
+        { text: 'Sim', onPress: () => this._cancelarPedido() },
       ]
     )
   }
 
   _renderTitle() {
-
     let text = ''
 
     text = `oferta ${this.props.pedido.cotacoes.length}`
 
-    if(this.props.pedido.cotacoes.length > 1) {
+    if (this.props.pedido.cotacoes.length > 1) {
       text = `Oferta ${this.state.page + 1}/${this.props.pedido.cotacoes.length}`
     }
 
     return (
-      <FaPageTitle style={{backgroundColor: 'transparent'}} paddingBottom={3} theme='white' title={text} subTitle='Escolha uma farmácia para finalizar o pedido' />
+      <FaPageTitle style={{ backgroundColor: 'transparent' }} paddingBottom={3} theme="white" title={text} subTitle="Escolha uma farmácia para finalizar o pedido" />
     )
   }
 
@@ -315,103 +309,103 @@ export class PedidoCotacoesPage extends Component {
     return (
       <ViewContainer>
 
-          <FaHeader title={`Pedido nº ${this.props.pedido.idPedido}`} onGoBack={() => this.props.navigator.pop()} />
+        <FaHeader title={`Pedido nº ${this.props.pedido.idPedido}`} onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView>
 
-            <View style={styles.headerTop}></View>
+          <View style={styles.headerTop} />
 
-            <View style={styles.header}>
-              <View style={{paddingTop: 25, paddingLeft: 30, paddingRight: 30}}>
-                {this._renderTitle()}
-              </View>
-
-              <Swiper
-                ref='swiper'
-                style={[styles.wrapper]}
-                height={200}
-                showsButtons={this.props.pedido.cotacoes.length > 1 || false}
-                dot={<View style={{backgroundColor: 'rgba(0,0,0, 0.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-                activeDot={<View style={{backgroundColor: '#f90', width: 10, height: 10, borderRadius: 5, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-                showsPagination={true}
-                onMomentumScrollEnd={(e, state, context) => this.onMomentumScrollEnd(e, state, context)}
-                paginationStyle={{
-                  bottom: 10
-                }}
-                nextButton={<Icon name='chevron-right' size={30} style={{marginRight: -10, color: 'rgba(0,0,0,0.25)'}} />}
-                prevButton={<Icon name='chevron-left' size={30} style={{marginLeft: -10, color: 'rgba(0,0,0,0.25)'}} />}
-                >
-
-                {this.props.pedido.cotacoes.map((c, index) => this._renderSlide(c, index))}
-              </Swiper>
+          <View style={styles.header}>
+            <View style={{ paddingTop: 25, paddingLeft: 30, paddingRight: 30 }}>
+              {this._renderTitle()}
             </View>
 
-            <View style={{paddingTop: 120, backgroundColor: '#fff'}}>
-              <View style={[{padding: 20}]}>
+            <Swiper
+              ref="swiper"
+              style={[styles.wrapper]}
+              height={200}
+              showsButtons={this.props.pedido.cotacoes.length > 1 || false}
+              dot={<View style={{ backgroundColor: 'rgba(0,0,0, 0.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3 }} />}
+              activeDot={<View style={{ backgroundColor: '#f90', width: 10, height: 10, borderRadius: 5, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3 }} />}
+              showsPagination
+              onMomentumScrollEnd={(e, state, context) => this.onMomentumScrollEnd(e, state, context)}
+              paginationStyle={{
+                bottom: 10,
+              }}
+              nextButton={<Icon name="chevron-right" size={30} style={{ marginRight: -10, color: 'rgba(0,0,0,0.25)' }} />}
+              prevButton={<Icon name="chevron-left" size={30} style={{ marginLeft: -10, color: 'rgba(0,0,0,0.25)' }} />}
+            >
 
-                {this._renderListaDeProdutos()}
+              {this.props.pedido.cotacoes.map((c, index) => this._renderSlide(c, index))}
+            </Swiper>
+          </View>
 
-              </View>
+          <View style={{ paddingTop: 120, backgroundColor: '#fff' }}>
+            <View style={[{ padding: 20 }]}>
+
+              {this._renderListaDeProdutos()}
+
             </View>
+          </View>
 
-            <View style={{padding: 20, backgroundColor: 'white', paddingTop: 5}}>
-              <FaButton label='ACEITAR OFERTA' type='primary' onPress={() => this._modalAceitarCotacao() } />
-              {this.props.pedido.cotacoes.length === 1 || <FaButton label='Próxima oferta' type='clean' style={{marginTop: 15}} onPress={() => this._next() } />}
-            </View>
+          <View style={{ padding: 20, backgroundColor: 'white', paddingTop: 5 }}>
+            <FaButton label="ACEITAR OFERTA" type="primary" onPress={() => this._modalAceitarCotacao()} />
+            {this.props.pedido.cotacoes.length === 1 || <FaButton label="Próxima oferta" type="clean" style={{ marginTop: 15 }} onPress={() => this._next()} />}
+          </View>
 
-            <TouchableOpacity style={{marginTop: 25, marginBottom: 25, alignItems: 'center'}} onPress={() => this._alertCancelarPedido() }>
-              <Text style={{fontSize: 14, color: 'rgba(0,0,0,0.3)', textDecorationLine: 'underline'}}>Cancelar pedido</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={{ marginTop: 25, marginBottom: 25, alignItems: 'center' }} onPress={() => this._alertCancelarPedido()}>
+            <Text style={{ fontSize: 14, color: 'rgba(0,0,0,0.3)', textDecorationLine: 'underline' }}>Cancelar pedido</Text>
+          </TouchableOpacity>
 
         </ScrollView>
 
         <Modal
-          animationType={"slide"}
-          transparent={true}
+          animationType={'slide'}
+          transparent
           visible={this.state.modalVisible}
-          >
-          <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
+        >
+          <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start' }}>
 
-            <FaModalHeader title='Detalhe da oferta' onClose={() => this.setModalVisible(false)} />
+            <FaModalHeader title="Detalhe da oferta" onClose={() => this.setModalVisible(false)} />
 
-              <ScrollView keyboardShouldPersistTaps={true}>
+            <ScrollView keyboardShouldPersistTaps>
 
-                <View style={{backgroundColor: 'white', padding: 20, paddingBottom: 50}}>
+              <View style={{ backgroundColor: 'white', padding: 20, paddingBottom: 50 }}>
 
-                  <FaPageTitle title='Complete os dados' paddingBottom={30} subTitle='Complete as informações para aceitar a oferta.' />
+                <FaPageTitle title="Complete os dados" paddingBottom={30} subTitle="Complete as informações para aceitar a oferta." />
 
-                  <FaInput label='Troco para quanto?' mask={{type: 'money'}} ref='troco' value='' required={true} showErrors={this.state.showErrors} />
-                  <FaInput label='Quem vai receber?' ref='contato' value='' required={true} showErrors={this.state.showErrors} />
-                  <FaInput label='Celular' ref='celular' mask={{type: 'cel-phone'}} value='' required={true} showErrors={this.state.showErrors} />
+                <FaInput label="Troco para quanto?" mask={{ type: 'money' }} ref="troco" value="" required showErrors={this.state.showErrors} />
+                <FaInput label="Quem vai receber?" ref="contato" value="" required showErrors={this.state.showErrors} />
+                <FaInput label="Celular" ref="celular" mask={{ type: 'cel-phone' }} value="" required showErrors={this.state.showErrors} />
 
-                    <View style={{paddingTop: 30}}>
-                      <View style={{flexDirection: 'row'}}>
-                        <View style={{flex: 2}}>
-                          <FaInfo icon='store' label='Farmácia' value={this.state.cotacaoAtual.farmacia} />
-                        </View>
-                        <View style={{flex: 1}}>
-                          <FaInfo label='Tele' value={this.state.cotacaoAtual.freteFormatado} />
-                        </View>
-                      </View>
+                <View style={{ paddingTop: 30 }}>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 2 }}>
+                      <FaInfo icon="store" label="Farmácia" value={this.state.cotacaoAtual.farmacia} />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <FaInfo label="Tele" value={this.state.cotacaoAtual.freteFormatado} />
+                    </View>
+                  </View>
 
-                      <View style={{flexDirection: 'row'}}>
-                        <View style={{flex: 2}}>
-                          <FaInfo icon='access-time' last={true} label='Tempo de entrega' value={this.state.cotacaoAtual.tempoDeEntrega} />
-                        </View>
-
-                        <View style={{flex: 1}}>
-                          <FaInfo label='Total' last={true} valueStyle={{fontWeight: 'bold'}} value={this._maskService.toMoney(this.state.cotacaoAtual.total > 0 ? this.state.cotacaoAtual.totalFormatado : 0)} />
-                        </View>
-                      </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 2 }}>
+                      <FaInfo icon="access-time" last label="Tempo de entrega" value={this.state.cotacaoAtual.tempoDeEntrega} />
                     </View>
 
+                    <View style={{ flex: 1 }}>
+                      <FaInfo label="Total" last valueStyle={{ fontWeight: 'bold' }} value={this._maskService.toMoney(this.state.cotacaoAtual.total > 0 ? this.state.cotacaoAtual.totalFormatado : 0)} />
+                    </View>
+                  </View>
                 </View>
 
+              </View>
 
-              </ScrollView>
 
-            <View style={{padding: 12}}>
-              <FaButton label='ACEITAR' type='primary' onPress={() => this._aceitarCotacao() } />
+            </ScrollView>
+
+            <View style={{ padding: 12 }}>
+              <FaButton label="ACEITAR" type="primary" onPress={() => this._aceitarCotacao()} />
             </View>
 
             <KeyboardSpacer />
@@ -427,8 +421,7 @@ export class PedidoCotacoesPage extends Component {
 }
 
 
-
-var styles = EStyleSheet.create({
+let styles = EStyleSheet.create({
   headerTop: {
     backgroundColor: '#80be5d',
     height: 200,
@@ -436,12 +429,12 @@ var styles = EStyleSheet.create({
     left: 0,
     right: 0,
     position: 'absolute',
-    zIndex: -1
+    zIndex: -1,
   },
   header: {
     paddingBottom: 20,
     marginBottom: -140,
-    zIndex: 10
+    zIndex: 10,
   },
 
   wrapper: {
@@ -458,13 +451,13 @@ var styles = EStyleSheet.create({
     borderWidth: 1,
     borderBottomWidth: 3,
     borderColor: '$colors.gray2',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   slideWrapper: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   text: {
     color: 'red',
@@ -473,6 +466,6 @@ var styles = EStyleSheet.create({
   },
 
   container: {
-    padding: '$sm'
-  }
+    padding: '$sm',
+  },
 })
