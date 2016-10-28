@@ -2,9 +2,10 @@ import React, {
     Component
 } from 'react'
 import {
+    BackAndroid,
     Navigator,
     Text,
-    StyleSheet
+    StyleSheet,
 } from 'react-native'
 
 import {
@@ -40,12 +41,17 @@ import {
 } from 'fa-pages'
 
 export class AppNavigator extends Component {
+  constructor(props) {
+    super(props);
+
+    this.navigator;
+  }
 
     _renderScene(route, navigator) {
         var globalNavigatorProps = {
             navigator
         }
-
+        this.navigator = globalNavigatorProps.navigator
         switch (route.name) {
             case 'PocPage':
               return ( <PocPage {...globalNavigatorProps} {...route.passProps} />)
@@ -108,6 +114,15 @@ export class AppNavigator extends Component {
         }
     }
 
+    componentWillMount() {
+      BackAndroid.addEventListener('hardwareBackPress', () => {
+        if (this.navigator && this.navigator.getCurrentRoutes().length > 1) {
+          this.navigator.pop();
+          return true;
+        }
+        return false;
+      });
+    }
 
     _configureScene(route, routeStack) {
 
@@ -129,7 +144,7 @@ export class AppNavigator extends Component {
               initialRoute = {this.props.initialRoute}
               ref = 'navigator'
               style = {styles.navigatorStyles}
-              renderScene = {this._renderScene}
+              renderScene = {this._renderScene.bind(this)}
               configureScene = {this._configureScene}
             />
         )
