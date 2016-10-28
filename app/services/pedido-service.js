@@ -6,7 +6,8 @@ export class PedidoService {
   }
 
   realizarPedido(data) {
-    return this.httpService.post('/FazerPedido', data)
+    console.log(data);
+    return this.httpService.post('/FinalizarPedido', data)
     .then(response => {
       debugger;
       return response

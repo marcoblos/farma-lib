@@ -13,6 +13,7 @@ export class HttpService {
           .then((response) => {
               return response.data
           }).catch(error => {
+            debugger;
             console.log(error);
           })
     }
@@ -24,6 +25,7 @@ export class HttpService {
         .then((response) => {
           return response.data
         }).catch(error => {
+          debugger;
           console.log(error);
         })
     }
