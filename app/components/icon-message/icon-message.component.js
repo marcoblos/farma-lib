@@ -12,9 +12,8 @@ export class FaIconMessage extends Component {
   }
 
   render() {
-
-    let _type = this.props.type || '_'
-    let _size = this.props.size || '_'
+    const _type = this.props.type || '_'
+    const _size = this.props.size || '_'
 
     return (
       <View style={[message.container, customStyle[_type].container]}>
@@ -35,11 +34,11 @@ const _dangerStyle = EStyleSheet.create(DANGER)
 const _successStyle = EStyleSheet.create(SUCCESS)
 
 const customStyle = {
-    '_': {},
-    'alert': _alertStyle,
-    'info': _infoStyle,
-    'danger': _dangerStyle,
-    'success': _successStyle
+  _: {},
+  alert: _alertStyle,
+  info: _infoStyle,
+  danger: _dangerStyle,
+  success: _successStyle,
 }
 
 
@@ -48,19 +47,19 @@ const message = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 15,
-    backgroundColor: '#f98e2e'
+    backgroundColor: '#f98e2e',
   },
   icon: {
     fontSize: 45,
-    color: 'rgba(255,255,255,0.7)'
+    color: 'rgba(255,255,255,0.7)',
   },
   textWrapper: {
     flex: 1,
     padding: 15,
     paddingTop: 20,
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   text: {
-    color: '$colors.white1'
-  }
+    color: '$colors.white1',
+  },
 })

@@ -11,8 +11,8 @@ export class FaFullButton extends Component {
 
   _renderIcon(icon) {
     let iconName = 'chevron-right'
-    if(icon)
-      iconName = icon
+    if (icon)
+      { iconName = icon }
 
     return (
       <Icon name={iconName} size={this.props.iconSize || 20} style={fullButton.icon} />
@@ -20,7 +20,7 @@ export class FaFullButton extends Component {
   }
 
   _renderNotification(num) {
-    if(num) {
+    if (num) {
       return (
         <View style={fullButton.num}>
           <Text style={fullButton.numText}>{num}</Text>
@@ -32,7 +32,7 @@ export class FaFullButton extends Component {
   }
 
   _renderTitle() {
-    if(this.props.title) {
+    if (this.props.title) {
       return (
         <Text style={fullButton.buttonTitle}>{this.props.title}</Text>
       )
@@ -46,13 +46,11 @@ export class FaFullButton extends Component {
   }
 
   _renderLabel() {
-
-    if(this.props.label && typeof this.props.label !== 'object') {
+    if (this.props.label && typeof this.props.label !== 'object') {
       return (
         <Text style={fullButton.buttonLabel}>{this.props.label}</Text>
       )
-    } else if (typeof this.props.label === 'object' ){
-
+    } else if (typeof this.props.label === 'object') {
       return (
         <View style={fullButton.buttonLabel}>
           {this.props.label.map((text, index) => this._renderTextRow(text, index))}
@@ -62,7 +60,7 @@ export class FaFullButton extends Component {
   }
 
   _renderText() {
-    if(this.props.text) {
+    if (this.props.text) {
       return (
         <Text style={fullButton.buttonText}>{this.props.text}</Text>
       )
@@ -71,29 +69,30 @@ export class FaFullButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity activeOpacity={this.props.activeOpacity || 0.5} onPress={ () => this.props.onPress() }>
-      <View style={
-        [
-          fullButton.button,
-          this.props.style,
-          this.props.margin ? {marginTop: this.props.margin, marginBottom: this.props.margin} : {},
-          this.props.padding ? {paddingTop: this.props.padding, paddingBottom: this.props.padding} : {},
-          this.props.border === false ? {borderWidth: 0} : {}
-        ]}>
-        <View style={{flex: 1, flexDirection: 'row'}}>
-          <View>
-            {this._renderTitle()}
-            {this._renderLabel()}
+      <TouchableOpacity activeOpacity={this.props.activeOpacity || 0.5} onPress={() => this.props.onPress()}>
+        <View style={
+          [
+            fullButton.button,
+            this.props.style,
+            this.props.margin ? { marginTop: this.props.margin, marginBottom: this.props.margin } : {},
+            this.props.padding ? { paddingTop: this.props.padding, paddingBottom: this.props.padding } : {},
+            this.props.border === false ? { borderWidth: 0 } : {},
+          ]}
+        >
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View>
+              {this._renderTitle()}
+              {this._renderLabel()}
+            </View>
+            {this._renderNotification(this.props.notifications)}
           </View>
-          {this._renderNotification(this.props.notifications)}
-        </View>
-        <View style={{justifyContent: 'center'}}>
-          <View style={{flexDirection: 'row'}}>
-            {this._renderText()}
-            {this._renderIcon(this.props.icon)}
+          <View style={{ justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row' }}>
+              {this._renderText()}
+              {this._renderIcon(this.props.icon)}
+            </View>
           </View>
         </View>
-      </View>
       </TouchableOpacity>
     )
   }
@@ -101,28 +100,28 @@ export class FaFullButton extends Component {
 
 const fullButton = EStyleSheet.create({
   button: {
-      flex: 1,
-      flexDirection: 'row',
-      backgroundColor: '$colors.white1',
-      paddingBottom: 15,
-      paddingTop: 15,
-      paddingLeft: 20,
-      paddingRight: 20,
-      borderWidth: 1,
-      borderColor: '$colors.gray2',
-      marginBottom: -1
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '$colors.white1',
+    paddingBottom: 15,
+    paddingTop: 15,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderWidth: 1,
+    borderColor: '$colors.gray2',
+    marginBottom: -1,
   },
   buttonTitle: {
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   buttonLabel: {
-    paddingTop: 3
+    paddingTop: 3,
   },
   buttonText: {
     fontSize: 12,
     marginRight: 20,
-    color: 'rgba(0,0,0,0.4)'
+    color: 'rgba(0,0,0,0.4)',
   },
   num: {
     backgroundColor: '$colors.secondary',
@@ -133,14 +132,14 @@ const fullButton = EStyleSheet.create({
     justifyContent: 'center',
     marginLeft: 15,
     position: 'absolute',
-    top: -1
+    top: -1,
   },
   numText: {
     color: '$colors.white1',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   icon: {
     fontSize: 18,
-    marginTop: 4
-  }
+    marginTop: 4,
+  },
 })

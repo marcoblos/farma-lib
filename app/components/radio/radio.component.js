@@ -9,28 +9,29 @@ export class FaRadioList extends Component {
 
   _onSelected(value) {
     this.setState({
-        selectedSize: value
+      selectedSize: value,
     })
     this.props.onSelected(value)
   }
 
   render() {
-      return (
-        <View>
-          {this.props.options.map((option, index) => {
-              return (
-                <TouchableOpacity
-                    key={index}
-                    onPress={() => this._onSelected(option.value)}
-                    style={[radio.container, index === (this.props.options.length - 1) ? {borderBottomWidth: 0} : {}]}>
-                    <View style={radio.icon}>
-                      <View style={[radio.iconIn, option.value == this.props.selected ? radio.iconInSelected : {}]}></View>
-                    </View>
-                    <Text>{option.value}</Text>
-                </TouchableOpacity>
+    return (
+      <View>
+        {this.props.options.map((option, index) => {
+          return (
+            <TouchableOpacity
+              key={index}
+              onPress={() => this._onSelected(option.value)}
+              style={[radio.container, index === (this.props.options.length - 1) ? { borderBottomWidth: 0 } : {}]}
+            >
+              <View style={radio.icon}>
+                <View style={[radio.iconIn, option.value == this.props.selected ? radio.iconInSelected : {}]} />
+              </View>
+              <Text>{option.value}</Text>
+            </TouchableOpacity>
               )
-          })}
-        </View>
+        })}
+      </View>
       )
   }
 
@@ -44,7 +45,7 @@ const radio = EStyleSheet.create({
     alignItems: 'center',
     paddingTop: 8,
     paddingBottom: 8,
-    paddingRight: 8
+    paddingRight: 8,
   },
   icon: {
     width: 26,
@@ -52,7 +53,7 @@ const radio = EStyleSheet.create({
     borderRadius: 26,
     marginRight: 10,
     borderWidth: 2,
-    borderColor: '$colors.gray1'
+    borderColor: '$colors.gray1',
   },
   iconIn: {
     opacity: 0,
@@ -62,9 +63,9 @@ const radio = EStyleSheet.create({
     right: 3,
     left: 3,
     borderRadius: 26,
-    backgroundColor: '$colors.primary'
+    backgroundColor: '$colors.primary',
   },
   iconInSelected: {
-    opacity: 1
-  }
+    opacity: 1,
+  },
 })

@@ -7,33 +7,32 @@ import Picker from 'react-native-picker'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const {height, width} = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 const pedidoData = require('./_pedidoData.json')
 const s = require('../../styles/core.js')
 
 export class FinalPage extends Component {
   constructor(props) {
     super(props)
-
   }
 
   _continuar() {
     this.props.navigator.resetTo({
-      name: "DashboardPage"
+      name: 'DashboardPage',
     })
   }
 
-render() {
-  return (
-    <ViewContainer>
-      <FaHeader title='Pedido concluído!' hideBackButton={true} />
+  render() {
+    return (
+      <ViewContainer>
+        <FaHeader title="Pedido concluído!" hideBackButton />
 
-      <FaMessage title={`Pedido concluído!`} text={`Seu pedido Nº ${this.props.idPedido} foi registrado, logo você receberá ofertas das farmácias.`} icon='check-circle' />
+        <FaMessage title={'Pedido concluído!'} text={`Seu pedido Nº ${this.props.idPedido} foi registrado, logo você receberá ofertas das farmácias.`} icon="check-circle" />
 
-      <View style={s.padding}>
-        <FaButton label='VOLTAR PARA O INÍCIO' size='lg' type='primary' onPress={() => this._continuar()} />
-      </View>
+        <View style={s.padding}>
+          <FaButton label="VOLTAR PARA O INÍCIO" size="lg" type="primary" onPress={() => this._continuar()} />
+        </View>
 
-    </ViewContainer>
-  )}
+      </ViewContainer>
+  ) }
 }

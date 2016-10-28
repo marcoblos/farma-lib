@@ -1,4 +1,5 @@
-'use strict'
+
+
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 
@@ -18,9 +19,9 @@ const styles = StyleSheet.create({
 
   viewContainer: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
     backgroundColor: '#e6e6e6',
-    position: 'relative'
-  }
+    position: 'relative',
+  },
 
 })

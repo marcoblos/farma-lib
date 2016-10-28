@@ -11,7 +11,7 @@ import { PedidoModel } from 'fa-models'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const {height, width} = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 const pedidoData = require('./_pedidoData.json')
 const s = require('../../styles/core.js')
 
@@ -29,28 +29,28 @@ export class PedidoPagamentoPage extends Component {
       sCartao: false,
       sDinheiro: false,
       selecionarCartao: false,
-      pedido: new PedidoModel()
+      pedido: new PedidoModel(),
     }
 
     this._pedidoService = new PedidoService()
 
     this.cartoes = [
-      { "value": "Visa" },
-      { "value": "Master" },
-      { "value": "Goodcard" },
-      { "value": "Alimentação" },
-      { "value": "Refeição" }
+      { value: 'Visa' },
+      { value: 'Master' },
+      { value: 'Goodcard' },
+      { value: 'Alimentação' },
+      { value: 'Refeição' },
     ]
   }
 
   componentDidMount() {
-    if(this.props.pedido) {
-      this.setState({pedido: this.props.pedido})
+    if (this.props.pedido) {
+      this.setState({ pedido: this.props.pedido })
     }
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+    this.setState({ modalVisible: visible })
   }
 
   openModal1(id) {
@@ -58,34 +58,32 @@ export class PedidoPagamentoPage extends Component {
   }
 
   _continuar() {
-
-    if(this.state.sDinheiro === false && this.state.sCartao === false) {
+    if (this.state.sDinheiro === false && this.state.sCartao === false) {
       ToasterService.error('Selecione uma forma de pagamento.')
       return false
     }
 
-    if(this.state.sCartao && this.state.cartao === '') {
+    if (this.state.sCartao && this.state.cartao === '') {
       ToasterService.error('Selecione um cartão.')
       return false
     }
 
 
-    let pedido = this.state.pedido
+    const pedido = this.state.pedido
 
-    if(this.state.sDinheiro) {
+    if (this.state.sDinheiro) {
       pedido.formaPagamento = 'Dinheiro'
     }
 
-    if(this.state.sCartao) {
+    if (this.state.sCartao) {
       pedido.formaPagamento = 'Cartão de Crédito'
       pedido.cartao = this.state.cartao
     }
 
-    let produtos = []
+    const produtos = []
 
     pedido.produtos.forEach((p, index) => {
-
-      let imagens = []
+      const imagens = []
 
       p.imagens.forEach((img) => {
         imagens.push(img.name)
@@ -99,11 +97,11 @@ export class PedidoPagamentoPage extends Component {
         AceitaGenerico: p.generico,
         AceitaSimilares: p.similares,
         DesejaFotos: 0,
-        Imagens: imagens
+        Imagens: imagens,
       })
     })
 
-    let data = {
+    const data = {
       Pedido: {
         Produtos: produtos,
         DesejaFotos: 0,
@@ -119,25 +117,24 @@ export class PedidoPagamentoPage extends Component {
         Complemento: pedido.endereco.complemento,
         Cidade: pedido.endereco.cidade,
         UF: pedido.endereco.uf,
-        Bairro: pedido.endereco.bairro
-      }
+        Bairro: pedido.endereco.bairro,
+      },
     }
 
     LoaderService.show()
 
     this._pedidoService.realizarPedido(data)
     .then((response) => {
-
-      debugger;
+      debugger
 
       LoaderService.hide()
 
       this.props.navigator.push({
-          name: "pedido-final",
-          swipeBack: false,
-          passProps: {
-            idPedido: response.IDPedido
-          }
+        name: 'pedido-final',
+        swipeBack: false,
+        passProps: {
+          idPedido: response.IDPedido,
+        },
       })
     }).catch((error) => {
       LoaderService.hide()
@@ -146,7 +143,7 @@ export class PedidoPagamentoPage extends Component {
   }
 
   _selecionarCartao() {
-    this.setState({selecionarCartao: true})
+    this.setState({ selecionarCartao: true })
     // this.props.navigator.push({
     //   name: "pedido-pagamento-cartao"
     // })
@@ -162,25 +159,25 @@ export class PedidoPagamentoPage extends Component {
 
   _onSelectedQuantidade(selected) {
     this.setState({
-      cartao: selected
+      cartao: selected,
     })
   }
 
   _onSelectedUnidade(selected) {
     this.setState({
-      selectedUnidade: selected
+      selectedUnidade: selected,
     })
   }
 
   _renderQuantidadeSelecionada() {
     let label = ''
 
-    if(this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
+    if (this.state.selectedQuantidade === '' && this.state.selectedUnidade === '') {
       label = 'Selecionar'
-    } else if(this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade + 's'
+    } else if (this.state.selectedQuantidade !== '' && this.state.selectedQuantidade !== '01' && this.state.selectedUnidade !== '') {
+      label = `${this.state.selectedQuantidade} ${this.state.selectedUnidade}s`
     } else {
-      label = this.state.selectedQuantidade + ' ' + this.state.selectedUnidade
+      label = `${this.state.selectedQuantidade} ${this.state.selectedUnidade}`
     }
 
     return (
@@ -191,89 +188,90 @@ export class PedidoPagamentoPage extends Component {
   _renderCartoes() {
     return (
       <View style={[s.padding, styles.boxMs]}>
-        <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={(selected) => this._onSelectedQuantidade(selected)} />
+        <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={selected => this._onSelectedQuantidade(selected)} />
       </View>
     )
   }
 
-render() {
-  return (
-    <ViewContainer style={{backgroundColor: '#e6e6e6'}}>
-      <FaHeader title='Forma de pagamento' onGoBack={() => this._backToHome()} />
+  render() {
+    return (
+      <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
+        <FaHeader title="Forma de pagamento" onGoBack={() => this._backToHome()} />
 
-      <ScrollView style={{flex: 1}}>
+        <ScrollView style={{ flex: 1 }}>
 
-        <View style={[s.padding]}>
+          <View style={[s.padding]}>
 
-          <FaPageTitle title='Forma de pagamento' paddingBottom={false} subTitle='Selecione a forma de pagamento.' />
+            <FaPageTitle title="Forma de pagamento" paddingBottom={false} subTitle="Selecione a forma de pagamento." />
 
-        </View>
-
-        <View style={[s.box, {padding: 10, backgroundColor: 'white'}]}>
-          <View style={info.container}>
-            <View style={[info.item, {flex: 3}]}>
-              <Text style={info.value}>Dinheiro</Text>
-            </View>
-            <View style={[info.item, {alignItems: 'flex-end'}]}>
-              <Switch
-                onValueChange={(value) => this.setState({sDinheiro: value})}
-                value={this.state.sDinheiro} />
-            </View>
           </View>
 
-          <View style={info.container}>
-            <View style={[info.item, {flex: 3, borderBottomWidth: 0}]}>
-              <Text style={info.value}>Cartão de crédito</Text>
+          <View style={[s.box, { padding: 10, backgroundColor: 'white' }]}>
+            <View style={info.container}>
+              <View style={[info.item, { flex: 3 }]}>
+                <Text style={info.value}>Dinheiro</Text>
+              </View>
+              <View style={[info.item, { alignItems: 'flex-end' }]}>
+                <Switch
+                  onValueChange={value => this.setState({ sDinheiro: value })}
+                  value={this.state.sDinheiro}
+                />
+              </View>
             </View>
-            <View style={[info.item, {alignItems: 'flex-end', borderBottomWidth: 0}]}>
-              <Switch
-                onValueChange={(value) => this.setState({sCartao: value})}
-                value={this.state.sCartao} />
+
+            <View style={info.container}>
+              <View style={[info.item, { flex: 3, borderBottomWidth: 0 }]}>
+                <Text style={info.value}>Cartão de crédito</Text>
+              </View>
+              <View style={[info.item, { alignItems: 'flex-end', borderBottomWidth: 0 }]}>
+                <Switch
+                  onValueChange={value => this.setState({ sCartao: value })}
+                  value={this.state.sCartao}
+                />
+              </View>
             </View>
+
+            {!this.state.sCartao || this._renderCartoes()}
           </View>
 
-          {!this.state.sCartao || this._renderCartoes()}
+        </ScrollView>
+
+        <View style={s.padding}>
+          <FaButton label="FINALIZAR PEDIDO" size="lg" iconSize={30} icon="done" type="primary" onPress={() => this._continuar()} />
         </View>
 
-      </ScrollView>
 
-      <View style={s.padding}>
-        <FaButton label='FINALIZAR PEDIDO' size='lg' iconSize={30} icon='done' type='primary' onPress={() => this._continuar()} />
-      </View>
-
-
-      <Modal
-        animationType={"fade"}
-        transparent={true}
-        visible={this.state.modalVisible}
+        <Modal
+          animationType={'fade'}
+          transparent
+          visible={this.state.modalVisible}
         >
-        <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'flex-end', paddingLeft: 30, paddingRight: 30}}>
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'flex-end', paddingLeft: 30, paddingRight: 30 }}>
 
-        <Text style={{color: 'white'}}>Cartão de crédito:</Text>
-        <Text style={{fontWeight: 'bold', paddingBottom: 20, fontSize: 20, color: 'white'}}>{this._renderQuantidadeSelecionada()}</Text>
+            <Text style={{ color: 'white' }}>Cartão de crédito:</Text>
+            <Text style={{ fontWeight: 'bold', paddingBottom: 20, fontSize: 20, color: 'white' }}>{this._renderQuantidadeSelecionada()}</Text>
 
-        <View style={{paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 100}}>
-          <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={(selected) => this._onSelectedQuantidade(selected)} />
+            <View style={{ paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 100 }}>
+              <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={selected => this._onSelectedQuantidade(selected)} />
+
+            </View>
+
+            <TouchableOpacity style={bottom.button} onPress={() => this.setModalVisible(false)}>
+              <Text style={bottom.buttonText}>Selecionar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={bottom.link} onPress={() => this.setModalVisible(false)}>
+              <Text style={bottom.linkText}>Cancelar</Text>
+            </TouchableOpacity>
+
 
           </View>
 
-          <TouchableOpacity style={bottom.button} onPress={() => this.setModalVisible(false) }>
-            <Text style={bottom.buttonText}>Selecionar</Text>
-          </TouchableOpacity>
+        </Modal>
 
-          <TouchableOpacity style={bottom.link} onPress={() => this.setModalVisible(false) }>
-            <Text style={bottom.linkText}>Cancelar</Text>
-          </TouchableOpacity>
-
-
-        </View>
-
-      </Modal>
-
-    </ViewContainer>
-  )}
+      </ViewContainer>
+  ) }
 }
-
 
 
 const aa = EStyleSheet.create({
@@ -288,36 +286,36 @@ const aa = EStyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 15,
     borderRadius: 3,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   label: {
     fontSize: 11,
     color: 'rgba(0,0,0,0.7)',
-    paddingBottom: 2
+    paddingBottom: 2,
   },
   value: {
     fontSize: 15,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   valueLarge: {
     fontSize: 17,
-    color: 'rgba(0,0,0,0.9)'
+    color: 'rgba(0,0,0,0.9)',
   },
   icon: {
     width: 50,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   iconContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 })
 
 const teste = EStyleSheet.create({
   row: {
-    padding: 20
-  }
+    padding: 20,
+  },
 })
 
 
@@ -326,14 +324,14 @@ const base = EStyleSheet.create({
     borderWidth: 1,
     borderColor: '$colors.gray1',
     padding: 15,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   right: {
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   padding: {
-    padding: 15
-  }
+    padding: 15,
+  },
 })
 
 const bottom = EStyleSheet.create({
@@ -342,40 +340,40 @@ const bottom = EStyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 45,
-    borderRadius: 6
+    borderRadius: 6,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
   },
   link: {
     marginTop: 20,
     marginBottom: 20,
     height: 30,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   linkText: {
     fontSize: 16,
     color: 'white',
-    textDecorationLine: 'underline'
-  }
+    textDecorationLine: 'underline',
+  },
 })
 
 const styles = EStyleSheet.create({
   box: {
-    paddingTop: '$md'
+    paddingTop: '$md',
   },
   boxMs: {
     paddingLeft: '$md',
-    paddingRight: '$md'
-  }
+    paddingRight: '$md',
+  },
 })
 
 const info = EStyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   item: {
     flex: 1,
@@ -384,14 +382,14 @@ const info = EStyleSheet.create({
     paddingBottom: 10,
     justifyContent: 'center',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)'
+    borderColor: 'rgba(0,0,0,0.1)',
   },
   label: {
     fontSize: 12,
     paddingBottom: 3,
-    color: 'rgba(0,0,0,0.5)'
+    color: 'rgba(0,0,0,0.5)',
   },
   value: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 })

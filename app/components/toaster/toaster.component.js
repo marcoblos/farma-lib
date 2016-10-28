@@ -4,7 +4,7 @@ import {
     TouchableOpacity,
     Text,
     InteractionManager,
-    Animated
+    Animated,
 } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
@@ -18,111 +18,113 @@ const BREAKING_LINE_TEXT_LENGTH = 40
 
 
 export class FaToaster extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = {
-            visible: false,
-            message: '',
-            type: ''
-        }
-
-        this._top = new Animated.Value(-TOASTER_HEIGHT)
-
-        ToasterService.registerListener((data) => this._onRequestMessage(data))
+    this.state = {
+      visible: false,
+      message: '',
+      type: '',
     }
 
-    _onRequestMessage(data) {
-        let self = this
+    this._top = new Animated.Value(-TOASTER_HEIGHT)
 
-        InteractionManager.runAfterInteractions(() => {
-            self.setState({
-                visible: true,
-                message: data.message,
-                type: data.type
-            }, () => self._show())
-        })
-    }
+    ToasterService.registerListener(data => this._onRequestMessage(data))
+  }
 
-    _renderIcon() {
-        return (
-            <Icon name={this.state.type === 'ERROR' ? 'close' : 'check' }
-                    size={20} style={style.icon} />
+  _onRequestMessage(data) {
+    const self = this
+
+    InteractionManager.runAfterInteractions(() => {
+      self.setState({
+        visible: true,
+        message: data.message,
+        type: data.type,
+      }, () => self._show())
+    })
+  }
+
+  _renderIcon() {
+    return (
+      <Icon name={this.state.type === 'ERROR' ? 'close' : 'check'}
+        size={20} style={style.icon}
+      />
         )
-    }
+  }
 
-    _show() {
-        let self = this
+  _show() {
+    const self = this
 
-        Animated.timing(
+    Animated.timing(
             this._top,
-            { toValue: 0, duration: 300}
+            { toValue: 0, duration: 300 }
         ).start()
 
-        setTimeout(function() {
-            self._hide()
-        }, TOASTER_TIME)
-    }
+    setTimeout(() => {
+      self._hide()
+    }, TOASTER_TIME)
+  }
 
-    _hide() {
-        Animated.timing(
+  _hide() {
+    Animated.timing(
             this._top,
             { toValue: -TOASTER_HEIGHT, duration: 200 }
         ).start()
-    }
+  }
 
-    render() {
-        return (
-            <Animated.View style={[style.container,
+  render() {
+    return (
+      <Animated.View style={[style.container,
                           this.state.type === 'ERROR' ? style.container_error : style.container_success,
-                          {top: this._top} ]}>
-                <View style={style.content}>
-                    <View style={[style.message]}>
-                      <Text style={[style.message_text]}>
-                          {this.state.message}
-                      </Text>
-                    </View>
-                </View>
+                          { top: this._top }]}
+      >
+        <View style={style.content}>
+          <View style={[style.message]}>
+            <Text style={[style.message_text]}>
+              {this.state.message}
+            </Text>
+          </View>
+        </View>
 
-            </Animated.View>
+      </Animated.View>
         )
-    }
+  }
 }
 
 const style = EStyleSheet.create({
-    container: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        height: TOASTER_HEIGHT,
-        width: '100%',
-        paddingTop: '$sizes.statusPadding',
-        zIndex: 2000
-    },
-    content: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    container_success: {
-        backgroundColor: '#777'
-    },
-    container_error: {
-        backgroundColor: 'red'
-    },
-    icon: {
-        color: '$colors.white1',
-        marginRight: 10
-    },
-    message: {
-        padding: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        flexDirection: 'row',
-    },
-    message_text: {
-        fontSize: 14,
-        color: '$colors.white1'
-    }
+  container: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: TOASTER_HEIGHT,
+    width: '100%',
+    paddingTop: '$sizes.statusPadding',
+    zIndex: 2000,
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container_success: {
+    backgroundColor: '#777',
+  },
+  container_error: {
+    backgroundColor: 'red',
+  },
+  icon: {
+    color: '$colors.white1',
+    marginRight: 10,
+  },
+  message: {
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'row',
+  },
+  message_text: {
+    fontSize: 14,
+    color: '$colors.white1',
+  },
 })

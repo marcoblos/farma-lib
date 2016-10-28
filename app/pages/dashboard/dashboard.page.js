@@ -8,7 +8,7 @@ import * as axios from 'axios'
 import { PedidoModel } from 'fa-models'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
-import FCM from 'react-native-fcm';
+import FCM from 'react-native-fcm'
 
 export class DashboardPage extends Component {
   constructor(props) {
@@ -30,83 +30,77 @@ export class DashboardPage extends Component {
   }
 
   componentDidMount() {
-    let self = this
+    const self = this
 
     StorageService.getString('Usertoken')
       .then((Usertoken) => {
-        if(Usertoken === null) {
-          this.props.navigator.resetTo({name: "auth-page"})
+        if (Usertoken === null) {
+          this.props.navigator.resetTo({ name: 'auth-page' })
         } else {
-          axios.defaults.headers.common['Usertoken'] = Usertoken
-          setTimeout( function() {
+          axios.defaults.headers.common.Usertoken = Usertoken
+          setTimeout(() => {
             self._refresh()
           }, 100)
         }
       })
 
-      Animated.timing(
+    Animated.timing(
          this.state.opacity,
-         {toValue: 1, duration: 650}
+         { toValue: 1, duration: 650 }
        ).start()
 
     StorageService.getObject('notificacoes')
     .then((response) => {
-      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes})
+      this.setState({ notificacoes: response.Notificacoes, pendentes: response.Pendentes })
     })
 
-    FCM.requestPermissions();
-    FCM.getFCMToken().then(token => {
-        console.log("token device: ", token)
-        if(token) {
-          StorageService.setString('Devicetoken', token)
-        }
-    });
+    FCM.requestPermissions()
+    FCM.getFCMToken().then((token) => {
+      console.log('token device: ', token)
+      if (token) {
+        StorageService.setString('Devicetoken', token)
+      }
+    })
     this.notificationUnsubscribe = FCM.on('notification', (notif) => {
+      console.log(notif)
 
-        console.log(notif);
+      if (notif.local_notification) {
 
-        if(notif.local_notification) {
+      }
+      if (notif.opened_from_tray) {
 
-        }
-        if(notif.opened_from_tray){
-
-        }
-    });
+      }
+    })
   }
 
   _refresh(Usertoken) {
-
-    this.setState({loading: true})
+    this.setState({ loading: true })
 
     this._accountService.retornarNotificacoes()
     .then((response) => {
-
-      this.setState({loading: false})
+      this.setState({ loading: false })
       StorageService.setObject('notificacoes', response)
-      this.setState({notificacoes: response.Notificacoes, pendentes: response.Pendentes})
-
+      this.setState({ notificacoes: response.Notificacoes, pendentes: response.Pendentes })
     }).catch((error) => {
-      this.setState({loading: false})
+      this.setState({ loading: false })
       alert('Algo deu errado. Tente novamente mais tarde.')
     })
   }
 
   _novoPedido() {
-
-    let pedido = new PedidoModel()
+    const pedido = new PedidoModel()
 
     this.props.navigator.push({
-      name: "PedidoBuscar",
+      name: 'PedidoBuscar',
       passProps: {
-        pedido: pedido
-      }
+        pedido,
+      },
     })
   }
 
   _accountPage() {
-
     this.props.navigator.push({
-      name: "AccountPage"
+      name: 'AccountPage',
     })
   }
 
@@ -115,25 +109,22 @@ export class DashboardPage extends Component {
   }
 
   _meusPedidosPage() {
-
     requestAnimationFrame(() => LoaderService.show())
 
     this._accountService.getPedidosLista()
     .then((response) => {
-
       LoaderService.hide()
 
       this.props.navigator.push({
-        name: "meus-pedidos",
+        name: 'meus-pedidos',
         passProps: {
           pedidos: response,
-          type: 'pedidos'
-        }
+          type: 'pedidos',
+        },
       })
     }).catch((error) => {
       console.error(error)
     })
-
   }
 
   _historifffco() {
@@ -142,10 +133,10 @@ export class DashboardPage extends Component {
     .then((response) => {
       LoaderService.hide()
       this.props.navigator.push({
-        name: "meus-pedidos",
+        name: 'meus-pedidos',
         passProps: {
-          pedidos: response
-        }
+          pedidos: response,
+        },
       })
     })
   }
@@ -153,141 +144,138 @@ export class DashboardPage extends Component {
   getHistoricoPedidos() {
     return [
       {
-        "IDPedido": 1,
-        "NumNotificacoes": 0,
-        "Prd": "compra",
-        "QtdCot": 1,
-        "QtdProd": 1,
-        "Status": 5
+        IDPedido: 1,
+        NumNotificacoes: 0,
+        Prd: 'compra',
+        QtdCot: 1,
+        QtdProd: 1,
+        Status: 5,
       },
       {
-        "IDPedido": 2,
-        "NumNotificacoes": 0,
-        "Prd": "compra",
-        "QtdCot": 1,
-        "QtdProd": 1,
-        "Status": 5
+        IDPedido: 2,
+        NumNotificacoes: 0,
+        Prd: 'compra',
+        QtdCot: 1,
+        QtdProd: 1,
+        Status: 5,
       },
       {
-        "IDPedido": 3,
-        "NumNotificacoes": 0,
-        "Prd": "compra",
-        "QtdCot": 1,
-        "QtdProd": 1,
-        "Status": 5
+        IDPedido: 3,
+        NumNotificacoes: 0,
+        Prd: 'compra',
+        QtdCot: 1,
+        QtdProd: 1,
+        Status: 5,
       },
       {
-        "IDPedido": 4,
-        "NumNotificacoes": 0,
-        "Prd": "compra",
-        "QtdCot": 1,
-        "QtdProd": 1,
-        "Status": 5
+        IDPedido: 4,
+        NumNotificacoes: 0,
+        Prd: 'compra',
+        QtdCot: 1,
+        QtdProd: 1,
+        Status: 5,
       },
       {
-        "IDPedido": 5,
-        "NumNotificacoes": 0,
-        "Prd": "compra",
-        "QtdCot": 1,
-        "QtdProd": 1,
-        "Status": 5
+        IDPedido: 5,
+        NumNotificacoes: 0,
+        Prd: 'compra',
+        QtdCot: 1,
+        QtdProd: 1,
+        Status: 5,
       },
     ]
   }
 
   _historico() {
-    this.pedidoService.historicoPedido().then(response => {
+    this.pedidoService.historicoPedido().then((response) => {
       console.log('Histórico de pedido: ', this.getHistoricoPedidos())
       this.props.navigator.push({
-        name: "historico-pedido",
+        name: 'historico-pedido',
         passProps: {
-          pedidos: this.getHistoricoPedidos()
-        }
+          pedidos: this.getHistoricoPedidos(),
+        },
       })
     })
     .catch((E) => {
-      console.log("CAAAAAAAAAAAAAAAAAAAAAAAAAAATCH", E)
+      console.log('CAAAAAAAAAAAAAAAAAAAAAAAAAAATCH', E)
     })
   }
 
   _notificacoes() {
-
     LoaderService.show()
 
     this._accountService.getNotificacoesLista()
     .then((response) => {
-
       LoaderService.hide()
 
       this.props.navigator.push({
-        name: "notificacoes",
+        name: 'notificacoes',
         passProps: {
-          pedidos: response
-        }
+          pedidos: response,
+        },
       })
     }).catch((error) => {
-      debugger;
+      debugger
     })
-
   }
 
   takePicture() {
-    this.refs['cam'].capture()
-      .then((data) => console.log(data))
+    this.refs.cam.capture()
+      .then(data => console.log(data))
       .catch(err => console.error(err))
   }
 
-render() {
-  return (
-    <Animated.View style={{flex: 1, opacity: this.state.opacity}}>
-    <ViewContainer style={{backgroundColor: '#e6e6e6'}}>
-      <FaHeader title='' style={{height: 118}} hideBackButton={true} />
+  render() {
+    return (
+      <Animated.View style={{ flex: 1, opacity: this.state.opacity }}>
+        <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
+          <FaHeader title="" style={{ height: 118 }} hideBackButton />
 
-      <View style={dashboard.ButtonContainer}>
-        <TouchableHighlight style={dashboard.pedidoButton} underlayColor="#e76100" onPress={() => this._novoPedido() }>
-          <Text style={dashboard.pedidoButtonText}>NOVO PEDIDO</Text>
-        </TouchableHighlight>
-      </View>
+          <View style={dashboard.ButtonContainer}>
+            <TouchableHighlight style={dashboard.pedidoButton} underlayColor="#e76100" onPress={() => this._novoPedido()}>
+              <Text style={dashboard.pedidoButtonText}>NOVO PEDIDO</Text>
+            </TouchableHighlight>
+          </View>
 
-      <View style={logo.container}>
-        <TouchableOpacity onPress={() => this._refresh()} activeOpacity={0.6} style={{paddingTop: 20}}>
-          <View style={logo.size}><Image style={logo.farma} source={require('../../assets/img/farma-logo.png')} /></View>
-        </TouchableOpacity>
-      </View>
+          <View style={logo.container}>
+            <TouchableOpacity onPress={() => this._refresh()} activeOpacity={0.6} style={{ paddingTop: 20 }}>
+              <View style={logo.size}><Image style={logo.farma} source={require('../../assets/img/farma-logo.png')} /></View>
+            </TouchableOpacity>
+          </View>
 
-      <View style={{alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
 
-        <ActivityIndicator animating={this.state.loading} size="small" style={{marginBottom: 20}} />
+            <ActivityIndicator animating={this.state.loading} size="small" style={{ marginBottom: 20 }} />
 
-        <View style={dashboard.itens}>
-          <TouchableOpacity onPress={() => this._meusPedidosPage()} activeOpacity={0.6} style={dashboard.item}>
-            <Text style={dashboard.textLarge}>{this.state.pendentes}</Text>
-            <Text>Pedidos</Text>
-            <Text>pendentes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this._notificacoes()} activeOpacity={0.6} style={dashboard.item}>
-            <Text style={dashboard.textLarge}>{this.state.notificacoes}</Text>
-            <Text>Novas</Text>
-            <Text>notificações</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+            <View style={dashboard.itens}>
+              <TouchableOpacity onPress={() => this._meusPedidosPage()} activeOpacity={0.6} style={dashboard.item}>
+                <Text style={dashboard.textLarge}>{this.state.pendentes}</Text>
+                <Text>Pedidos</Text>
+                <Text>pendentes</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this._notificacoes()} activeOpacity={0.6} style={dashboard.item}>
+                <Text style={dashboard.textLarge}>{this.state.notificacoes}</Text>
+                <Text>Novas</Text>
+                <Text>notificações</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
 
-      <View style={{flexDirection: 'row', backgroundColor: '#888', paddingTop: 1}}>
-        <TouchableOpacity onPress={() => this._accountPage()} activeOpacity={0.3} style={dashboard.bottomItem}>
-          <Icon style={dashboard.icon} name='account-circle' />
-          <Text style={dashboard.bottomItemText}>Minha conta</Text>
-        </TouchableOpacity>
-        <View style={{width: 1}}></View>
-        <TouchableOpacity onPress={() => this._historico()} activeOpacity={0.3} style={dashboard.bottomItem}>
-          <Icon style={dashboard.icon} name='watch-later' />
-          <Text style={dashboard.bottomItemText}>HIstórico</Text>
-        </TouchableOpacity>
-      </View>
+          <View style={{ flexDirection: 'row', backgroundColor: '#888', paddingTop: 1 }}>
+            <TouchableOpacity onPress={() => this._accountPage()} activeOpacity={0.3} style={dashboard.bottomItem}>
+              <Icon style={dashboard.icon} name="account-circle" />
+              <Text style={dashboard.bottomItemText}>Minha conta</Text>
+            </TouchableOpacity>
+            <View style={{ width: 1 }} />
+            <TouchableOpacity onPress={() => this._historico()} activeOpacity={0.3} style={dashboard.bottomItem}>
+              <Icon style={dashboard.icon} name="watch-later" />
+              <Text style={dashboard.bottomItemText}>HIstórico</Text>
+            </TouchableOpacity>
+          </View>
 
-    </ViewContainer>
-  </Animated.View>
-  )}
+        </ViewContainer>
+      </Animated.View>
+  ) }
 }
 
 const logo = EStyleSheet.create({
@@ -295,24 +283,24 @@ const logo = EStyleSheet.create({
     width: '100%',
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   farma: {
     flex: 1,
     resizeMode: 'contain',
     width: null,
-    height: null
+    height: null,
   },
   size: {
     width: '75%',
-    height: '27%'
-  }
+    height: '27%',
+  },
 })
 
 const dashboard = EStyleSheet.create({
   ButtonContainer: {
     alignItems: 'center',
-    marginTop: -25
+    marginTop: -25,
   },
   pedidoButton: {
     backgroundColor: '$colors.primary',
@@ -320,15 +308,15 @@ const dashboard = EStyleSheet.create({
     height: 50,
     borderRadius: 60,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   pedidoButtonText: {
     fontWeight: 'bold',
     fontSize: 16,
-    color: '$colors.white1'
+    color: '$colors.white1',
   },
   itens: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   item: {
     flex: 1,
@@ -339,11 +327,11 @@ const dashboard = EStyleSheet.create({
     borderColor: '#ccc',
     paddingTop: 20,
     paddingBottom: 20,
-    marginRight: -1
+    marginRight: -1,
   },
   textLarge: {
     fontSize: 60,
-    color: '#555'
+    color: '#555',
   },
   bottomItem: {
     flexDirection: 'row',
@@ -353,15 +341,15 @@ const dashboard = EStyleSheet.create({
     height: 50,
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   bottomItemText: {
-    color: 'white'
+    color: 'white',
   },
   icon: {
     color: 'rgba(255,255,255,0.7)',
     fontSize: 30,
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 
 })

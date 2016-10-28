@@ -5,32 +5,31 @@ import { AccountService, LoaderService } from 'fa-services'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Picker from 'react-native-picker'
 
-const {height, width} = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 
-const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.IDPedido !== r2.IDPedido});
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.IDPedido !== r2.IDPedido })
 
 export class HistoricoPedidoPage extends Component {
   constructor(props) {
     super(props)
     this.accountService = new AccountService()
-    
     this.state = {
-      dataSource: ds.cloneWithRows([])
+      dataSource: ds.cloneWithRows([]),
     }
   }
 
   componentDidMount() {
     debugger
-    if(this.props.pedidos) {
-      this.setState({pedidos: this.props.pedidos})
-      this.setState({dataSource: ds.cloneWithRows(this.props.pedidos)})
+    if (this.props.pedidos) {
+      this.setState({ pedidos: this.props.pedidos })
+      this.setState({ dataSource: ds.cloneWithRows(this.props.pedidos) })
     }
   }
 
   _detalharPedido(idPedido, status) {
     let page = 'pedido-finalizado',
       data = {
-        IDPedido: idPedido
+        IDPedido: idPedido,
       }
     requestAnimationFrame(() => LoaderService.show())
     this.accountService.getPedido(data)
@@ -39,8 +38,8 @@ export class HistoricoPedidoPage extends Component {
         this.props.navigator.push({
           name: page,
           passProps: {
-            pedido: response
-          }
+            pedido: response,
+          },
         })
       })
       .catch((error) => {
@@ -50,42 +49,41 @@ export class HistoricoPedidoPage extends Component {
       })
   }
 
-
   _renderRow(p, index) {
-    let title = `Pedido nº ${p.IDPedido}`
-    let product = 'Olá'
+    const title = `Pedido nº ${p.IDPedido}`
+    const product = 'Olá'
     return (
       <FaProduct key={index} title={title} product={product} status={p.Status} onPress={() => this._detalharPedido(p.IDPedido, p.Status)} />
     )
   }
 
   _renderPage() {
-    if(this.props.pedidos.length > 0) {
+    if (this.props.pedidos.length > 0) {
       return (
         <ListView
-        dataSource = {this.state.dataSource}
-        renderRow = {(p, index) => this._renderRow(p, index)}
+          dataSource={this.state.dataSource}
+          renderRow={(p, index) => this._renderRow(p, index)}
         />
       )
-      } else {
-        return (
-          <View style={{flex: 1}}>
-          <FaMessage icon='inbox' title='Sem pedidos :(' text='Você não tem pedidos. Faça um pedido e receba as melhores ofertas! :)' />
-          <FaButton label='NOVO PEDIDO' type='primary' size='lg' style={{borderRadius: 0}} />
-          </View>
+    } else {
+      return (
+        <View style={{ flex: 1 }}>
+          <FaMessage icon="inbox" title="Sem pedidos :(" text="Você não tem pedidos. Faça um pedido e receba as melhores ofertas! :)" />
+          <FaButton label="NOVO PEDIDO" type="primary" size="lg" style={{ borderRadius: 0 }} />
+        </View>
         )
-      }
     }
+  }
 
   render() {
-      return (
-        <ViewContainer>
+    return (
+      <ViewContainer>
 
-            <FaHeader title='Histórico de pedidos' onGoBack={() => this.props.navigator.pop()} />
+        <FaHeader title="Histórico de pedidos" onGoBack={() => this.props.navigator.pop()} />
 
-              {this._renderPage()}
+        {this._renderPage()}
 
-        </ViewContainer>
+      </ViewContainer>
       )
   }
 }

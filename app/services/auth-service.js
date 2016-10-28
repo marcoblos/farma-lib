@@ -1,6 +1,6 @@
-import {HttpService} from './http-service'
+import { HttpService } from './http-service'
 
-import {UserModel, LoginModel} from 'fa-models'
+import { UserModel, LoginModel } from 'fa-models'
 
 export class AuthService {
   constructor() {
@@ -23,9 +23,8 @@ class UserService {
   }
 
   createUser(user) {
-
-    let settings = new HttpRequestSettingsModel({
-      contentType: 'application/x-www-form-urlencoded'
+    const settings = new HttpRequestSettingsModel({
+      contentType: 'application/x-www-form-urlencoded',
     })
 
     return this._httpService.post('/customers/current/addresses', data, settings)
@@ -35,13 +34,12 @@ class UserService {
       .catch((error) => {
         throw new ErrorModel({
           message: 'Não foi possível criar o endereço.',
-          error: error
+          error,
         })
       })
   }
 
   doLogin(data) {
-
     return this._httpService.post('/DoLogin', data)
       .then((response) => {
         return response
@@ -52,13 +50,12 @@ class UserService {
   }
 
   _convertToUserModel(response) {
-
     return new UserModel({
       name: response.name,
       email: response.email,
       password: response.password,
       phone: response.phone,
-      cpf: response.cpf
+      cpf: response.cpf,
     })
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage} from 'fa-components'
+import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage } from 'fa-components'
 
 const window = Dimensions.get('window')
 
@@ -17,13 +17,15 @@ const renderPagination = (index, total, context) => {
     <View style={{
       position: 'absolute',
       bottom: -25,
-      right: 10
-    }}>
+      right: 10,
+    }}
+    >
       <Text>
         <Text style={{
           color: '#007aff',
-          fontSize: 20
-        }}>{index + 1}</Text>/{total}
+          fontSize: 20,
+        }}
+        >{index + 1}</Text>/{total}
       </Text>
     </View>
   )
@@ -31,38 +33,37 @@ const renderPagination = (index, total, context) => {
 
 export class CotacoesEntregaPage extends Component {
   constructor(props) {
-      super(props)
+    super(props)
 
-      this.state = {
-        showErrors: false,
-        visible: false,
-        page: 0,
-        modalVisible: false
-      }
+    this.state = {
+      showErrors: false,
+      visible: false,
+      page: 0,
+      modalVisible: false,
+    }
   }
 
   _meusDadosPage() {
     this.props.navigator.push({
-        name: 'meus-dados'
+      name: 'meus-dados',
     })
   }
 
   _meusEnderecosPage() {
     this.props.navigator.push({
-        name: 'meus-enderecos'
+      name: 'meus-enderecos',
     })
   }
 
   _meusPedidosPage() {
     this.props.navigator.push({
-        name: 'meus-pedidos'
+      name: 'meus-pedidos',
     })
   }
 
   _logout() {
-
     this.props.navigator.resetTo({
-        name: 'login-page'
+      name: 'login-page',
     })
   }
 
@@ -73,81 +74,81 @@ export class CotacoesEntregaPage extends Component {
   }
 
   onMomentumScrollEnd(e, state, context) {
-    this.setState({page: context.state.index})
+    this.setState({ page: context.state.index })
     console.log(context.state.index)
   }
 
   _renderInfo() {
-    if(this.state.page === 0) {
+    if (this.state.page === 0) {
       return (
-        <View style={[{padding: 20}]}>
+        <View style={[{ padding: 20 }]}>
 
-          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
-            <View style={{flex: 1}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10 }}>
+            <View style={{ flex: 1 }}>
               <Text>Paracetamol</Text>
-              <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
+              <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
             </View>
-            <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>R$ 29,90</Text>
-            </View>
-          </View>
-          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
-            <View style={{flex: 1}}>
-              <Text>Fralda <Text style={{color: '#999'}}>Pampers tamanho G</Text></Text>
-              <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
-            </View>
-            <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>R$ 12,32</Text>
+            <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+              <Text style={{ fontWeight: 'bold' }}>R$ 29,90</Text>
             </View>
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View style={{flex: 1}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10 }}>
+            <View style={{ flex: 1 }}>
+              <Text>Fralda <Text style={{ color: '#999' }}>Pampers tamanho G</Text></Text>
+              <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
+            </View>
+            <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+              <Text style={{ fontWeight: 'bold' }}>R$ 12,32</Text>
+            </View>
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flex: 1 }}>
               <Text>Dorflex</Text>
-              <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
+              <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
             </View>
             <View>
-              <Icon name='photo-camera' style={{color: '#999'}} size={20} />
+              <Icon name="photo-camera" style={{ color: '#999' }} size={20} />
             </View>
-            <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>R$ 9,50</Text>
+            <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+              <Text style={{ fontWeight: 'bold' }}>R$ 9,50</Text>
             </View>
           </View>
         </View>
       )
     }
 
-    if(this.state.page === 1) {
+    if (this.state.page === 1) {
       return (
-        <View style={[{padding: 20}]}>
+        <View style={[{ padding: 20 }]}>
 
-          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
-            <View style={{flex: 1}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10 }}>
+            <View style={{ flex: 1 }}>
               <Text>Paracetamol</Text>
-              <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
+              <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
             </View>
-            <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>R$ 27,40</Text>
-            </View>
-          </View>
-          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
-            <View style={{flex: 1}}>
-              <Text>Fralda <Text style={{color: '#999'}}>Pampers tamanho G</Text></Text>
-              <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
-            </View>
-            <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>R$ 8,15</Text>
+            <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+              <Text style={{ fontWeight: 'bold' }}>R$ 27,40</Text>
             </View>
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View style={{flex: 1}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10 }}>
+            <View style={{ flex: 1 }}>
+              <Text>Fralda <Text style={{ color: '#999' }}>Pampers tamanho G</Text></Text>
+              <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
+            </View>
+            <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+              <Text style={{ fontWeight: 'bold' }}>R$ 8,15</Text>
+            </View>
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flex: 1 }}>
               <Text>Dorflex</Text>
-              <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
+              <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
             </View>
             <View>
-              <Icon name='photo-camera' style={{color: '#999'}} size={20} />
+              <Icon name="photo-camera" style={{ color: '#999' }} size={20} />
             </View>
-            <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-              <Text style={{fontWeight: 'bold'}}>R$ 12,22</Text>
+            <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+              <Text style={{ fontWeight: 'bold' }}>R$ 12,22</Text>
             </View>
           </View>
         </View>
@@ -156,152 +157,152 @@ export class CotacoesEntregaPage extends Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible})
+    this.setState({ modalVisible: visible })
   }
 
   render() {
     return (
       <ViewContainer>
 
-          <FaHeader title='Pedido nº 29' onGoBack={() => this.props.navigator.pop()} />
+        <FaHeader title="Pedido nº 29" onGoBack={() => this.props.navigator.pop()} />
 
 
-      <ScrollView>
+        <ScrollView>
 
-        <View style={{flexDirection: 'row', alignItems: 'center', paddingLeft: 15, backgroundColor: '#6ad776' }}>
-          <Icon name='motorcycle' style={{fontSize: 45, color: 'rgba(255,255,255,0.7)'}} />
-          <View style={{flex: 1, padding: 15, paddingTop: 20, paddingBottom: 20, color: 'white'}}>
-            <Text style={{color: 'white'}}>Entrega em andamento!</Text>
-            <Text style={{color: 'white'}}>Em breve chegará ao destino.</Text>
-          </View>
-        </View>
-
-
-        <View style={{backgroundColor: 'white', padding: 20}}>
-
-          <FaPageTitle paddingBottom={20} title='Pedido nº 29' subTitle='Saiu para entrega.' />
-
-          <View style={{flexDirection: 'row'}}>
-            <View style={{flex: 2}}>
-              <FaInfo icon='event' label='Data do pedido' value='30/10/2016' />
-            </View>
-            <View style={{flex: 1}}>
-              <FaInfo icon='access-time' label='Horário' value='22:10' />
-            </View>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <View style={{flex: 2}}>
-              <FaInfo icon='store' label='Farmácia' value='Agafarma' />
-            </View>
-            <View style={{flex: 1}}>
-              <FaInfo label='Tele' value='R$ 2,90' />
-            </View>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <View style={{flex: 2}}>
-              <FaInfo icon='access-time' last={true} label='Tempo de entrega' value='0h 30min' />
-            </View>
-
-            <View style={{flex: 1}}>
-              <FaInfo label='Total' last={true} value='R$ 12,90' />
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 15, backgroundColor: '#6ad776' }}>
+            <Icon name="motorcycle" style={{ fontSize: 45, color: 'rgba(255,255,255,0.7)' }} />
+            <View style={{ flex: 1, padding: 15, paddingTop: 20, paddingBottom: 20, color: 'white' }}>
+              <Text style={{ color: 'white' }}>Entrega em andamento!</Text>
+              <Text style={{ color: 'white' }}>Em breve chegará ao destino.</Text>
             </View>
           </View>
 
 
-          <View>
+          <View style={{ backgroundColor: 'white', padding: 20 }}>
 
-            <View style={{paddingTop: 7, paddingBottom: 7, borderBottomWidth: 1, borderTopWidth: 1, borderColor: 'rgba(0,0,0,0.1)', marginTop: 40, marginBottom: 20}}>
-              <Text style={{color: '#999', fontWeight: 'bold'}}>PRODUTOS</Text>
-            </View>
+            <FaPageTitle paddingBottom={20} title="Pedido nº 29" subTitle="Saiu para entrega." />
 
-            <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
-              <View style={{flex: 1}}>
-                <Text>Paracetamol</Text>
-                <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ flex: 2 }}>
+                <FaInfo icon="event" label="Data do pedido" value="30/10/2016" />
               </View>
-              <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-                <Text style={{fontWeight: 'bold'}}>R$ 12,22</Text>
-              </View>
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10}}>
-              <View style={{flex: 1}}>
-                <Text>Fralda <Text style={{color: '#999'}}>Pampers tamanho G</Text></Text>
-                <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
-              </View>
-              <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-                <Text style={{fontWeight: 'bold'}}>R$ 12,22</Text>
-              </View>
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <View style={{flex: 1}}>
-                <Text>Dorflex</Text>
-                <Text style={{color: 'rgba(0,0,0,0.6)', paddingTop: 3}}>02 Caixas</Text>
-              </View>
-              <View>
-                <Icon name='photo-camera' style={{color: '#999'}} size={20} />
-              </View>
-              <View style={{width: 90, paddingRight: 15, alignItems: 'flex-end'}}>
-                <Text style={{fontWeight: 'bold'}}>R$ 12,22</Text>
+              <View style={{ flex: 1 }}>
+                <FaInfo icon="access-time" label="Horário" value="22:10" />
               </View>
             </View>
 
-            <View style={{paddingTop: 30}}>
-              <FaButton label='PEDIDO ENTREGUE' type='success' size='md' onPress={() => this.setModalVisible(true) } />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ flex: 2 }}>
+                <FaInfo icon="store" label="Farmácia" value="Agafarma" />
+              </View>
+              <View style={{ flex: 1 }}>
+                <FaInfo label="Tele" value="R$ 2,90" />
+              </View>
             </View>
+
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ flex: 2 }}>
+                <FaInfo icon="access-time" last label="Tempo de entrega" value="0h 30min" />
+              </View>
+
+              <View style={{ flex: 1 }}>
+                <FaInfo label="Total" last value="R$ 12,90" />
+              </View>
+            </View>
+
+
+            <View>
+
+              <View style={{ paddingTop: 7, paddingBottom: 7, borderBottomWidth: 1, borderTopWidth: 1, borderColor: 'rgba(0,0,0,0.1)', marginTop: 40, marginBottom: 20 }}>
+                <Text style={{ color: '#999', fontWeight: 'bold' }}>PRODUTOS</Text>
+              </View>
+
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10 }}>
+                <View style={{ flex: 1 }}>
+                  <Text>Paracetamol</Text>
+                  <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
+                </View>
+                <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+                  <Text style={{ fontWeight: 'bold' }}>R$ 12,22</Text>
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, borderBottomWidth: 1, borderColor: 'rgba(0,0,0,0.05)', paddingBottom: 10 }}>
+                <View style={{ flex: 1 }}>
+                  <Text>Fralda <Text style={{ color: '#999' }}>Pampers tamanho G</Text></Text>
+                  <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
+                </View>
+                <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+                  <Text style={{ fontWeight: 'bold' }}>R$ 12,22</Text>
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ flex: 1 }}>
+                  <Text>Dorflex</Text>
+                  <Text style={{ color: 'rgba(0,0,0,0.6)', paddingTop: 3 }}>02 Caixas</Text>
+                </View>
+                <View>
+                  <Icon name="photo-camera" style={{ color: '#999' }} size={20} />
+                </View>
+                <View style={{ width: 90, paddingRight: 15, alignItems: 'flex-end' }}>
+                  <Text style={{ fontWeight: 'bold' }}>R$ 12,22</Text>
+                </View>
+              </View>
+
+              <View style={{ paddingTop: 30 }}>
+                <FaButton label="PEDIDO ENTREGUE" type="success" size="md" onPress={() => this.setModalVisible(true)} />
+              </View>
+            </View>
+
           </View>
-
-        </View>
-      </ScrollView>
+        </ScrollView>
 
         <Modal
-          animationType={"slide"}
-          transparent={true}
+          animationType={'slide'}
+          transparent
           visible={this.state.modalVisible}
-          >
-          <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'flex-start'}}>
+        >
+          <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-start' }}>
 
-            <FaModalHeader title='Detalhe da cotação' onClose={() => this.setModalVisible(false)} />
+            <FaModalHeader title="Detalhe da cotação" onClose={() => this.setModalVisible(false)} />
 
-              <ScrollView keyboardShouldPersistTaps={true}>
+            <ScrollView keyboardShouldPersistTaps>
 
-                <View style={{backgroundColor: 'white', padding: 20, paddingBottom: 50}}>
+              <View style={{ backgroundColor: 'white', padding: 20, paddingBottom: 50 }}>
 
-                  <FaPageTitle title='Complete os dados' paddingBottom={30} subTitle='Complete as informações para aceitar a cotação.' />
+                <FaPageTitle title="Complete os dados" paddingBottom={30} subTitle="Complete as informações para aceitar a cotação." />
 
-                  <FaInput label='Troco para quanto?' ref='nome' value='' required={true} showErrors={this.state.showErrors} />
-                  <FaInput label='Quem vai receber?' ref='nome' value='' required={true} showErrors={this.state.showErrors} />
-                  <FaInput label='Celular' ref='nome' value='' required={true} showErrors={this.state.showErrors} />
+                <FaInput label="Troco para quanto?" ref="nome" value="" required showErrors={this.state.showErrors} />
+                <FaInput label="Quem vai receber?" ref="nome" value="" required showErrors={this.state.showErrors} />
+                <FaInput label="Celular" ref="nome" value="" required showErrors={this.state.showErrors} />
 
-                    <View style={{paddingTop: 30}}>
-                      <View style={{flexDirection: 'row'}}>
-                        <View style={{flex: 2}}>
-                          <FaInfo icon='store' label='Farmácia' value='Agafarma' />
-                        </View>
-                        <View style={{flex: 1}}>
-                          <FaInfo label='Tele' value='R$ 2,90' />
-                        </View>
-                      </View>
+                <View style={{ paddingTop: 30 }}>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 2 }}>
+                      <FaInfo icon="store" label="Farmácia" value="Agafarma" />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <FaInfo label="Tele" value="R$ 2,90" />
+                    </View>
+                  </View>
 
-                      <View style={{flexDirection: 'row'}}>
-                        <View style={{flex: 2}}>
-                          <FaInfo icon='access-time' last={true} label='Tempo de entrega' value='0h 30min' />
-                        </View>
-
-                        <View style={{flex: 1}}>
-                          <FaInfo label='Total' last={true} value='R$ 12,90' />
-                        </View>
-                      </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flex: 2 }}>
+                      <FaInfo icon="access-time" last label="Tempo de entrega" value="0h 30min" />
                     </View>
 
+                    <View style={{ flex: 1 }}>
+                      <FaInfo label="Total" last value="R$ 12,90" />
+                    </View>
+                  </View>
                 </View>
 
+              </View>
 
-              </ScrollView>
 
-            <View style={{padding: 12}}>
-              <FaButton label='ACEITAR' type='primary' onPress={() => this._validar() } />
+            </ScrollView>
+
+            <View style={{ padding: 12 }}>
+              <FaButton label="ACEITAR" type="primary" onPress={() => this._validar()} />
             </View>
 
             <KeyboardSpacer />
@@ -317,8 +318,7 @@ export class CotacoesEntregaPage extends Component {
 }
 
 
-
-var styles = EStyleSheet.create({
+const styles = EStyleSheet.create({
   headerTop: {
     backgroundColor: '#80be5d',
     height: 200,
@@ -326,12 +326,12 @@ var styles = EStyleSheet.create({
     left: 0,
     right: 0,
     position: 'absolute',
-    zIndex: -1
+    zIndex: -1,
   },
   header: {
     paddingBottom: 20,
     marginBottom: -140,
-    zIndex: 10
+    zIndex: 10,
   },
 
   wrapper: {
@@ -348,25 +348,25 @@ var styles = EStyleSheet.create({
     borderWidth: 1,
     borderBottomWidth: 3,
     borderColor: '$colors.gray2',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   slide1: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   slide2: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#97CAE5'
+    backgroundColor: '#97CAE5',
   },
   slide3: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#92BBD9'
+    backgroundColor: '#92BBD9',
   },
   text: {
     color: 'red',
@@ -376,8 +376,8 @@ var styles = EStyleSheet.create({
 
 
   container: {
-    padding: '$sm'
-  }
+    padding: '$sm',
+  },
 })
 
 const perfil = EStyleSheet.create({
@@ -387,7 +387,7 @@ const perfil = EStyleSheet.create({
     marginBottom: 30,
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: '$colors.gray2'
+    borderColor: '$colors.gray2',
   },
   photoImage: {
     resizeMode: 'contain',
@@ -395,11 +395,11 @@ const perfil = EStyleSheet.create({
     height: 120,
     borderRadius: 60,
     borderWidth: 1,
-    borderColor: '$colors.gray2'
+    borderColor: '$colors.gray2',
   },
   nameText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '$colors.black2'
-  }
+    color: '$colors.black2',
+  },
 })
