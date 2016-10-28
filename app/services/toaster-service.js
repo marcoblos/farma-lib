@@ -22,8 +22,6 @@ const MESSAGE_TYPES = {
   ERROR: 'ERROR',
 }
 
-const EMPTY_FUNCTION = function () { }
-
 export class ToasterService {
   static registerListener(listener) {
     global.toasterStore.subscribe(() => {

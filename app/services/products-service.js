@@ -1,5 +1,5 @@
 import { HttpService } from './http-service'
-import { ProductDetailModel } from 'sz-models'
+import { ProductDetailModel } from 'fa-models'
 
 export class ProductsService {
   constructor() {
@@ -8,21 +8,21 @@ export class ProductsService {
 
   getProductDetail(id) {
     return this.httpService.get(`/product-detail/${id}`)
-      .then((response) => {
-        return this._convertToProductDetail(response)
+      .then(response => {
+        return this.convertToProductDetail(response)
       })
   }
 
   getProductList(page = 1) {
     return this.httpService.get(`/product-list/${page}`)
-      .then((response) => {
-        return response.map((p) => {
-          return this._convertToProductDetail(p)
+      .then(response => {
+        return response.map(p => {
+          return this.convertToProductDetail(p)
         })
       })
   }
 
-  _convertToProductDetail(responseData) {
+  convertToProductDetail(responseData) {
     const productDetail = new ProductDetailModel()
     productDetail.id = Number(responseData.id)
     productDetail.name = responseData.name

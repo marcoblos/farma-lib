@@ -2,23 +2,8 @@ import { Dimensions } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 const {
-  height,
   width,
 } = Dimensions.get('window')
-
-const RESPONSIVE_IMAGE = {
-  flex: 1,
-  resizeMode: 'contain',
-  width: null,
-  height: null,
-}
-
-const COVER_IMAGE = {
-  flex: 1,
-  resizeMode: 'cover',
-  width: null,
-  height: null,
-}
 
 module.exports = EStyleSheet.create({
 

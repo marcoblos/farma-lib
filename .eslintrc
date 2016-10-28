@@ -1,7 +1,26 @@
 {
+  "plugins": [
+    "babel"
+  ],
   "extends": "airbnb",
   "rules": {
     "linebreak-style": "off",
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "import/prefer-default-export": "off",
+    "arrow-parens": "off",
+    "arrow-body-style": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/imports-first": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "babel/generator-star-spacing": 1,
+    "babel/new-cap": 1,
+    "babel/array-bracket-spacing": 1,
+    "babel/object-curly-spacing": 1,
+    "babel/object-shorthand": 1,
+    "babel/arrow-parens": 1,
+    "babel/no-await-in-loop": 1,
+    "babel/flow-object-type": 1,
+    "babel/func-params-comma-dangle": 1
   }
 }
