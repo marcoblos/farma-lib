@@ -51,7 +51,7 @@ export class LoginPage extends Component {
     ]
 
     this.valid = true
-    campos.forEach(campo => this._isFormValid(campo))
+    campos.forEach((campo) => this._isFormValid(campo))
 
     if (this.valid) {
       const data = {

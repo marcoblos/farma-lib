@@ -122,7 +122,7 @@ export class PedidoBuscar extends Component {
             autoCorrect={false}
             autoCapitalize={'none'}
             placeholder="Digite o nome do produto"
-            onChangeText={text => this._buscar({ text })}
+            onChangeText={(text) => this._buscar({ text })}
             underlineColorAndroid={'transparent'}
           />
         </View>
@@ -136,7 +136,7 @@ export class PedidoBuscar extends Component {
           dataSource={this.state.productsDataSource}
           style={[this.state.isLoading ? { top: -900 } : {}]}
           renderRow={
-                       rowData => (
+                       (rowData) => (
                          <TouchableOpacity onPress={() => this.selectProduct(rowData.Nome)} style={poc.row}>
                            <Text>{rowData.Nome}</Text>
                          </TouchableOpacity>

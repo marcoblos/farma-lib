@@ -80,25 +80,25 @@ export class EnderecoPage extends Component {
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 2, paddingRight: 15 }}>
-                <FaInput label="CEP" ref="cep" value={this.state.cep} onChange={text => this.setState({ cep: text })} required showErrors={this.state.showErrors} />
+                <FaInput label="CEP" ref="cep" value={this.state.cep} onChange={(text) => this.setState({ cep: text })} required showErrors={this.state.showErrors} />
               </View>
               <View style={{ flex: 1 }} />
             </View>
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 2, paddingRight: 15 }}>
-                <FaInput label="Rua" ref="rua" value={this.state.rua} onChange={text => this.setState({ rua: text })} required showErrors={this.state.showErrors} />
+                <FaInput label="Rua" ref="rua" value={this.state.rua} onChange={(text) => this.setState({ rua: text })} required showErrors={this.state.showErrors} />
               </View>
               <View style={{ flex: 1, paddingLeft: 15 }}>
-                <FaInput label="Número" ref="numero" value={this.state.numero} onChange={text => this.setState({ numero: text })} required showErrors={this.state.showErrors} />
+                <FaInput label="Número" ref="numero" value={this.state.numero} onChange={(text) => this.setState({ numero: text })} required showErrors={this.state.showErrors} />
               </View>
             </View>
 
-            <FaInput label="Cidade" ref="cidade" value={this.state.cidade} onChange={text => this.setState({ cidade: text })} required showErrors={this.state.showErrors} />
+            <FaInput label="Cidade" ref="cidade" value={this.state.cidade} onChange={(text) => this.setState({ cidade: text })} required showErrors={this.state.showErrors} />
 
-            <FaInput label="Estado" ref="uf" value={this.state.uf} onChange={text => this.setState({ uf: text })} required showErrors={this.state.showErrors} />
+            <FaInput label="Estado" ref="uf" value={this.state.uf} onChange={(text) => this.setState({ uf: text })} required showErrors={this.state.showErrors} />
 
-            <FaInput label="Complemento" ref="complemento" value={this.state.complemento} onChange={text => this.setState({ complemento: text })} required showErrors={this.state.showErrors} />
+            <FaInput label="Complemento" ref="complemento" value={this.state.complemento} onChange={(text) => this.setState({ complemento: text })} required showErrors={this.state.showErrors} />
 
             <FaButton style={{ marginTop: 20 }} label="APAGAR ENDEREÇO" type="ternary" onPress={() => this._alertRemoverEndereco()} />
           </View>

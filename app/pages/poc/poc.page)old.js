@@ -79,7 +79,7 @@ export class PocPage extends Component {
       }, 1000)
 
       self.setState({ photos: a })
-    }).progress(e => this.teste(e))
+    }).progress((e) => this.teste(e))
   }
 
   selectPhotoTapped() {

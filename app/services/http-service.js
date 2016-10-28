@@ -5,25 +5,40 @@ import { StorageService } from 'fa-services'
 
 const DEFAULT_SETTINGS = new HttpRequestSettingsModel()
 
+class UrlRequestResolver {
+  constructor(url, settings) {
+    this.apiUrl = ConfigSettings.apiUrl()
+    this.url = url
+    this.settings = settings || DEFAULT_SETTINGS
+  }
+
+  resolve() {
+    if (this.settings.useRawUrl) {
+      return this.url
+    }
+    return `${this.apiUrl}${this.url}`
+  }
+}
+
 export class HttpService {
 
   get(url, data, settings) {
     const resolvedUrl = new UrlRequestResolver(url, settings).resolve()
     return axios.get(resolvedUrl)
-          .then((response) => {
+          .then(response => {
             return response.data
-          }).catch((error) => {
-            console.log(error)
+          }).catch(error => {
+            console.error(error)
           })
   }
 
   post(url, data, settings) {
     const resolvedUrl = new UrlRequestResolver(url, settings).resolve()
     return axios.post(resolvedUrl, data, settings)
-        .then((response) => {
+        .then(response => {
           return response.data
-        }).catch((error) => {
-          console.log(error)
+        }).catch(error => {
+          console.error(error)
         })
   }
 
@@ -34,27 +49,9 @@ export class HttpService {
 
     if (response.status >= 200 && response.status < 300) {
       return response
-    } else {
-      const error = new Error(response.statusText)
-      error.response = response
-      throw error
     }
-  }
-}
-
-class UrlRequestResolver {
-  constructor(url, settings) {
-    this._apiUrl = ConfigSettings.apiUrl()
-    this._url = url
-    this._settings = settings || DEFAULT_SETTINGS
-  }
-
-  resolve() {
-    if (this._settings.useRawUrl) {
-      return this._url
-    }
-    else {
-      return `${this._apiUrl}${this._url}`
-    }
+    const error = new Error(response.statusText)
+    error.response = response
+    throw error
   }
 }

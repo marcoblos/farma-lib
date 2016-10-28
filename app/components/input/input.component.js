@@ -118,7 +118,7 @@ export class FaInput extends Component {
       this._validateEmail.bind(this),
     ]
 
-    validations.forEach(v => v())
+    validations.forEach((v) => v())
   }
 
   _validateRequired() {
@@ -230,8 +230,8 @@ export class FaInput extends Component {
           secureTextEntry={this.state.showPassword ? false : this.props.password || false}
           autoCapitalize={this.props.type === 'email-address' ? 'none' : 'sentences'}
           onFocus={() => this._activeGroup()}
-          onSubmitEditing={event => this._onSubmitEditing(event)}
-          onChangeText={text => this._change({ text })}
+          onSubmitEditing={(event) => this._onSubmitEditing(event)}
+          onChangeText={(text) => this._change({ text })}
           onBlur={() => this._blur()}
           value={this.state.text}
           underlineColorAndroid={'transparent'}
@@ -248,8 +248,8 @@ export class FaInput extends Component {
           autoCapitalize={this.props.type === 'email-address' ? 'none' : 'sentences'}
           keyboardType={this.props.type || 'default'}
           onFocus={() => this._activeGroup()}
-          onSubmitEditing={event => this._onSubmitEditing(event)}
-          onChangeText={text => this._change({ text })}
+          onSubmitEditing={(event) => this._onSubmitEditing(event)}
+          onChangeText={(text) => this._change({ text })}
           onBlur={() => this._blur()}
           value={this.state.text}
           underlineColorAndroid={'transparent'}

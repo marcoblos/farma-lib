@@ -221,8 +221,8 @@ export class DashboardPage extends Component {
 
   takePicture() {
     this.refs.cam.capture()
-      .then(data => console.log(data))
-      .catch(err => console.error(err))
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err))
   }
 
   render() {

@@ -64,7 +64,7 @@ export class FaSelectModal extends Component {
               {this.state.data.map((item, index) => {
                 return (
                   <ScrollView key={index} style={{ flex: 1, padding: 10 }}>
-                    <FaRadioList options={item.values} onSelected={selected => this._onSelected(selected)} />
+                    <FaRadioList options={item.values} onSelected={(selected) => this._onSelected(selected)} />
                   </ScrollView>
               )
               })}

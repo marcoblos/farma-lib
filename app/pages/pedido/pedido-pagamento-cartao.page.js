@@ -146,7 +146,7 @@ export class PedidoPagamentoCartaoPage extends Component {
             <Text style={{ fontWeight: 'bold', paddingBottom: 20, fontSize: 20, color: 'white' }}>{this._renderQuantidadeSelecionada()}</Text>
 
             <View style={{ paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 100 }}>
-              <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={selected => this._onSelectedQuantidade(selected)} />
+              <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={(selected) => this._onSelectedQuantidade(selected)} />
 
             </View>
 

@@ -29,7 +29,7 @@ export class FaToaster extends Component {
 
     this._top = new Animated.Value(-TOASTER_HEIGHT)
 
-    ToasterService.registerListener(data => this._onRequestMessage(data))
+    ToasterService.registerListener((data) => this._onRequestMessage(data))
   }
 
   _onRequestMessage(data) {

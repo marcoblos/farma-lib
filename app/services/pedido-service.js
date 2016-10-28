@@ -7,24 +7,23 @@ export class PedidoService {
 
   realizarPedido(data) {
     return this.httpService.post('/FinalizarPedido', data)
-    .then((response) => {
+    .then(response => {
       return response
-    }).catch((error) => {
-      debugger
+    }).catch(error => {
       return error
     })
   }
 
   historicoPedido() {
     return this.httpService.get('/RetornaPedidosFinalizados')
-    .then((response) => {
+    .then(response => {
       return response
     })
   }
 
   getProducts(text) {
     return this.httpService.get(`/RetornaRemedios/?query=${text}`)
-    .then((response) => {
+    .then(response => {
       return response
     })
   }

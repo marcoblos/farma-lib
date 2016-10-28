@@ -188,7 +188,7 @@ export class PedidoPagamentoPage extends Component {
   _renderCartoes() {
     return (
       <View style={[s.padding, styles.boxMs]}>
-        <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={selected => this._onSelectedQuantidade(selected)} />
+        <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={(selected) => this._onSelectedQuantidade(selected)} />
       </View>
     )
   }
@@ -213,7 +213,7 @@ export class PedidoPagamentoPage extends Component {
               </View>
               <View style={[info.item, { alignItems: 'flex-end' }]}>
                 <Switch
-                  onValueChange={value => this.setState({ sDinheiro: value })}
+                  onValueChange={(value) => this.setState({ sDinheiro: value })}
                   value={this.state.sDinheiro}
                 />
               </View>
@@ -225,7 +225,7 @@ export class PedidoPagamentoPage extends Component {
               </View>
               <View style={[info.item, { alignItems: 'flex-end', borderBottomWidth: 0 }]}>
                 <Switch
-                  onValueChange={value => this.setState({ sCartao: value })}
+                  onValueChange={(value) => this.setState({ sCartao: value })}
                   value={this.state.sCartao}
                 />
               </View>
@@ -252,7 +252,7 @@ export class PedidoPagamentoPage extends Component {
             <Text style={{ fontWeight: 'bold', paddingBottom: 20, fontSize: 20, color: 'white' }}>{this._renderQuantidadeSelecionada()}</Text>
 
             <View style={{ paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 100 }}>
-              <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={selected => this._onSelectedQuantidade(selected)} />
+              <FaRadioList options={this.cartoes} selected={this.state.cartao} onSelected={(selected) => this._onSelectedQuantidade(selected)} />
 
             </View>
 

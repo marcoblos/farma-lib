@@ -52,7 +52,7 @@ export class RegisterPage extends Component {
     ]
 
     this.valid = true
-    campos.forEach(campo => this._isFormValid(campo))
+    campos.forEach((campo) => this._isFormValid(campo))
 
     if (this.valid) {
       const user = {
@@ -113,10 +113,10 @@ export class RegisterPage extends Component {
 
             <FaPageTitle title="Nova conta" subTitle="Informe seus dados para criar uma nova conta" />
 
-            <FaInput label="E-mail" ref="email" value={this.state.email} onChange={text => this.setState({ email: text })} required showErrors={this.state.showErrors} type="email-address" />
-            <FaInput label="Senha" ref="password" password value={this.state.password} onChange={text => this.setState({ password: text })} required showErrors={this.state.showErrors} />
-            <FaInput label="Nome" ref="name" value={this.state.name} onChange={text => this.setState({ name: text })} required showErrors={this.state.showErrors} />
-            <FaInput label="Celular" ref="phone" mask={{ type: 'cel-phone' }} value={this.state.phone} onChange={text => this.setState({ phone: text })} required showErrors={this.state.showErrors} type="numeric" />
+            <FaInput label="E-mail" ref="email" value={this.state.email} onChange={(text) => this.setState({ email: text })} required showErrors={this.state.showErrors} type="email-address" />
+            <FaInput label="Senha" ref="password" password value={this.state.password} onChange={(text) => this.setState({ password: text })} required showErrors={this.state.showErrors} />
+            <FaInput label="Nome" ref="name" value={this.state.name} onChange={(text) => this.setState({ name: text })} required showErrors={this.state.showErrors} />
+            <FaInput label="Celular" ref="phone" mask={{ type: 'cel-phone' }} value={this.state.phone} onChange={(text) => this.setState({ phone: text })} required showErrors={this.state.showErrors} type="numeric" />
 
             <FaButton label="CADASTRAR" style={{ marginTop: 20 }} size="md" type="primary" onPress={() => this._register()} />
           </View>

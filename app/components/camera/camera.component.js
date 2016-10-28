@@ -27,7 +27,7 @@ export class FaCamera extends Component {
         this.props.getPhoto(data.path)
         this.props.onClose()
       })
-      .catch(err => console.error(err))
+      .catch((err) => console.error(err))
   }
 
   render() {

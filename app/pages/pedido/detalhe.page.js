@@ -110,7 +110,7 @@ export class DetalhePage extends Component {
       setTimeout(() => {
         self.setState({ showProgressBar: false })
       }, 1000)
-    }).progress(e => this._progressBarStatus(e))
+    }).progress((e) => this._progressBarStatus(e))
   }
 
   _onCloseCamera() {
@@ -243,7 +243,7 @@ export class DetalhePage extends Component {
               </View>
               <View style={[info.item, { alignItems: 'flex-end' }]}>
                 <Switch
-                  onValueChange={value => this.setState({ aceitaGenericos: value })}
+                  onValueChange={(value) => this.setState({ aceitaGenericos: value })}
                   value={this.state.aceitaGenericos}
                 />
               </View>
@@ -255,7 +255,7 @@ export class DetalhePage extends Component {
               </View>
               <View style={[info.item, { alignItems: 'flex-end' }]}>
                 <Switch
-                  onValueChange={value => this.setState({ aceitaSimilares: value })}
+                  onValueChange={(value) => this.setState({ aceitaSimilares: value })}
                   value={this.state.aceitaSimilares}
                 />
               </View>
@@ -266,7 +266,7 @@ export class DetalhePage extends Component {
                 <Text style={info.label}>Descrição</Text>
                 <TextInput
                   placeholder="Informações complementares"
-                  onChangeText={text => this.setState({ descricao: text })}
+                  onChangeText={(text) => this.setState({ descricao: text })}
                   value={this.state.descricao}
                   multiline
                   style={[s.input, { height: 80 }]}
@@ -315,10 +315,10 @@ export class DetalhePage extends Component {
             <View style={{ paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 270 }}>
               <View style={{ flexDirection: 'row', flex: 1, paddingTop: 5, paddingBottom: 5 }}>
                 <ScrollView style={{ flex: 1, padding: 10 }}>
-                  <FaRadioList options={pedidoData.Quantidade} selected={this.state.selectedQuantidade} onSelected={selected => this._onSelectedQuantidade(selected)} />
+                  <FaRadioList options={pedidoData.Quantidade} selected={this.state.selectedQuantidade} onSelected={(selected) => this._onSelectedQuantidade(selected)} />
                 </ScrollView>
                 <ScrollView style={{ flex: 2, padding: 10 }}>
-                  <FaRadioList options={pedidoData.Unidade} selected={this.state.selectedUnidade} onSelected={selected => this._onSelectedUnidade(selected)} />
+                  <FaRadioList options={pedidoData.Unidade} selected={this.state.selectedUnidade} onSelected={(selected) => this._onSelectedUnidade(selected)} />
                 </ScrollView>
               </View>
             </View>
@@ -333,7 +333,7 @@ export class DetalhePage extends Component {
           onClose={() => this.setState({ imageZoomVisible: false })}
         />
 
-        <FaCamera visible={this.state.cameraVisible} getPhoto={foto => this._onPhoto(foto)} onClose={() => this._onCloseCamera()} />
+        <FaCamera visible={this.state.cameraVisible} getPhoto={(foto) => this._onPhoto(foto)} onClose={() => this._onCloseCamera()} />
 
       </ViewContainer>
   ) }

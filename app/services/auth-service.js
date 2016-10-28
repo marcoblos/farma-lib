@@ -1,35 +1,35 @@
 import { HttpService } from './http-service'
 
-import { UserModel, LoginModel } from 'fa-models'
+import { UserModel } from 'fa-models'
 
 export class AuthService {
   constructor() {
-    this._httpService = new HttpService()
-    this._userService = new UserService(this._httpService)
+    this.httpService = new HttpService()
+    this.userService = new UserService(this.httpService)
   }
 
   createUser(user) {
-    return this._userService.createUser(user)
+    return this.userService.createUser(user)
   }
 
   doLogin(data) {
-    return this._userService.doLogin(data)
+    return this.userService.doLogin(data)
   }
 }
 
 class UserService {
   constructor(httpServiceInstance) {
-    this._httpService = httpServiceInstance
+    this.httpService = httpServiceInstance
   }
 
-  createUser(user) {
+  createUser() {
     const settings = new HttpRequestSettingsModel({
       contentType: 'application/x-www-form-urlencoded',
     })
 
-    return this._httpService.post('/customers/current/addresses', data, settings)
+    return this.httpService.post('/customers/current/addresses', data, settings)
       .then((response) => {
-        return this._convertToUserModel(response)
+        return this.convertToUserModel(response)
       })
       .catch((error) => {
         throw new ErrorModel({
@@ -40,16 +40,16 @@ class UserService {
   }
 
   doLogin(data) {
-    return this._httpService.post('/DoLogin', data)
+    return this.httpService.post('/DoLogin', data)
       .then((response) => {
         return response
       })
       .catch((error) => {
-        debugger
+        console.error(error)
       })
   }
 
-  _convertToUserModel(response) {
+  convertToUserModel(response) {
     return new UserModel({
       name: response.name,
       email: response.email,

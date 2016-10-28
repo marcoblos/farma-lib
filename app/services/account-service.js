@@ -1,79 +1,75 @@
 import { HttpService } from './http-service'
-import * as axios from 'axios'
-
-import { StorageService } from 'fa-services'
-
-import { UserModel, LoginModel, HttpRequestSettingsModel, ErrorModel, ProdutoModel, PedidoModel, EnderecoModel, CotacaoModel } from 'fa-models'
+import { UserModel, ProdutoModel, PedidoModel, EnderecoModel, CotacaoModel } from 'fa-models'
 
 export class AccountService {
   constructor() {
-    this._httpService = new HttpService()
-    this._userService = new UserService(this._httpService)
+    this.httpService = new HttpService()
+    this.userService = new userService(this.httpService)
   }
 
   createUser(user) {
-    return this._userService.createUser(user)
+    return this.userService.createUser(user)
   }
 
   getPedidosLista() {
-    return this._userService.getPedidosLista()
+    return this.userService.getPedidosLista()
   }
 
   getPedido(data) {
-    return this._userService.getPedido(data)
+    return this.userService.getPedido(data)
   }
 
   cancelarPedido(data) {
-    return this._userService.cancelarPedido(data)
+    return this.userService.cancelarPedido(data)
   }
 
   cancelarCompra(data) {
-    return this._userService.cancelarCompra(data)
+    return this.userService.cancelarCompra(data)
   }
 
   aceitarCotacao(data) {
-    return this._userService.aceitarCotacao(data)
+    return this.userService.aceitarCotacao(data)
   }
 
   getEnderecos() {
-    return this._userService.getEnderecos()
+    return this.userService.getEnderecos()
   }
 
   finalizarPedido(data) {
-    return this._userService.finalizarPedido(data)
+    return this.userService.finalizarPedido(data)
   }
 
   removerEndereco(data) {
-    return this._userService.removerEndereco(data)
+    return this.userService.removerEndereco(data)
   }
 
   teste(data) {
-    return this._userService.teste(data)
+    return this.userService.teste(data)
   }
 
   retornarNotificacoes() {
-    return this._userService.retornarNotificacoes()
+    return this.userService.retornarNotificacoes()
   }
 
   getNotificacoesLista() {
-    return this._userService.getNotificacoesLista()
+    return this.userService.getNotificacoesLista()
   }
 
   getHistoricoLista() {
-    return this._userService.getHistoricoLista()
+    return this.userService.getHistoricoLista()
   }
 
   getInformacoesUsuario() {
-    return this._userService.getInformacoesUsuario()
+    return this.userService.getInformacoesUsuario()
   }
 
   createVisitante() {
-    return this._userService.createVisitante()
+    return this.userService.createVisitante()
   }
 
   vincularDevice(data) {
     console.log('DENTRO DO VINCULAR DEVICE')
-    return this._httpService.post('/VincularDevice', data)
+    return this.httpService.post('/VincularDevice', data)
       .then((response) => {
         console.log('account-service vincular device', response)
         return response
@@ -83,19 +79,19 @@ export class AccountService {
   }
 }
 
-class UserService {
+class userService {
   constructor(httpServiceInstance) {
-    this._httpService = httpServiceInstance
+    this.httpService = httpServiceInstance
   }
 
   createUser(user) {
-    return this._httpService.post('/SalvarCliente', user)
+    return this.httpService.post('/SalvarCliente', user)
       .then((response) => {
         return response
       })
   }
 
-  _convertToUserModel(response) {
+  convertToUserModel(response) {
     return new UserModel({
       nome: response.Nome,
       email: response.Email,
@@ -105,7 +101,7 @@ class UserService {
   }
 
   getPedidosLista() {
-    return this._httpService.post('/RetornaPedidos')
+    return this.httpService.post('/RetornaPedidos')
       .then((response) => {
         return response
       })
@@ -113,85 +109,84 @@ class UserService {
 
   // IDPedido
   cancelarPedido(data) {
-    return this._httpService.post('/CancelarPedido', data)
-      .then((response) => {
+    return this.httpService.post('/CancelarPedido', data)
+      .then(response => {
         return response
       })
   }
 
   // IDPedido
   cancelarCompra(data) {
-    return this._httpService.post('/CancelarCompra', data)
-      .then((response) => {
+    return this.httpService.post('/CancelarCompra', data)
+      .then(response => {
         return response
-      }).catch((error) => {
-        debugger
+      }).catch(error => {
+        console.log(error)
       })
   }
 
   teste(data) {
-    return this._httpService.get('/webapp/teste')
-      .then((response) => {
+    return this.httpService.get('/webapp/teste')
+      .then(response => {
         return response
-      }).catch((error) => {
-        debugger
+      }).catch(error => {
+        console.log(error)
       })
   }
 
   retornarNotificacoes() {
-    return this._httpService.get('/RetornaPainelNotificacoes')
-      .then((response) => {
+    return this.httpService.get('/RetornaPainelNotificacoes')
+      .then(response => {
         return response
       })
   }
 
   getNotificacoesLista() {
-    return this._httpService.post('/RetornaPedidosNotificados')
-      .then((response) => {
+    return this.httpService.post('/RetornaPedidosNotificados')
+      .then(response => {
         return response
-      }).catch((error) => {
-        debugger
+      }).catch(error => {
+        console.log(error)
       })
   }
 
   getHistoricoLista() {
-    return this._httpService.post('/RetornaPedidosFinalizados')
+    return this.httpService.post('/RetornaPedidosFinalizados')
       .then((response) => {
         return response
-      }).catch((error) => {
-        debugger
+      }).catch(error => {
+        console.log(error)
       })
   }
 
   getInformacoesUsuario() {
-    return this._httpService.post('/RetornaDadosCliente')
-      .then((response) => {
-        return this._convertToUserModel(response)
-        return response
-      }).catch((error) => {
-        debugger
+    return this.httpService.post('/RetornaDadosCliente')
+      .then(response => {
+        return this.convertToUserModel(response)
+      }).catch(error => {
+        console.log(error)
       })
   }
 
   finalizarPedido(data) {
-    return this._httpService.post('/mobile/finalizarPedido', data)
-      .then((response) => {
+    return this.httpService.post('/mobile/finalizarPedido', data)
+      .then(response => {
         return response
       })
   }
 
   getEnderecos() {
-    return this._httpService.post('/RetornaEnderecos')
-      .then((response) => {
-        return this._convertToEnderecoModel(response)
+    return this.httpService.post('/RetornaEnderecos')
+      .then(response => {
+        return this.convertToEnderecoModel(response)
       })
   }
 
-  _convertToEnderecoModel(response) {
+  convertToEnderecoModel(response) {
     const enderecos = []
 
     if (response && response.length) {
-      response.forEach((e) => {
+      response.forEach(e => {
         enderecos.push(new EnderecoModel({
           id: e.IDEndereco,
           cep: e.CEP,
@@ -209,34 +204,34 @@ class UserService {
   }
 
   aceitarCotacao(data) {
-    return this._httpService.post('/ComprarCotacao', data)
-      .then((response) => {
+    return this.httpService.post('/ComprarCotacao', data)
+      .then(response => {
         return response
       })
   }
 
   removerEndereco(data) {
-    return this._httpService.post('/webapp/RemoveEndereco', data)
-      .then((response) => {
+    return this.httpService.post('/webapp/RemoveEndereco', data)
+      .then(response => {
         return response
       })
   }
 
   createVisitante() {
-    return this._httpService.post('/SalvarVisitante')
-      .then((response) => {
-        return this._convertToUserModel(response)
+    return this.httpService.post('/SalvarVisitante')
+      .then(response => {
+        return this.convertToUserModel(response)
       })
   }
 
   getPedido(data) {
-    return this._httpService.post('/RetornaCotacoesPedido', data)
-      .then((response) => {
-        return this._convertToPedidoModel(response)
+    return this.httpService.post('/RetornaCotacoesPedido', data)
+      .then(response => {
+        return this.convertToPedidoModel(response)
       })
   }
 
-  _convertToPedidoModel(response) {
+  convertToPedidoModel(response) {
     const produtos = []
     const cotacoes = []
 
@@ -259,7 +254,7 @@ class UserService {
     }
 
     if (response.Cotacoes && response.Cotacoes.length) {
-      response.Cotacoes.forEach((c) => {
+      response.Cotacoes.forEach(c => {
         const produtosCotacao = []
 
         cotacoes.push(new CotacaoModel({
@@ -276,7 +271,7 @@ class UserService {
         }))
 
         if (c.Produtos && c.Produtos.length) {
-          c.Produtos.forEach((p) => {
+          c.Produtos.forEach(p => {
             produtosCotacao.push(new ProdutoModel({
               generico: p.AceitaGenerico,
               similares: p.AceitaSimilares,

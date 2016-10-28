@@ -18,7 +18,7 @@ export class FaLoader extends Component {
       height: new Animated.Value(0),
     }
 
-    LoaderService.addListener(state => this._onRequest(state))
+    LoaderService.addListener((state) => this._onRequest(state))
   }
 
   _onRequest(state) {

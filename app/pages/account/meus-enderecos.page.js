@@ -38,7 +38,7 @@ export class MeusEnderecosPage extends Component {
 
     this.valid = true
 
-    campos.forEach(campo => this._isFormValid(campo))
+    campos.forEach((campo) => this._isFormValid(campo))
 
     if (self.valid) {
       alert('E foi!!')

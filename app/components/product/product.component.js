@@ -53,7 +53,7 @@ export class FaProduct extends Component {
     } else if (typeof this.props.label === 'object') {
       return (
         <View style={product.buttonLabel}>
-          {this.props.label.map(text => this._renderTextRow(text))}
+          {this.props.label.map((text) => this._renderTextRow(text))}
         </View>
       )
     }
