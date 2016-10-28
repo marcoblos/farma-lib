@@ -7,7 +7,7 @@ export class PedidoService {
 
   realizarPedido(data) {
     return this.httpService.post('/FinalizarPedido', data)
-    .then(response => {
+    .then((response) => {
       return response
     }).catch((error) => {
       debugger
