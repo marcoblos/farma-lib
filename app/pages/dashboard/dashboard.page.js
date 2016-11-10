@@ -56,6 +56,22 @@ export class DashboardPage extends Component {
 
     FCM.requestPermissions()
     FCM.getFCMToken().then((token) => {
+
+      StorageService.getString('Usertoken')
+        .then(Usertoken => {
+          let data = {
+            Usertoken: Usertoken,
+            Devicetoken: token
+          }
+
+          this._accountService.vincularDevice(data)
+            .then(response => {
+
+            }).catch(error => {
+
+            })
+        })
+
       console.log('token device: ', token)
       if (token) {
         StorageService.setString('Devicetoken', token)
@@ -63,6 +79,8 @@ export class DashboardPage extends Component {
     })
     this.notificationUnsubscribe = FCM.on('notification', (notif) => {
       console.log(notif)
+
+      debugger;
 
       if (notif.local_notification) {
 
