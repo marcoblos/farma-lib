@@ -1,0 +1,13 @@
+{
+  "name": "farma-lib",
+  "version": "1.0.0",
+  "description": "A library for Farma Applications",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcoblos/farma-lib.git"
+  },
+  "author": "Alexandre Palagem, Marco Blos"
+}
