@@ -3,10 +3,6 @@ import {
   View,
   StyleSheet
 } from 'react-native'
-import {
-  PocPage,
-  MainPage
-} from 'fa-pages'
 
 export class ViewContainer extends Component {
   render() {
