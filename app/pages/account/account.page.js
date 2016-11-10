@@ -1,13 +1,27 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  Modal
+} from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaInfo } from 'fa-components'
-
 import { UserModel } from 'fa-models'
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import {
+  AccountService,
+  LoaderService,
+  StorageService
+} from 'fa-services'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton
+} from 'farma-lib/components'
 
-import { AccountService, LoaderService, StorageService } from 'fa-services'
+import { FaFullButton, FaInfo } from 'fa-components'
 
 export class AccountPage extends Component {
   constructor(props) {

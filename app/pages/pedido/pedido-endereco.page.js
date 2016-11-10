@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Dimensions } from 'react-native'
-import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle, FaModalHeader, FaInput } from 'fa-components'
-
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Picker from 'react-native-picker'
-
-import { PedidoModel, EnderecoModel } from 'fa-models'
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
-
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+import { PedidoModel, EnderecoModel } from 'fa-models'
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  Switch,
+  TextInput,
+  ScrollView,
+  Modal,
+  Dimensions,
+} from 'react-native'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
+
+import { FaRadioList, FaFullButton, FaPageTitle, FaModalHeader, FaInput } from 'fa-components'
 
 const { height, width } = Dimensions.get('window')
 const pedidoData = require('./_pedidoData.json')

@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import {
   View,
   Text,
   Modal,
   ScrollView,
 } from 'react-native'
+import {
+  FaButton,
+} from 'farma-lib/components'
 
 import {
   FaRadioList,
-  FaButton,
 } from 'fa-components'
-
-import EStyleSheet from 'react-native-extended-stylesheet'
-
-import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class FaSelectModal extends Component {
   constructor(props) {

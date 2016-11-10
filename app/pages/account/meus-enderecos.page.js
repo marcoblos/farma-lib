@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput, FaMessage } from 'fa-components'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  Modal,
+} from 'react-native'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
+import { FaFullButton, FaPageTitle, FaInput, FaMessage } from 'fa-components'
 
 export class MeusEnderecosPage extends Component {
   constructor(props) {

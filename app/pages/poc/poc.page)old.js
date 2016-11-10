@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { Text, TouchableOpacity, View, ScrollView, PixelRatio, Platform, Image, Modal, Dimensions } from 'react-native'
-import { ViewContainer, FaHeader, FaRadioList } from 'fa-components'
+import { FaRadioList } from 'fa-components'
+
+import {
+  FaHeader,
+  ViewContainer,
+} from 'farma-lib/components'
+
 import EStyleSheet from 'react-native-extended-stylesheet'
 
 import * as Progress from 'react-native-progress'

@@ -1,14 +1,30 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, TouchableHighlight, Image, ActivityIndicator, Animated } from 'react-native'
-import { ViewContainer, FaHeader } from 'fa-components'
-import { AccountService, LoaderService, StorageService, PedidoService } from 'fa-services'
-import { HttpRequestSettingsModel } from 'fa-models'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import * as axios from 'axios'
-import { PedidoModel } from 'fa-models'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
-
 import FCM from 'react-native-fcm'
+import { HttpRequestSettingsModel } from 'fa-models'
+import { PedidoModel } from 'fa-models'
+import {
+  Text, 
+  View,
+  TouchableOpacity,
+  TouchableHighlight,
+  Image,
+  ActivityIndicator,
+  Animated
+} from 'react-native'
+import {
+  AccountService,
+  LoaderService,
+  StorageService,
+  PedidoService
+} from 'fa-services'
+import {
+  FaHeader,
+  ViewContainer,
+} from 'farma-lib/components'
+
 
 export class DashboardPage extends Component {
   constructor(props) {

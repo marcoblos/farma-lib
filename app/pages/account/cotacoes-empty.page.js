@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage } from 'fa-components'
+import { FaFullButton, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage } from 'fa-components'
+
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
 const window = Dimensions.get('window')
 

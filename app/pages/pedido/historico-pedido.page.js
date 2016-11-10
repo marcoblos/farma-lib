@@ -1,10 +1,25 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View, Switch, ListView, TextInput, ScrollView, Modal, Dimensions } from 'react-native'
-import { ViewContainer, FaHeader, FaRadioList, FaButton, FaFullButton, FaPageTitle, FaMessage, FaProduct } from 'fa-components'
-import { AccountService, LoaderService } from 'fa-services'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import Picker from 'react-native-picker'
+import { AccountService, LoaderService } from 'fa-services'
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  Switch,
+  ListView,
+  TextInput,
+  ScrollView,
+  Modal,
+  Dimensions,
+} from 'react-native'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
+import { FaRadioList, FaFullButton, FaPageTitle, FaMessage, FaProduct } from 'fa-components'
 const { height, width } = Dimensions.get('window')
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.IDPedido !== r2.IDPedido })

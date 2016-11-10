@@ -1,13 +1,26 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
-import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaIconMessage, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaProductList } from 'fa-components'
-
 import { AccountService } from 'fa-services'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  Dimensions,
+  Modal,
+  Alert,
+} from 'react-native'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
+
+import { FaFullButton, FaIconMessage, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaProductList } from 'fa-components'
 
 const window = Dimensions.get('window')
-
-import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export class PedidoAndamentoPage extends Component {
   constructor(props) {

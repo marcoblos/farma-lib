@@ -1,5 +1,15 @@
 import React, { Component } from 'react'
-
+import * as Progress from 'react-native-progress'
+import Picker from 'react-native-picker'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import Lightbox from 'react-native-lightbox'
+import { RNS3 } from 'react-native-aws3'
+import { ToasterService } from 'fa-services'
+import {
+  PedidoModel,
+  ProdutoModel,
+} from 'fa-models'
 import { Text,
   TouchableOpacity,
   View,
@@ -11,31 +21,17 @@ import { Text,
   Platform,
   Image,
 } from 'react-native'
-
 import {
-  ViewContainer,
   FaHeader,
-  FaRadioList,
+  ViewContainer,
   FaButton,
+} from 'farma-lib/components'
+import {
+  FaRadioList,
   FaInfo,
   FaImageZoom,
   FaCamera,
 } from 'fa-components'
-
-import { ToasterService } from 'fa-services'
-
-import * as Progress from 'react-native-progress'
-
-import EStyleSheet from 'react-native-extended-stylesheet'
-import Picker from 'react-native-picker'
-
-import { PedidoModel, ProdutoModel } from 'fa-models'
-
-import Icon from 'react-native-vector-icons/MaterialIcons'
-
-import Lightbox from 'react-native-lightbox'
-
-import { RNS3 } from 'react-native-aws3'
 
 const { height, width } = Dimensions.get('window')
 const pedidoData = require('./_pedidoData.json')

@@ -9,10 +9,14 @@ import {
 } from 'react-native'
 
 import {
-  ViewContainer,
-  FaHeader,
   StatusBarBackground,
 } from 'fa-components'
+
+import {
+  FaHeader,
+  ViewContainer,
+} from 'farma-lib/components'
+
 
 const mainStyle = StyleSheet.create({
   teste: {

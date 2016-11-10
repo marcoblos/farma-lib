@@ -1,15 +1,34 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import KeyboardSpacer from 'react-native-keyboard-spacer'
+import Swiper from 'react-native-swiper'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage } from 'fa-components'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  Dimensions,
+  Modal,
+} from 'react-native'
+import {
+  FaFullButton,
+  FaModalHeader,
+  FaProduct,
+  FaInfo,
+  FaInput,
+  FaPageTitle,
+  FaMessage,
+} from 'fa-components'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
 const window = Dimensions.get('window')
 
-import Icon from 'react-native-vector-icons/MaterialIcons'
-
-import KeyboardSpacer from 'react-native-keyboard-spacer'
-
-import Swiper from 'react-native-swiper'
 
 
 const renderPagination = (index, total, context) => {

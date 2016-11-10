@@ -1,14 +1,25 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View, Switch, TextInput, ScrollView, Modal, Alert, Image } from 'react-native'
-import { ViewContainer, FaHeader, FaButton, FaImageZoom } from 'fa-components'
-
-import { AccountService, LoaderService, ToasterService } from 'fa-services'
-
-import { PedidoModel } from 'fa-models'
-
 import EStyleSheet from 'react-native-extended-stylesheet'
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { AccountService, LoaderService, ToasterService } from 'fa-services'
+import { PedidoModel } from 'fa-models'
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  Switch,
+  TextInput,
+  ScrollView,
+  Modal,
+  Alert,
+  Image,
+} from 'react-native'
+import { FaImageZoom } from 'fa-components'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
 const s = require('../../styles/core.js')
 

@@ -2,13 +2,10 @@
  * @providesModule fa-components
  */
 
-export { ViewContainer } from './ViewContainer/ViewContainer.component'
 export { AppNavigator } from './AppNavigator/AppNavigator.component'
-export { FaHeader } from './header/header.component'
 export { FaRadioList } from './radio/radio.component'
 export { StatusBarBackground } from './StatusBarBackground/StatusBarBackground.component'
 export { FaInput } from './input/input.component'
-export { FaButton } from './button/button.component'
 export { FaFullButton } from './full-button/full-button.component'
 export { FaPageTitle } from './page-title/page-title.component'
 export { FaMessage } from './message/message.component'

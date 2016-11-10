@@ -1,11 +1,29 @@
 import React, { Component } from 'react'
-import { View, ScrollView, Text } from 'react-native'
-import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-components'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { AuthService, StorageService, LoaderService, AccountService, ToasterService } from 'fa-services'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import * as axios from 'axios'
 import CryptoJS from 'crypto-js'
+import {
+  View,
+  ScrollView,
+  Text,
+} from 'react-native'
+import {
+  AuthService,
+  StorageService,
+  LoaderService,
+  AccountService,
+  ToasterService,
+} from 'fa-services'
+import {
+  FaInput,
+  FaPageTitle,
+ } from 'fa-components'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
 export class LoginPage extends Component {
   constructor(props) {

@@ -1,18 +1,29 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, Dimensions, Modal, Alert } from 'react-native'
-import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle } from 'fa-components'
-import { PedidoModel } from 'fa-models'
-import { AccountService } from 'fa-services'
-
-const window = Dimensions.get('window')
-
 import { MaskService } from 'react-native-masked-text'
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
-
 import Swiper from 'react-native-swiper'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import { PedidoModel } from 'fa-models'
+import { AccountService } from 'fa-services'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  Dimensions,
+  Modal,
+  Alert,
+} from 'react-native'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
+import { FaFullButton, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle } from 'fa-components'
+
+const window = Dimensions.get('window')
 
 const renderPagination = (index, total, context) => {
   return (

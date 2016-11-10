@@ -5,7 +5,10 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 
 import { PedidoService } from 'fa-services'
 
-import { ViewContainer, FaHeader } from 'fa-components'
+import {
+  FaHeader,
+  ViewContainer,
+} from 'farma-lib/components'
 
 const DismissKeyboard = require('dismissKeyboard')
 

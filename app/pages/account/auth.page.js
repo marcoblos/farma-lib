@@ -1,11 +1,27 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, ScrollView, View, StatusBar, Image, Dimensions, Animated } from 'react-native'
-import { ViewContainer, FaHeader, FaInput, FaButton } from 'fa-components'
-
-import { LoaderService, AccountService, StorageService } from 'fa-services'
-
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import EStyleSheet from 'react-native-extended-stylesheet'
+import { FaInput } from 'fa-components'
+import {
+  LoaderService,
+  AccountService,
+  StorageService,
+} from 'fa-services'
+import {
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  View,
+  StatusBar,
+  Image,
+  Dimensions,
+  Animated,
+} from 'react-native'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
 let { width, height } = Dimensions.get('window')
 

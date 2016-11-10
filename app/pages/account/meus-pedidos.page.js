@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, ScrollView, Image, ListView, RefreshControl } from 'react-native'
-import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaProduct, FaMessage } from 'fa-components'
-import { AccountService, LoaderService } from 'fa-services'
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import EStyleSheet from 'react-native-extended-stylesheet'
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  ListView,
+  RefreshControl,
+} from 'react-native'
+import {
+  AccountService,
+  LoaderService,
+} from 'fa-services'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
+
+import { FaFullButton, FaProduct, FaMessage } from 'fa-components'
 
 const ds = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.id !== r2.id,

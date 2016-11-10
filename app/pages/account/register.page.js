@@ -1,23 +1,36 @@
 import React, { Component } from 'react'
-import { View, ScrollView, Text, TouchableOpacity, Dimensions } from 'react-native'
-import { ViewContainer, FaHeader, FaInput, FaButton, FaPageTitle } from 'fa-components'
-
 import EStyleSheet from 'react-native-extended-stylesheet'
-
-import { UserModel } from 'fa-models'
-import { AccountService, LoaderService, StorageService, ToasterService, AuthService } from 'fa-services'
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+import * as axios from 'axios'
+import CryptoJS from 'crypto-js'
+import { UserModel } from 'fa-models'
+import {
+  View,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native'
+import {
+  AccountService,
+  LoaderService,
+  StorageService,
+  ToasterService,
+  AuthService,
+} from 'fa-services'
+import {
+  FaInput,
+  FaPageTitle,
+} from 'fa-components'
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
 
 const { height, width } = Dimensions.get('window')
 const s = require('../../styles/core.js')
-
-import * as axios from 'axios'
-
-
-import CryptoJS from 'crypto-js'
-
 
 export class RegisterPage extends Component {
   constructor(props) {

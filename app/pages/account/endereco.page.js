@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, ScrollView, Image, Alert } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-import { ViewContainer, FaFullButton, FaButton, FaHeader, FaPageTitle, FaInput } from 'fa-components'
+import { FaFullButton, FaPageTitle, FaInput } from 'fa-components'
+
+import {
+  FaHeader,
+  ViewContainer,
+  FaButton,
+} from 'farma-lib/components'
+
 import { AccountService } from 'fa-services'
 
 
