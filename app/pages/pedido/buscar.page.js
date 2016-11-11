@@ -62,7 +62,7 @@ export class PedidoBuscar extends Component {
         pedidoService.getProducts(el.text)
             .then((res) => {
               const d = res
-              d.unshift({ IDMedicamento: 0, Nome: el.text })
+              d.unshift({ IDMedicamento: 0, N: el.text })
 
               self.setState({
                 productsDataSource: ds.cloneWithRows(d),
@@ -140,8 +140,8 @@ export class PedidoBuscar extends Component {
           style={[this.state.isLoading ? { top: -900 } : {}]}
           renderRow={
                        (rowData) => (
-                         <TouchableOpacity onPress={() => this.selectProduct(rowData.Nome)} style={poc.row}>
-                           <Text>{rowData.Nome}</Text>
+                         <TouchableOpacity onPress={() => this.selectProduct(rowData.N)} style={poc.row}>
+                           <Text>{rowData.N}</Text>
                          </TouchableOpacity>
                        )
                     }

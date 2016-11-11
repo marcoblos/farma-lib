@@ -68,10 +68,8 @@ export class AccountService {
   }
 
   vincularDevice(data) {
-    console.log('DENTRO DO VINCULAR DEVICE')
     return this.httpService.post('/VincularDevice', data)
       .then((response) => {
-        console.log('account-service vincular device', response)
         return response
       }, (error) => {
         console.log('Erro URL vincular device', error)
