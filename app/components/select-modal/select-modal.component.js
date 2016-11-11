@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import {
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 import {
   FaRadioList,

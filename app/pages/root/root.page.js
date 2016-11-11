@@ -15,7 +15,7 @@ import {
 import {
   FaHeader,
   ViewContainer,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 
 const mainStyle = StyleSheet.create({

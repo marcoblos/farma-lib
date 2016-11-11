@@ -20,7 +20,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 import { FaFullButton, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle } from 'fa-components'
 
 const window = Dimensions.get('window')

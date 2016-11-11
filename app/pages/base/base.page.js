@@ -4,7 +4,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import {
   FaHeader,
   ViewContainer,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 export class DashboardPage extends Component {
   constructor(props) {

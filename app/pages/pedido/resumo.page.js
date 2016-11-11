@@ -19,7 +19,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 const s = require('../../styles/core.js')
 

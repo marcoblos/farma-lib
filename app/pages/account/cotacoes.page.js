@@ -7,7 +7,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 const window = Dimensions.get('window')
 

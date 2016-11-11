@@ -16,7 +16,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 import { FaFullButton, FaIconMessage, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage, FaProductList } from 'fa-components'
 

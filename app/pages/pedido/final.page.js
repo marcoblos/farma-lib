@@ -16,7 +16,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 import { FaRadioList, FaFullButton, FaPageTitle, FaMessage } from 'fa-components'
 
 const { height, width } = Dimensions.get('window')

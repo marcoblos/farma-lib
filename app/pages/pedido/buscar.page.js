@@ -8,7 +8,7 @@ import { PedidoService } from 'fa-services'
 import {
   FaHeader,
   ViewContainer,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 const DismissKeyboard = require('dismissKeyboard')
 

@@ -5,7 +5,7 @@ import { FaRadioList } from 'fa-components'
 import {
   FaHeader,
   ViewContainer,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 

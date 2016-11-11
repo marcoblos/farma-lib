@@ -6,7 +6,7 @@ import FCM from 'react-native-fcm'
 import { HttpRequestSettingsModel } from 'fa-models'
 import { PedidoModel } from 'fa-models'
 import {
-  Text, 
+  Text,
   View,
   TouchableOpacity,
   TouchableHighlight,
@@ -23,7 +23,7 @@ import {
 import {
   FaHeader,
   ViewContainer,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 
 export class DashboardPage extends Component {
@@ -300,12 +300,13 @@ export class DashboardPage extends Component {
               <Icon style={dashboard.icon} name="account-circle" />
               <Text style={dashboard.bottomItemText}>Minha conta</Text>
             </TouchableOpacity>
-            <View style={{ width: 1 }} />
-            <TouchableOpacity onPress={() => this._historico()} activeOpacity={0.3} style={dashboard.bottomItem}>
-              <Icon style={dashboard.icon} name="watch-later" />
-              <Text style={dashboard.bottomItemText}>HIstórico</Text>
-            </TouchableOpacity>
+            <View style={{ width: 1 }}></View>
+              <TouchableOpacity onPress={() => this._historico()} activeOpacity={0.3} style={dashboard.bottomItem}>
+                <Icon style={dashboard.icon} name="watch-later" />
+                <Text style={dashboard.bottomItemText}>HIstórico</Text>
+              </TouchableOpacity>
           </View>
+
 
         </ViewContainer>
       </Animated.View>

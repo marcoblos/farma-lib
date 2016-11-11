@@ -25,7 +25,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 import {
   FaRadioList,
   FaInfo,

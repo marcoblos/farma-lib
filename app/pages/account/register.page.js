@@ -27,7 +27,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 const { height, width } = Dimensions.get('window')
 const s = require('../../styles/core.js')

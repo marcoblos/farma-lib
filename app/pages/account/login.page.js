@@ -23,7 +23,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 export class LoginPage extends Component {
   constructor(props) {

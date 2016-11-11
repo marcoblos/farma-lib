@@ -21,7 +21,7 @@ import {
   FaHeader,
   ViewContainer,
   FaButton,
-} from 'farma-lib/components'
+} from 'fa-components'
 
 let { width, height } = Dimensions.get('window')
 
