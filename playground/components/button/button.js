@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
+
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {
-  Text,
-  View,
-  TouchableOpacity
-} from 'react-native'
 
 export class FaButton extends Component {
   constructor(props) {
