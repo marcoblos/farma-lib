@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet'
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import {
+  Text,
+  View,
+  TouchableOpacity
+} from 'react-native'
 
 export class FaButton extends Component {
   constructor(props) {
@@ -32,17 +35,17 @@ export class FaButton extends Component {
     const _type = this.props.type || '_'
     const _size = this.props.size || '_'
     return (
-      <TouchableOpacity activeOpacity={this.props.activeOpacity || 0.5} onPress={() => this.props.onPress()}>
-        <View style={
-          [
-            baseStyle.button,
-            this.props.iconPosition === 'left' ? { flexDirection: 'row-reverse' } : {},
-            this.props.radius ? { borderRadius: 5 } : {},
-            customStyle[_type].button,
-            sizeStyle[_size].button,
-            this.props.style || {},
-          ]}
-        >
+      <TouchableOpacity style={[
+          baseStyle.button,
+          this.props.iconPosition === 'left' ? { flexDirection: 'row-reverse' } : {},
+          this.props.radius ? { borderRadius: 5 } : {},
+          customStyle[_type].button,
+          sizeStyle[_size].button,
+          this.props.style || {},
+        ]}
+        activeOpacity={this.props.activeOpacity || 0.5}
+        onPress={() => this.props.onPress()}
+      >
           <Text style={
             [
               baseStyle.text,
@@ -53,7 +56,6 @@ export class FaButton extends Component {
 
           {this._renderIcon(this.props.icon)}
 
-        </View>
       </TouchableOpacity>
     )
   }
@@ -89,7 +91,6 @@ const _defaultSize = EStyleSheet.create({
 const baseStyle = EStyleSheet.create({
   button: {
     height: 48,
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

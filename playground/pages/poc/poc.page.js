@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native'
 
-import { FaHeader, FaSelectModal } from 'farma-lib'
+import { FaHeader, FaSelectModal, FaButton } from 'farma-lib'
 
 
 const valores = [
@@ -52,7 +52,8 @@ export class PocPage extends Component {
     super(props)
 
     this.state = {
-      modalSelectVisible: false
+      modalSelectVisible: false,
+      valorSelecionado: 'Selecione...'
     }
   }
 
@@ -62,22 +63,30 @@ export class PocPage extends Component {
   }
 
   _onSelectQuantidade(value) {
-    alert('Valor selecionado: ' + value)
-    this.setState({modalSelectVisible: false})
+    this.setState({valorSelecionado: value, modalSelectVisible: false})
   }
 
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>FOI!</Text>
 
+        <FaButton
+          label="Selecionar"
+          type="primary"
+          style={{marginBottom: 10}}
+          onPress={() => this.setState({modalSelectVisible: true})}
+        />
 
-        <TouchableHighlight onPress={() => this.setState({modalSelectVisible: true})}>
-          <Text>Abrir modal</Text>
-        </TouchableHighlight>
+      <Text>Valor selecionado: {this.state.valorSelecionado}</Text>
 
-        <FaSelectModal label='Quantidade' onCancel={() => this._onCancelQuantidade()} onSelect={(value) => this._onSelectQuantidade(value)} visible={this.state.modalSelectVisible} options={valores} />
+        <FaSelectModal
+          label='Quantidade'
+          visible={this.state.modalSelectVisible}
+          onCancel={() => this._onCancelQuantidade()}
+          onSelect={(value) => this._onSelectQuantidade(value)}
+          options={valores}
+        />
 
       </View>
     )

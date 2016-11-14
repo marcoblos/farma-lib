@@ -11,6 +11,8 @@ export class playground extends Component {
   constructor(props) {
     super(props)
 
+      ConfigTheme.build();
+
       this.initialRoute = 'PocPage'
   }
 
