@@ -9,7 +9,10 @@ import {
 } from 'react-native'
 
 import {
-    PocPage
+    PocPage,
+    ButtonListPage,
+    HomePage,
+    SelectModalPage,
 } from 'lib-pages'
 
 export class AppNavigator extends Component {
@@ -27,6 +30,12 @@ export class AppNavigator extends Component {
     switch (route.name) {
       case 'PocPage':
         return (<PocPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'ButtonListPage':
+        return (<ButtonListPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'HomePage':
+        return (<HomePage {...globalNavigatorProps} {...route.passProps} />)
+      case 'SelectModalPage':
+        return (<SelectModalPage {...globalNavigatorProps} {...route.passProps} />)
     }
   }
 
