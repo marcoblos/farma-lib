@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text } from 'react-native'
 
-export class TextElement extends Component {
+export class FaText extends Component {
   constructor(props) {
     super(props)
   }

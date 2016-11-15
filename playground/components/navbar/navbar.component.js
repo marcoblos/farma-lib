@@ -18,10 +18,7 @@ export class NavBar extends Component {
   }
 
   _renderBackButton() {
-    if (this.props.hideBackButton) {
-      return null
-    }
-
+    if (this.props.onGoBack) {
     return (
       <TouchableOpacity onPress={() => this._onGoBack()} style={header.backButton}>
         <View>
@@ -29,6 +26,9 @@ export class NavBar extends Component {
         </View>
       </TouchableOpacity>
         )
+    }
+
+    return null
   }
 
   _renderRight() {

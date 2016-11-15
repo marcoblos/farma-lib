@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
 import {
-  KeyboardAvoidingView,
-  AppRegistry,
-  Dimensions,
-  StyleSheet,
-  TextInput,
   Text,
-  TouchableHighlight,
-  View,
   ScrollView,
 } from 'react-native'
 
-import { NavBar, FaSelectModal, FaButton, ViewContainer } from 'farma-lib'
+import { NavBar, FaSelectModal, FaButton, ViewContainer, Info, BoxView } from 'farma-lib'
 
 
 const valores = [
@@ -73,18 +66,22 @@ export class SelectModalPage extends Component {
     return (
       <ViewContainer>
 
-        <NavBar title='Teste!!' onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title='ModalSelect' onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView>
 
-          <FaButton
-            label="Selecionar"
-            type="primary"
-            style={{marginBottom: 10}}
-            onPress={() => this.setState({modalSelectVisible: true})}
-          />
+          <BoxView padding='sm'>
 
-          <Text>Valor selecionado: {this.state.valorSelecionado}</Text>
+            <FaButton
+              label="Selecionar"
+              type="primary"
+              style={{marginBottom: 10}}
+              onPress={() => this.setState({modalSelectVisible: true})}
+            />
+
+            <Text>Valor selecionado: {this.state.valorSelecionado}</Text>
+            
+          </BoxView>
 
           <FaSelectModal
             label='Quantidade'
@@ -93,6 +90,12 @@ export class SelectModalPage extends Component {
             onSelect={(value) => this._onSelectQuantidade(value)}
             options={valores}
           />
+
+        <BoxView padding='sm'>
+          <Info label='onCancel()' value='É chamado quando clicar no botão cancelar.' />
+          <Info label='onSelect()' value='É chamado quando clicar no botão selecionar, também retorna o valor selecionado.' />
+          <Info label='options' value='Array com as opção' />
+        </BoxView>
 
       </ScrollView>
 

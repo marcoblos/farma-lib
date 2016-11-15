@@ -40,6 +40,8 @@ export class HomePage extends Component {
       <ScrollView>
         <ButtonList onPress={() => this._goTo('ButtonListPage')} title='ButtonList' label='Listas com ícones e notificações.' />
         <ButtonList onPress={() => this._goTo('SelectModalPage')} title='SelectModal' label='Modal para selecionar valores.' />
+        <ButtonList onPress={() => this._goTo('InfoPage')} title='Info' label='Componente informação (label / value)' />
+        <ButtonList onPress={() => this._goTo('CameraPage')} title='Camera' label='Componente para tirar fotos' />
       </ScrollView>
 
       </View>

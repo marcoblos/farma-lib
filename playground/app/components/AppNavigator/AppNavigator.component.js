@@ -13,6 +13,8 @@ import {
     ButtonListPage,
     HomePage,
     SelectModalPage,
+    InfoPage,
+    CameraPage,
 } from 'lib-pages'
 
 export class AppNavigator extends Component {
@@ -36,6 +38,10 @@ export class AppNavigator extends Component {
         return (<HomePage {...globalNavigatorProps} {...route.passProps} />)
       case 'SelectModalPage':
         return (<SelectModalPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'InfoPage':
+        return (<InfoPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'CameraPage':
+        return (<CameraPage {...globalNavigatorProps} {...route.passProps} />)
     }
   }
 
