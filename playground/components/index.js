@@ -2,17 +2,10 @@
  * @providesModule farma-lib
  */
 
-
-import { FaHeader } from './header/header'
-import { ViewContainer } from './view-container/view-container'
-import { FaButton } from './button/button'
-import { FaSelectModal } from './select-modal/select-modal'
-import { FaRadioList } from './radio-list/radio-list'
-
-export {
-  FaHeader,
-  ViewContainer,
-  FaButton,
-  FaSelectModal,
-  FaRadioList,
-}
+export { NavBar } from './navbar/navbar.component'
+export { ViewContainer } from './view-container/view-container'
+export { FaButton } from './button/button'
+export { FaSelectModal } from './select-modal/select-modal'
+export { FaRadioList } from './radio-list/radio-list'
+export { Input } from './input/input.component'
+export { TextElement } from './text/text.component'

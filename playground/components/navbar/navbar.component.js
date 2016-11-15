@@ -3,16 +3,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import {
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   Image,
+  Text,
   StatusBar,
   Platform,
 } from 'react-native'
 
 
-export class FaHeader extends Component {
+export class NavBar extends Component {
   constructor(props) {
     super(props)
   }
@@ -45,14 +45,6 @@ export class FaHeader extends Component {
     this.props.onGoBack()
   }
 
-  _renderLogo() {
-    return (
-      <View style={logo.container}>
-        <View style={{ width: 160, height: 40 }}><Image style={logo.farma} source={require('./assets/farma-express-logo-white.png')} /></View>
-      </View>
-    )
-  }
-
   _renderTitle() {
     return (
       <Text style={header.title}>{this.props.title}</Text>
@@ -69,7 +61,7 @@ export class FaHeader extends Component {
           {this._renderBackButton()}
         </View>
 
-        {this.props.showLogo ? this._renderLogo() : this._renderTitle()}
+        {this._renderTitle()}
 
         <View style={header.right}>
           {this._renderRight()}
@@ -97,7 +89,7 @@ const logo = EStyleSheet.create({
 
 const header = EStyleSheet.create({
   container: {
-    height: 70,
+    height: 65,
     paddingTop: Platform.select({
       ios: 20,
       android: 0,
@@ -112,18 +104,18 @@ const header = EStyleSheet.create({
   },
   backButton: {
     width: 60,
-    height: 50,
+    height: 45,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   backButtonIcon: {
     fontSize: 32,
-    color: '$colors.white1',
+    color: '$colors.white',
   },
   title: {
     flex: 3,
-    color: '$colors.white1',
+    color: '$colors.white',
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',

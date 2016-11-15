@@ -66,9 +66,9 @@ export class FaSelectModal extends Component {
 
           <Text style={{ color: 'white', fontSize: 16, paddingBottom: 20 }}>{this.props.label}</Text>
 
-          <View style={{ paddingLeft: 10, paddingRight: 0, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 300 }}>
+          <View style={{ padding: 8, borderRadius: 6, marginBottom: 20, backgroundColor: 'white', height: 290 }}>
             <View style={{ flexDirection: 'row', flex: 1 }}>
-              <ScrollView style={{ flex: 1, padding: 10 }}>
+              <ScrollView style={{ flex: 1, paddingLeft: 10, paddingRight: 10 }}>
                 <FaRadioList options={this.props.options} selected={this.state.selectedValue} onSelected={(selected) => this._onSelected(selected)} />
               </ScrollView>
             </View>
@@ -91,15 +91,15 @@ const info = EStyleSheet.create({
     fontSize: 11,
     paddingBottom: 3,
     fontWeight: 'bold',
-    color: '$colors.black3',
+    color: '$colors.scale4',
   },
   value: {
     fontSize: 14,
-    color: '$colors.black1',
+    color: '$colors.black',
   },
   icon: {
     fontSize: 17,
     marginRight: 3,
-    color: '$colors.black3',
+    color: '$colors.scale4',
   },
 })

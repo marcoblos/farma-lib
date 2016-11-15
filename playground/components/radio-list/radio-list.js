@@ -40,7 +40,7 @@ export class FaRadioList extends Component {
 const radio = EStyleSheet.create({
   container: {
     borderBottomWidth: 1,
-    borderColor: '$colors.gray1',
+    borderColor: '$colors.scale7',
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 8,
@@ -53,7 +53,7 @@ const radio = EStyleSheet.create({
     borderRadius: 26,
     marginRight: 10,
     borderWidth: 2,
-    borderColor: '$colors.gray1',
+    borderColor: '$colors.scale7',
   },
   iconIn: {
     opacity: 0,

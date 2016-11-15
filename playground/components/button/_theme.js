@@ -4,10 +4,10 @@ module.exports.FACEBOOK = {
     borderColor: '#3b5998',
   },
   icon: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
   text: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
 }
 
@@ -17,10 +17,10 @@ module.exports.PRIMARY = {
     borderColor: '$colors.primary',
   },
   icon: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
   text: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
 }
 
@@ -30,36 +30,36 @@ module.exports.SECONDARY = {
     borderColor: '$colors.secondary',
   },
   icon: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
   text: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
 }
 
 module.exports.TERNARY = {
   button: {
     backgroundColor: '$colors.ternary',
-    borderColor: '$colors.black1',
+    borderColor: '$colors.black',
   },
   icon: {
-    color: '$colors.black1',
+    color: '$colors.black',
   },
   text: {
-    color: '$colors.black1',
+    color: '$colors.black',
   },
 }
 
 module.exports.BLACK = {
   button: {
-    backgroundColor: '$colors.black1',
-    borderColor: '$colors.white1',
+    backgroundColor: '$colors.black',
+    borderColor: '$colors.white',
   },
   icon: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
   text: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
 }
 
@@ -91,14 +91,14 @@ module.exports.DANGER = {
 
 module.exports.CLEAN = {
   button: {
-    backgroundColor: '$colors.white1',
-    borderColor: '$colors.gray2',
+    backgroundColor: '$colors.white',
+    borderColor: '$colors.scale7',
   },
   icon: {
-    color: '$colors.black2',
+    color: '$colors.scale3',
   },
   text: {
-    color: '$colors.black2',
+    color: '$colors.scale3',
   },
 }
 
@@ -108,10 +108,10 @@ module.exports.LINK = {
     borderColor: 'transparent',
   },
   icon: {
-    color: '$colors.white1',
+    color: '$colors.white',
   },
   text: {
-    color: '$colors.white1',
+    color: '$colors.white',
     fontWeight: 'normal',
   },
 }
