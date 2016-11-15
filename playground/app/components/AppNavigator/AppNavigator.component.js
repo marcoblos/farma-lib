@@ -15,6 +15,10 @@ import {
     SelectModalPage,
     InfoPage,
     CameraPage,
+    IconMessagePage,
+    ImageZoomPage,
+    RadioListPage,
+    ActionButtonPage,
 } from 'lib-pages'
 
 export class AppNavigator extends Component {
@@ -42,6 +46,14 @@ export class AppNavigator extends Component {
         return (<InfoPage {...globalNavigatorProps} {...route.passProps} />)
       case 'CameraPage':
         return (<CameraPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'IconMessagePage':
+        return (<IconMessagePage {...globalNavigatorProps} {...route.passProps} />)
+      case 'ImageZoomPage':
+        return (<ImageZoomPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'RadioListPage':
+        return (<RadioListPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'ActionButtonPage':
+        return (<ActionButtonPage {...globalNavigatorProps} {...route.passProps} />)
     }
   }
 

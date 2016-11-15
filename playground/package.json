@@ -13,6 +13,7 @@
     "react-native-extended-stylesheet": "^0.3.0",
     "react-native-masked-text": "^0.3.7",
     "react-native-permissions": "^0.2.5",
+    "react-native-transformable-image": "0.0.18",
     "react-native-vector-icons": "^3.0.0"
   },
   "jest": {

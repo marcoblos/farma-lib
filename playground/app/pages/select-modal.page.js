@@ -66,7 +66,7 @@ export class SelectModalPage extends Component {
     return (
       <ViewContainer>
 
-        <NavBar title='ModalSelect' onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title='FaSelectModal' onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView>
 
@@ -80,7 +80,7 @@ export class SelectModalPage extends Component {
             />
 
             <Text>Valor selecionado: {this.state.valorSelecionado}</Text>
-            
+
           </BoxView>
 
           <FaSelectModal
