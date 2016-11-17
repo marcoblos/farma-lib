@@ -9,7 +9,7 @@ import {
 import {
   FaRadioList,
   FaButton,
-} from 'farma-lib'
+} from '../index.js'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 
@@ -18,6 +18,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 export class FaSelectModal extends Component {
   constructor(props) {
     super(props)
+    console.log("FA RADIO LIST: ", FaRadioList)
 
     this.state = {
       data: [],

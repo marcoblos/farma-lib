@@ -2,19 +2,40 @@
  * @providesModule farma-lib
  */
 
-export { NavBar } from './navbar/navbar.component'
-export { ViewContainer } from './view-container/view-container'
-export { FaButton } from './button/button'
-export { FaSelectModal } from './select-modal/select-modal'
-export { FaRadioList } from './radio-list/radio-list'
-export { Input } from './input/input.component'
-export { FaText } from './text/text.component'
-export { ButtonList } from './button-list/button-list.component'
-export { Info } from './info/info.component'
-export { BoxView } from './box-view/box-view.component'
-export { NavBarModal } from './navbar-modal/navbar-modal.component'
-export { FaCamera } from './camera/camera.component'
-export { IconMessage } from './icon-message/icon-message.component'
-export { FaImageZoom } from './image-zoom/image-zoom.component'
-export { FaIcon } from './icon/icon.component'
-export { ActionButton } from './action-button/action-button.component'
+import { NavBar } from './navbar/navbar.component'
+import { ViewContainer } from './view-container/view-container'
+import { FaButton } from './button/button'
+import { FaSelectModal } from './select-modal/select-modal'
+import { FaRadioList } from './radio-list/radio-list'
+import { Input } from './input/input.component'
+import { FaText } from './text/text.component'
+import { ButtonList } from './button-list/button-list.component'
+import { Info } from './info/info.component'
+import { BoxView } from './box-view/box-view.component'
+import { NavBarModal } from './navbar-modal/navbar-modal.component'
+import { IconMessage } from './icon-message/icon-message.component'
+import { FaImageZoom } from './image-zoom/image-zoom.component'
+import { FaIcon } from './icon/icon.component'
+import { ActionButton } from './action-button/action-button.component'
+import { FaCamera } from './camera/camera.component'
+
+console.log("LOGANDO", FaCamera)
+
+module.exports = {
+	NavBar,
+	ViewContainer,
+	FaButton,
+	FaSelectModal,
+	FaRadioList,
+	Input,
+	FaText,
+	ButtonList,
+	Info,
+	BoxView,
+	NavBarModal,
+	IconMessage,
+	FaImageZoom,
+	FaIcon,
+	ActionButton,
+	FaCamera,
+}
