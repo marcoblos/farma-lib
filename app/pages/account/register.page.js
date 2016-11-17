@@ -24,7 +24,7 @@ import {
   FaPageTitle,
 } from 'fa-components'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -118,7 +118,7 @@ export class RegisterPage extends Component {
   render() {
     return (
       <ViewContainer>
-        <FaHeader title="Nova conta" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Nova conta" onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView keyboardShouldPersistTaps style={{ flex: 1 }}>
 

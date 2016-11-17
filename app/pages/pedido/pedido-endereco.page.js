@@ -15,7 +15,7 @@ import {
   Dimensions,
 } from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -127,7 +127,7 @@ export class PedidoEnderecoPage extends Component {
   render() {
     return (
       <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
-        <FaHeader title="Selecionar endereço" onGoBack={() => this._backToHome()} />
+        <NavBar title="Selecionar endereço" onGoBack={() => this._backToHome()} />
 
         <ScrollView style={{ flex: 1 }}>
 

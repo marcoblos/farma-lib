@@ -17,7 +17,7 @@ import {
   Alert,
 } from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -320,7 +320,7 @@ export class PedidoCotacoesPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title={`Pedido nº ${this.props.pedido.idPedido}`} onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title={`Pedido nº ${this.props.pedido.idPedido}`} onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView>
 

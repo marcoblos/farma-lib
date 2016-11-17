@@ -19,7 +19,7 @@ import {
   ToasterService
 } from 'fa-services'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -210,7 +210,7 @@ export class PedidoPagamentoPage extends Component {
   render() {
     return (
       <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
-        <FaHeader title="Forma de pagamento" onGoBack={() => this._backToHome()} />
+        <NavBar title="Forma de pagamento" onGoBack={() => this._backToHome()} />
 
         <ScrollView style={{ flex: 1 }}>
 

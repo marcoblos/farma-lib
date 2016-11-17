@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import { FaFullButton, FaPageTitle, FaInput } from 'fa-components'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -60,7 +60,7 @@ export class MeusDadosPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title="Meus dados" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Meus dados" onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView keyboardShouldPersistTaps>
 

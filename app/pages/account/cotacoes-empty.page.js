@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { FaFullButton, FaModalHeader, FaProduct, FaInfo, FaInput, FaPageTitle, FaMessage } from 'fa-components'
 
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -185,7 +185,7 @@ export class CotacoesEmptyPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title="Pedido nº 29" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Pedido nº 29" onGoBack={() => this.props.navigator.pop()} />
 
 
         <ScrollView>

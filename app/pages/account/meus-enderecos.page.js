@@ -9,7 +9,7 @@ import {
   Modal,
 } from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -105,7 +105,7 @@ export class MeusEnderecosPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title="Meus endereços" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Meus endereços" onGoBack={() => this.props.navigator.pop()} />
 
 
         {this._renderPage()}

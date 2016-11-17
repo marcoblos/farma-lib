@@ -13,7 +13,7 @@ import {
 } from 'fa-components'
 
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
 } from 'fa-components'
 
@@ -43,7 +43,7 @@ export class RootPage extends Component {
 
         <StatusBarBackground />
 
-        <FaHeader title="aaaaa" onGoBack={() => this.backToHome()} />
+        <NavBar title="aaaaa" onGoBack={() => this.backToHome()} />
 
         <Text>MAIN</Text>
         <TouchableOpacity onPress={() => this.navigateToPersonShow()}>

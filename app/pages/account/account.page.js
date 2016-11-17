@@ -16,7 +16,7 @@ import {
   StorageService
 } from 'fa-services'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton
 } from 'fa-components'
@@ -100,7 +100,7 @@ export class AccountPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader showLogo onGoBack={() => this.props.navigator.pop()} />
+        <NavBar showLogo onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView style={{ flex: 1 }}>
 

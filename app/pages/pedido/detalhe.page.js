@@ -22,16 +22,14 @@ import { Text,
   Image,
 } from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
-} from 'fa-components'
-import {
   FaRadioList,
-  FaInfo,
+  Info,
   FaImageZoom,
   FaCamera,
-} from 'fa-components'
+} from 'farma-lib'
 
 const { height, width } = Dimensions.get('window')
 const pedidoData = require('./_pedidoData.json')
@@ -220,7 +218,7 @@ export class DetalhePage extends Component {
   render() {
     return (
       <ViewContainer>
-        <FaHeader title="Detalhe do produto" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Detalhe do produto" onGoBack={() => this.props.navigator.pop()} />
 
         <View style={[this.state.showProgressBar ? { opacity: 1 } : { opacity: 0 }]}>
           <Progress.Bar progress={this.state.progress} height={4} color="#f90" borderRadius={0} width={width} />
@@ -230,7 +228,7 @@ export class DetalhePage extends Component {
           <View style={[s.box, { paddingBottom: 10 }]}>
 
             <View style={info.item}>
-              <FaInfo label="Nome" last value={this.props.nome} />
+              <Info label="Nome" last value={this.props.nome} />
             </View>
 
             <View style={info.container}>

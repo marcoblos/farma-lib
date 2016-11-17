@@ -20,18 +20,16 @@ import {
   StorageService,
   PedidoService
 } from 'fa-services'
-import {
-  FaHeader,
-} from 'fa-components'
 
 import {
   ViewContainer,
+  NavBar,
 } from 'farma-lib'
 
 export class DashboardPage extends Component {
   constructor(props) {
     super(props)
-    console.log("farma lib", ViewContainer)
+    
     this.state = {
       notificacoes: 0,
       pendentes: 0,
@@ -265,7 +263,7 @@ export class DashboardPage extends Component {
     return (
       <Animated.View style={{ flex: 1, opacity: this.state.opacity }}>
         <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
-          <FaHeader title="" style={{ height: 118 }} hideBackButton />
+          <NavBar title="" style={{ height: 118 }} hideBackButton />
 
           <View style={dashboard.ButtonContainer}>
             <TouchableHighlight style={dashboard.pedidoButton} underlayColor="#e76100" onPress={() => this._novoPedido()}>

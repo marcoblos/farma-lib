@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import EStyleSheet from 'react-native-extended-stylesheet'
 
-export class FaHeader extends Component {
+export class NavBar extends Component {
   constructor(props) {
     super(props)
   }

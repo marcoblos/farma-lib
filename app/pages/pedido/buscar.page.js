@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableHighlight, Dimensions, StyleSheet, ActivityIndicator, ListView, TouchableOpacity, TextInput, ScrollView } from 'react-native'
-
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 import EStyleSheet from 'react-native-extended-stylesheet'
-
 import { PedidoService } from 'fa-services'
-
+import { PedidoModel } from 'fa-models'
+import { 
+  Text,
+  View,
+  TouchableHighlight,
+  Dimensions,
+  StyleSheet,
+  ActivityIndicator,
+  ListView,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+} from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
-} from 'fa-components'
+} from 'farma-lib'
 
 const DismissKeyboard = require('dismissKeyboard')
-
-import KeyboardSpacer from 'react-native-keyboard-spacer'
-
-import { PedidoModel } from 'fa-models'
 
 const ds = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.id !== r2.id,
@@ -23,7 +29,7 @@ const ds = new ListView.DataSource({
 export class PedidoBuscar extends Component {
   constructor(props) {
     super(props)
-
+    
     this.state = {
       productsDataSource: ds.cloneWithRows([]),
       text: '',
@@ -116,7 +122,7 @@ export class PedidoBuscar extends Component {
     return (
       <ViewContainer style={{ backgroundColor: 'white' }}>
 
-        <FaHeader title="Selecionar produto" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Selecionar produto" onGoBack={() => this.props.navigator.pop()} />
 
         <View style={buscar.container}>
           <TextInput

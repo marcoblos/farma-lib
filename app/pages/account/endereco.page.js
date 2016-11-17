@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import { FaFullButton, FaPageTitle, FaInput } from 'fa-components'
 
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -77,7 +77,7 @@ export class EnderecoPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title="Endereço" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Endereço" onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView keyboardShouldPersistTaps>
 

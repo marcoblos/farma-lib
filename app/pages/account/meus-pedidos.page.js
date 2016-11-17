@@ -15,7 +15,7 @@ import {
   LoaderService,
 } from 'fa-services'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -189,7 +189,7 @@ export class MeusPedidosPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title="Meus pedidos" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Meus pedidos" onGoBack={() => this.props.navigator.pop()} />
 
         {this._renderPage()}
 

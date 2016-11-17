@@ -16,7 +16,7 @@ import {
 } from 'react-native'
 import { FaImageZoom } from 'fa-components'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -231,7 +231,7 @@ export class PedidoResumo extends Component {
   render() {
     return (
       <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
-        <FaHeader title="Resumo do pedido" hideBackButton />
+        <NavBar title="Resumo do pedido" hideBackButton />
 
 
         <ScrollView>

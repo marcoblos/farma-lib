@@ -18,10 +18,10 @@ import {
   Animated,
 } from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
-} from 'fa-components'
+} from 'farma-lib'
 
 let { width, height } = Dimensions.get('window')
 

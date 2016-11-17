@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View, ScrollView, Modal, Dimensions } from 'rea
 import { FaRadioList, FaFullButton, FaPageTitle } from 'fa-components'
 
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
 } from 'fa-components'
 
@@ -98,7 +98,7 @@ export class PedidoPagamentoCartaoPage extends Component {
   render() {
     return (
       <ViewContainer style={{ backgroundColor: '#e6e6e6' }}>
-        <FaHeader title="Forma de pagamento" onGoBack={() => this._backToHome()} />
+        <NavBar title="Forma de pagamento" onGoBack={() => this._backToHome()} />
 
         <ScrollView style={{ flex: 1 }}>
 

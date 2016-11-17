@@ -16,19 +16,19 @@ import {
   ToasterService,
 } from 'fa-services'
 import {
-  FaInput,
   FaPageTitle,
  } from 'fa-components'
 import {
-  FaHeader,
+  Input,
+  NavBar,
   ViewContainer,
   FaButton,
-} from 'fa-components'
+} from 'farma-lib'
 
 export class LoginPage extends Component {
   constructor(props) {
     super(props)
-
+    console.log("AAAAAAAAAAAAAAAAAAA", FaPageTitle)
     this.state = {
       showErrors: false,
       name: '',
@@ -106,7 +106,7 @@ export class LoginPage extends Component {
   render() {
     return (
       <ViewContainer>
-        <FaHeader title="Nova conta" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Nova conta" onGoBack={() => this.props.navigator.pop()} />
 
         <ScrollView keyboardShouldPersistTaps style={{ flex: 1 }}>
 
@@ -114,8 +114,8 @@ export class LoginPage extends Component {
 
             <FaPageTitle title="LOGIN" subTitle="Informe os dados de acesso para continuar" />
 
-            <FaInput label="E-mail" ref="email" value="" required showErrors={this.state.showErrors} type="email-address" />
-            <FaInput label="Senha" ref="password" value="" password required showErrors={this.state.showErrors} />
+            <Input label="E-mail" ref="email" value="" required showErrors={this.state.showErrors} type="email-address" />
+            <Input label="Senha" ref="password" value="" password required showErrors={this.state.showErrors} />
 
             <FaButton label="ENTRAR" style={{ marginTop: 20 }} size="md" type="primary" onPress={() => this._login()} />
           </View>

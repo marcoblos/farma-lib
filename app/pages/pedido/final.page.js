@@ -13,7 +13,7 @@ import {
   Dimensions,
 } from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -37,7 +37,7 @@ export class FinalPage extends Component {
   render() {
     return (
       <ViewContainer>
-        <FaHeader title="Pedido concluído!" hideBackButton />
+        <NavBar title="Pedido concluído!" hideBackButton />
 
         <FaMessage title={'Pedido concluído!'} text={`Seu pedido Nº ${this.props.idPedido} foi registrado, logo você receberá ofertas das farmácias.`} icon="check-circle" />
 

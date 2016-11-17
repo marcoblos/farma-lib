@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
 } from 'fa-components'
 
@@ -24,7 +24,7 @@ export class DashboardPage extends Component {
   render() {
     return (
       <ViewContainer>
-        <FaHeader title="Dashboard" onGoBack={() => this._backToHome()} />
+        <NavBar title="Dashboard" onGoBack={() => this._backToHome()} />
 
         <Text>DASHBOARD</Text>
 

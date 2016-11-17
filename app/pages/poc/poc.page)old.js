@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View, ScrollView, PixelRatio, Platform, Image, 
 import { FaRadioList } from 'fa-components'
 
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
 } from 'fa-components'
 
@@ -159,7 +159,7 @@ export class PocPage extends Component {
   render() {
     return (
       <ViewContainer>
-        <FaHeader title="POC" hideBackButton style={{ marginBottom: 50 }} />
+        <NavBar title="POC" hideBackButton style={{ marginBottom: 50 }} />
 
         <View style={styles.container}>
           <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>

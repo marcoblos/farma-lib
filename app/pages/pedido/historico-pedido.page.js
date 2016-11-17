@@ -14,7 +14,7 @@ import {
   Dimensions,
 } from 'react-native'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -94,7 +94,7 @@ export class HistoricoPedidoPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title="Histórico de pedidos" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Histórico de pedidos" onGoBack={() => this.props.navigator.pop()} />
 
         {this._renderPage()}
 

@@ -15,7 +15,7 @@ import {
   LoaderService,
 } from 'fa-services'
 import {
-  FaHeader,
+  NavBar,
   ViewContainer,
   FaButton,
 } from 'fa-components'
@@ -188,7 +188,7 @@ export class NotificacoesPage extends Component {
     return (
       <ViewContainer>
 
-        <FaHeader title="Notificações" onGoBack={() => this.props.navigator.pop()} />
+        <NavBar title="Notificações" onGoBack={() => this.props.navigator.pop()} />
 
         {this._renderPage()}
 
