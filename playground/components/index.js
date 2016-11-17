@@ -19,8 +19,6 @@ import { FaIcon } from './icon/icon.component'
 import { ActionButton } from './action-button/action-button.component'
 import { FaCamera } from './camera/camera.component'
 
-console.log("LOGANDO", FaCamera)
-
 module.exports = {
 	NavBar,
 	ViewContainer,

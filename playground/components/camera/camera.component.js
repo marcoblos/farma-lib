@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Camera from 'react-native-camera'
 
-const Permissions = require('react-native-permissions')
+import Permissions from 'react-native-permissions'
 
 export class FaCamera extends Component {
   constructor(props) {
