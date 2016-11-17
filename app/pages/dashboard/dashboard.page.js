@@ -22,14 +22,16 @@ import {
 } from 'fa-services'
 import {
   FaHeader,
-  ViewContainer,
 } from 'fa-components'
 
+import {
+  ViewContainer,
+} from 'farma-lib'
 
 export class DashboardPage extends Component {
   constructor(props) {
     super(props)
-
+    console.log("farma lib", ViewContainer)
     this.state = {
       notificacoes: 0,
       pendentes: 0,

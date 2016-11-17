@@ -2,7 +2,6 @@
  * @providesModule fa-components
  */
 
- export { ViewContainer } from './ViewContainer/ViewContainer.component'
  export { AppNavigator } from './AppNavigator/AppNavigator.component'
  export { FaHeader } from './header/header.component'
  export { FaRadioList } from './radio/radio.component'

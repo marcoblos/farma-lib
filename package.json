@@ -37,6 +37,7 @@
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react-native": "^2.0.0"
+    "eslint-plugin-react-native": "^2.0.0",
+    "farma-lib": "git+https://github.com/marcoblos/farma-lib.git"
   }
 }
