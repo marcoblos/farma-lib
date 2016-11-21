@@ -15,6 +15,12 @@ export class BoxView extends Component {
         this.props.padding === 'sm' ? boxView.sm : {},
         this.props.padding === 'md' ? boxView.md : {},
         this.props.padding === 'lg' ? boxView.lg : {},
+
+        this.props.margin === 'sm' ? boxView.marginSm : {},
+        this.props.margin === 'md' ? boxView.marginMd : {},
+        this.props.margin === 'lg' ? boxView.marginLg : {},
+
+        this.props.border ? boxView.border : {},
         this.props.style,
       ]}>
         {this.props.children}
@@ -27,6 +33,15 @@ const boxView = EStyleSheet.create({
   box: {
     color: '$colors.scale4',
   },
+  marginSm: {
+    margin: '$sm',
+  },
+  marginMd: {
+    margin: '$md',
+  },
+  marginLg: {
+    margin: '$lg',
+  },
   sm: {
     padding: '$sm',
   },
@@ -35,5 +50,9 @@ const boxView = EStyleSheet.create({
   },
   lg: {
     padding: '$lg',
+  },
+  border: {
+    borderWidth: 1,
+    borderColor: '$colors.gray4',
   },
 })

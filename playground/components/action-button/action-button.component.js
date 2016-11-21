@@ -47,13 +47,13 @@ export class ActionButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity style={[aa.row, this.props.style]} onPress={() => this._onPress()}>
+      <TouchableOpacity style={[aa.row, this.props.style, this.props.valid === false ? {borderColor: 'red'} : {}]} onPress={() => this._onPress()}>
         <View>
           {this._renderLabel()}
           {this._renderValue()}
         </View>
         <View style={aa.icon}>
-          <Icon style={this.props.iconStyle} name={this.props.icon || 'touch-app'} size={33} color="#999" />
+          <Icon style={[this.props.iconStyle, this.props.valid === false ? {color: 'red'} : {}]} name={this.props.icon || 'touch-app'} size={33} color="#999" />
         </View>
       </TouchableOpacity>
     )

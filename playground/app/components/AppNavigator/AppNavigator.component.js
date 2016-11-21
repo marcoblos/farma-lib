@@ -20,6 +20,7 @@ import {
     RadioListPage,
     ActionButtonPage,
     PedidoListPage,
+    BoxViewPage,
 } from 'lib-pages'
 
 export class AppNavigator extends Component {
@@ -57,6 +58,8 @@ export class AppNavigator extends Component {
         return (<ActionButtonPage {...globalNavigatorProps} {...route.passProps} />)
       case 'PedidoListPage':
         return (<PedidoListPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'BoxViewPage':
+        return (<BoxViewPage {...globalNavigatorProps} {...route.passProps} />)
     }
   }
 

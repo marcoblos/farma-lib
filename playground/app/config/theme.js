@@ -85,6 +85,12 @@ export class ConfigTheme {
         scale8: SCALE_8,
         scale9: SCALE_9,
 
+        gray0: GRAY_0,
+        gray1: GRAY_1,
+        gray2: GRAY_2,
+        gray3: GRAY_3,
+        gray4: GRAY_4,
+
         primary: PRIMARY_COLOR,
         secondary: SECONDARY_COLOR,
         ternary: TERNARY_COLOR,

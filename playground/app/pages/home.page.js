@@ -47,6 +47,7 @@ export class HomePage extends Component {
         <ButtonList onPress={() => this._goTo('RadioListPage')} title='RadioList' label='Lista de opções com apenas uma opção selecionavel' />
         <ButtonList onPress={() => this._goTo('ActionButtonPage')} title='ActionButton' label='Botão de ação com ícone cusomizado' />
         <ButtonList onPress={() => this._goTo('PedidoListPage')} title='PedidoList' label='Listagem de pedidos com status' />
+        <ButtonList onPress={() => this._goTo('BoxViewPage')} title='BoxView' label='BoxView component' />
       </ScrollView>
 
       </View>
