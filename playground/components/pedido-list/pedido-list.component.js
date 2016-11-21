@@ -68,39 +68,57 @@ export class FaPedidoList extends Component {
   }
 
   _renderStatus(s) {
-    let label = ''
-    let icon = ''
 
-    if (s === 1) {
-      label = 'Aguardando resposta da farmácia'
-      icon = 'access-time'
-    }
+    if(typeof s === 'number') {
+      let label = ''
+      let icon = ''
 
-    if (s === 2) {
-      label = 'Pedido cotado'
-      icon = 'exit-to-app'
-    }
+      if (s === 1) {
+        label = 'Aguardando resposta da farmácia'
+        icon = 'access-time'
+      }
 
-    if (s === 3) {
-      label = 'Aguardando a entrega'
-      icon = 'hourglass-empty'
-    }
+      if (s === 2) {
+        label = 'Pedido cotado'
+        icon = 'exit-to-app'
+      }
 
-    if (s === 4) {
-      label = 'Saiu para entrega'
-      icon = 'motorcycle'
-    }
+      if (s === 3) {
+        label = 'Aguardando a entrega'
+        icon = 'hourglass-empty'
+      }
 
-    if (s === 5) {
-      label = 'Pedido finalizado'
-      icon = 'check'
+      if (s === 4) {
+        label = 'Saiu para entrega'
+        icon = 'motorcycle'
+      }
+
+      if (s === 5) {
+        label = 'Pedido finalizado'
+        icon = 'check'
+      }
+
+      return (
+        <View style={{ flexDirection: 'row' }}>
+          <Icon name={icon} style={product.buttonTextIcon} />
+          <Text style={product.buttonText}>{label}</Text>
+        </View>
+      )
     }
 
     return (
       <View style={{ flexDirection: 'row' }}>
-        <Icon name={icon} style={product.buttonTextIcon} />
-        <Text style={product.buttonText}>{label}</Text>
+        {this._renderStatusIcon()}
+        <Text style={product.buttonText}>{s}</Text>
       </View>
+    )
+
+
+  }
+
+  _renderStatusIcon() {
+    return (
+      <Icon name={this.props.statusIcon} style={product.buttonTextIcon} />
     )
   }
 
