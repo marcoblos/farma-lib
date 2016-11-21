@@ -39,6 +39,7 @@ const BORDER_RADIUS = 5
 
 const HEADER_BACKGROUND = '#555'
 const BACKGROUND_COLOR = '#555'
+const HEADER_TEXT_COLOR = '#ffffff'
 
 /**
 * Escala de cores
@@ -103,6 +104,12 @@ export class ConfigTheme {
       sm: SIZE_SM,
       md: SIZE_MD,
       lg: SIZE_LG,
+      sizes: {
+        statusPadding: Platform.select({
+          ios: 20,
+          android: 0,
+        }),
+      },
     })
   }
 }

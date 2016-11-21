@@ -28,7 +28,8 @@ export class ActionButtonPage extends Component {
         <BoxView padding='sm'>
 
           <ActionButton label='Quantidade' style={{marginBottom: 10}} value={this.state.quantidade} icon='person' />
-          <ActionButton label='Quantidade' value={this.state.quantidade} />
+          <ActionButton label='Quantidade' style={{marginBottom: 10}} value={this.state.quantidade} />
+          <ActionButton value='Nome do botão...' />
 
         </BoxView>
 

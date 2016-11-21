@@ -29,12 +29,28 @@ export class ActionButton extends Component {
     }
   }
 
+  _renderLabel () {
+    if(this.props.label) {
+      return (
+        <Text style={aa.label}>{this.props.label}</Text>
+      )
+    }
+  }
+
+  _renderValue () {
+    if(this.props.value) {
+      return (
+        <Text style={aa.value}>{this.props.value}</Text>
+      )
+    }
+  }
+
   render() {
     return (
       <TouchableOpacity style={[aa.row, this.props.style]} onPress={() => this._onPress()}>
         <View>
-          <Text style={aa.label}>{this.props.label}</Text>
-          <Text style={aa.value}>{this.props.value}</Text>
+          {this._renderLabel()}
+          {this._renderValue()}
         </View>
         <View style={aa.icon}>
           <Icon style={this.props.iconStyle} name={this.props.icon || 'touch-app'} size={33} color="#999" />
