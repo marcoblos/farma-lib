@@ -46,6 +46,7 @@ export class HomePage extends Component {
         <ButtonList onPress={() => this._goTo('ImageZoomPage')} title='ImageZoom' label='Abre imagem com zoom passando a uri da imagem' />
         <ButtonList onPress={() => this._goTo('RadioListPage')} title='RadioList' label='Lista de opções com apenas uma opção selecionavel' />
         <ButtonList onPress={() => this._goTo('ActionButtonPage')} title='ActionButton' label='Botão de ação com ícone cusomizado' />
+        <ButtonList onPress={() => this._goTo('PedidoListPage')} title='PedidoList' label='Listagem de pedidos com status' />
       </ScrollView>
 
       </View>

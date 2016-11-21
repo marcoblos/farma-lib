@@ -18,6 +18,7 @@ import { FaImageZoom } from './image-zoom/image-zoom.component'
 import { FaIcon } from './icon/icon.component'
 import { ActionButton } from './action-button/action-button.component'
 import { FaCamera } from './camera/camera.component'
+import { FaPedidoList } from './pedido-list/pedido-list.component'
 
 module.exports = {
 	NavBar,
@@ -36,4 +37,5 @@ module.exports = {
 	FaIcon,
 	ActionButton,
 	FaCamera,
+	FaPedidoList,
 }

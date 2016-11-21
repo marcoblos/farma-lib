@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
-import { TouchableOpacity, View } from 'react-native'
-
-import { FaText, FaIcon } from 'farma-lib'
+import { Text, TouchableOpacity, View } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -35,11 +33,11 @@ export class ActionButton extends Component {
     return (
       <TouchableOpacity style={[aa.row, this.props.style]} onPress={() => this._onPress()}>
         <View>
-          <FaText style={aa.label}>{this.props.label}</FaText>
-          <FaText style={aa.value}>{this.props.value}</FaText>
+          <Text style={aa.label}>{this.props.label}</Text>
+          <Text style={aa.value}>{this.props.value}</Text>
         </View>
         <View style={aa.icon}>
-          <FaIcon style={this.props.iconStyle} name={this.props.icon || 'touch-app'} size={33} color="#999" />
+          <Icon style={this.props.iconStyle} name={this.props.icon || 'touch-app'} size={33} color="#999" />
         </View>
       </TouchableOpacity>
     )

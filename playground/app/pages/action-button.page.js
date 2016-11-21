@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native'
 
-import { NavBar, Info, BoxView, ViewContainer, FaText, ActionButton } from 'farma-lib'
+import { NavBar, Info, BoxView, ViewContainer, ActionButton } from 'farma-lib'
 
 export class ActionButtonPage extends Component {
 
