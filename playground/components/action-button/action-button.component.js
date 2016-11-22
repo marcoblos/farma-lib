@@ -47,7 +47,7 @@ export class ActionButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity style={[aa.row, this.props.style, this.props.valid === false ? {borderColor: 'red'} : {}]} onPress={() => this._onPress()}>
+      <TouchableOpacity style={[aa.row, this.props.style, this.props.valid === false ? {borderColor: 'red'} : {}, this.props.children ? {} : {height: 60}]} onPress={() => this._onPress()}>
         <View>
           {this._renderLabel()}
           {this._renderValue()}
@@ -67,7 +67,6 @@ const aa = EStyleSheet.create({
     borderWidth: 1,
     borderBottomWidth: 3,
     borderColor: '$colors.scale7',
-    height: 60,
     marginTop: -1,
     flexDirection: 'row',
     alignItems: 'center',

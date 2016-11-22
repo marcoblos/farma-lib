@@ -7,7 +7,7 @@ import {
 export class ViewContainer extends Component {
   render() {
     return (
-      <View style={[styles.viewContainer, this.props.style || {}]}>
+      <View style={[styles.viewContainer, this.props.style || {}, this.props.navbar === false ? {} : styles.hasNavBar]}>
         {this.props.children}
       </View>
     )
@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#e6e6e6',
     position: 'relative',
+  },
+  hasNavBar: {
+    marginTop: 60
   },
 
 })
