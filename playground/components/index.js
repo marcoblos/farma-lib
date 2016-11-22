@@ -41,4 +41,5 @@ module.exports = {
 	FaCamera,
 	FaPedidoList,
 	FaMessage,
+	FaFullButton,
 }
