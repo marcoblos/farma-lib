@@ -20,6 +20,7 @@ import { ActionButton } from './action-button/action-button.component'
 import { FaCamera } from './camera/camera.component'
 import { FaPedidoList } from './pedido-list/pedido-list.component'
 import { FaMessage } from './message/fa-message-component'
+import { FaFullButton } from './full-button/fa-full-button-component'
 
 module.exports = {
 	NavBar,
