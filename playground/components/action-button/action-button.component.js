@@ -51,6 +51,7 @@ export class ActionButton extends Component {
         <View>
           {this._renderLabel()}
           {this._renderValue()}
+          {this.props.children}
         </View>
         <View style={aa.icon}>
           <Icon style={[this.props.iconStyle, this.props.valid === false ? {color: 'red'} : {}]} name={this.props.icon || 'touch-app'} size={33} color="#999" />

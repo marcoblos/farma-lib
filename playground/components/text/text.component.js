@@ -8,7 +8,9 @@ export class FaText extends Component {
 
   render() {
     return (
-      <Text {...this.props} />
+      <Text {...this.props}>
+        {this.props.children}
+      </Text>
     )
   }
 }
