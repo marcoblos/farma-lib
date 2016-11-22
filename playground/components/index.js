@@ -19,6 +19,7 @@ import { FaIcon } from './icon/icon.component'
 import { ActionButton } from './action-button/action-button.component'
 import { FaCamera } from './camera/camera.component'
 import { FaPedidoList } from './pedido-list/pedido-list.component'
+import { FaMessage } from './message/fa-message-component'
 
 module.exports = {
 	NavBar,
@@ -38,4 +39,5 @@ module.exports = {
 	ActionButton,
 	FaCamera,
 	FaPedidoList,
+	FaMessage,
 }
