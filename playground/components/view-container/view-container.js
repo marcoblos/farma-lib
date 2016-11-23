@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  Platform,
 } from 'react-native'
 
 export class ViewContainer extends Component {
@@ -23,7 +24,10 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   hasNavBar: {
-    marginTop: 60
+    marginTop: Platform.select({
+      ios: 60,
+      android: 50,
+    })
   },
 
 })

@@ -6,6 +6,9 @@ import {
     Navigator,
     Text,
     StyleSheet,
+    Animated,
+    View,
+    TouchableOpacity,
 } from 'react-native'
 
 import {
@@ -21,7 +24,13 @@ import {
     ActionButtonPage,
     PedidoListPage,
     BoxViewPage,
+    NovoPage,
+    OutraPage,
+    PedidoIndexPage,
+    ContaIndexPage,
 } from 'lib-pages'
+
+import { FaIcon } from 'farma-lib'
 
 export class AppNavigator extends Component {
   constructor(props) {
@@ -60,49 +69,122 @@ export class AppNavigator extends Component {
         return (<PedidoListPage {...globalNavigatorProps} {...route.passProps} />)
       case 'BoxViewPage':
         return (<BoxViewPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'NovoPage':
+        return (<NovoPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'OutraPage':
+        return (<OutraPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'PedidoIndexPage':
+        return (<PedidoIndexPage {...globalNavigatorProps} {...route.passProps} />)
+      case 'ContaIndexPage':
+        return (<ContaIndexPage {...globalNavigatorProps} {...route.passProps} />)
     }
   }
 
-  componentWillMount() {
-    BackAndroid.addEventListener('hardwareBackPress', () => {
-      if (this.navigator && this.navigator.getCurrentRoutes().length > 1) {
-        this.navigator.pop()
-        return true
+
+    componentWillMount() {
+      BackAndroid.addEventListener('hardwareBackPress', () => {
+        if (this.navigator && this.navigator.getCurrentRoutes().length > 1) {
+          this.navigator.pop()
+          return true
+        }
+        return false
+      })
+    }
+
+    _configureScene(route, routeStack) {
+      let obj = { ...route.sceneConfig || Navigator.SceneConfigs.PushFromRight }
+
+      if (route.swipeBack === false) {
+        obj = {
+          ...route.sceneConfig || Navigator.SceneConfigs.PushFromRight,
+          gestures: {},
+        }
       }
-      return false
-    })
+      return obj
+    }
+
+
+
+    render() {
+      return (
+        <Navigator
+          initialRoute={this.props.initialRoute}
+          ref="navigator"
+          style={styles.navigatorStyles}
+          renderScene={this._renderScene.bind(this)}
+          configureScene={this._configureScene}
+        />
+          )
+    }
+
   }
 
-  _configureScene(route, routeStack) {
-    let obj = { ...route.sceneConfig || Navigator.SceneConfigs.PushFromRight }
 
-    if (route.swipeBack === false) {
-      obj = {
-        ...route.sceneConfig || Navigator.SceneConfigs.PushFromRight,
-        gestures: {},
+  class NavigationBar extends Navigator.NavigationBar {
+
+    constructor(props) {
+      super(props)
+
+      this.state = {
+        top: new Animated.Value(0)
       }
     }
-    return obj
+
+    esconde() {
+
+      Animated.timing(
+          this.state.top,
+          {toValue: -50, duration: 300, friction: 1, }
+      ).start();
+    }
+
+    mostra() {
+
+      Animated.timing(
+          this.state.top,
+          {toValue: 0, duration: 100, friction: 1, }
+      ).start();
+    }
+
+
+    render() {
+
+      // var routes = this.props.navState.routeStack;
+      //
+      // if (routes.length) {
+      //   var route = routes[routes.length - 1];
+      //
+      //   if (route.passProps && route.passProps.navbar === false || route.hideNavBar === true) {
+      //     this.esconde()
+      //     return false
+      //   }
+      //
+      //   if(route.name === 'DashboardPage') {
+      //     this.esconde()
+      //   }else {
+      //     this.mostra()
+      //   }
+      // }
+
+      // this.mostra()
+
+      return (
+      <Animated.View style={{height: 50, backgroundColor: 'blue', position: 'absolute', top: this.state.top, left: 0, zIndex: 200, right: 0}}>
+        {super.render()}
+      </Animated.View>
+      )
+
+
+    }
   }
 
-  render() {
-    return (
-      <Navigator
-        initialRoute={this.props.initialRoute}
-        ref="navigator"
-        style={styles.navigatorStyles}
-        renderScene={this._renderScene.bind(this)}
-        configureScene={this._configureScene}
-      />
-        )
-  }
+  const styles = StyleSheet.create({
 
-}
+    navigatorStyles: {
+      flex: 1,
+    },
+    navBar: {
+      backgroundColor: '#555'
+    }
 
-const styles = StyleSheet.create({
-
-  navigatorStyles: {
-    flex: 1,
-  },
-
-})
+  })

@@ -26,7 +26,8 @@ export class HomePage extends Component {
 
   _goTo(page) {
     this.props.navigator.push({
-      name: page
+      name: page,
+      title: 'teste'
     })
   }
 
@@ -35,9 +36,9 @@ export class HomePage extends Component {
     return (
       <View style={styles.container}>
 
-        <NavBar title='Farma lib' />
-
       <ScrollView>
+        <ButtonList onPress={() => this._goTo('PedidoIndexPage')} title='TESTE!' label='Listas com ícones e notificações.' />
+        <ButtonList onPress={() => this._goTo('ContaIndexPage')} title='TESTE 222!' label='Listas com ícones e notificações.' />
         <ButtonList onPress={() => this._goTo('ButtonListPage')} title='ButtonList' label='Listas com ícones e notificações.' />
         <ButtonList onPress={() => this._goTo('SelectModalPage')} title='SelectModal' label='Modal para selecionar valores' />
         <ButtonList onPress={() => this._goTo('InfoPage')} title='Info' label='Componente informação (label / value)' />
