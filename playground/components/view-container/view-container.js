@@ -8,7 +8,7 @@ import {
 export class ViewContainer extends Component {
   render() {
     return (
-      <View style={[styles.viewContainer, this.props.style || {}, this.props.navbar === false ? {} : styles.hasNavBar]}>
+      <View style={[styles.viewContainer, this.props.style || {}, this.props.navbar ? styles.hasNavBar : {}]}>
         {this.props.children}
       </View>
     )
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   hasNavBar: {
-    marginTop: Platform.select({
-      ios: 60,
+    paddingTop: Platform.select({
+      ios: 64,
       android: 50,
     })
   },
