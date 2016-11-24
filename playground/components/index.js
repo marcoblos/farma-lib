@@ -22,7 +22,7 @@ import { FaPedidoList } from './pedido-list/pedido-list.component'
 import { FaMessage } from './message/fa-message.component'
 import { FaFullButton } from './full-button/fa-full-button.component'
 import { FaPageTitle } from './page-title/page-title.component'
-import { FaProductList } from './product-list/fa-product-list.component'
+import { FaProductList } from './product-list/product-list.component'
 
 module.exports = {
 	NavBar,
