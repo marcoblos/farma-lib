@@ -17,11 +17,11 @@ export class FaMessage extends Component {
     return (
       <View style={empty.container}>
         <View style={empty.header}>
-          <Icon style={empty.headerIcon} name={this.props.icon} size={this.props.iconSize || 120} />
+          <Icon style={[empty.headerIcon, this.props.iconStyle]} name={this.props.icon} size={this.props.iconSize || 120} />
         </View>
         <View style={empty.footer}>
-          <Text style={empty.title}>{this.props.title.toUpperCase()}</Text>
-          <Text style={empty.text}>{this.props.text}</Text>
+          <Text style={[empty.title, this.props.titleStyle]}>{this.props.title.toUpperCase()}</Text>
+          <Text style={[empty.text, this.props.textStyle]}>{this.props.text}</Text>
         </View>
       </View>
         )

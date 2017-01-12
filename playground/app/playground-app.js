@@ -13,7 +13,7 @@ export class playground extends Component {
 
       ConfigTheme.build();
 
-      this.initialRoute = 'HomePage'
+      this.initialRoute = 'PocPage'
   }
 
   render() {
